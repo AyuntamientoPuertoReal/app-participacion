@@ -14,36 +14,38 @@ static final String routeName = 'home';
       body: Stack(
         children:<Widget>[
           _fondoApp(),
-          SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 20,),
-                Image(
-                  image: AssetImage('assets/img/logo_header.png'),
-                  fit: BoxFit.contain,
-                  height: 160,
-                  //width: 400,
-                ),
-                SizedBox(height: 150,),
-                Table(
-                  children: [
-                    TableRow(
-                      children: [
-                        _crearBotonRedondeado(context,Colors.blue, Icons.camera_alt, 'Crear Incidencia',"abrirticket"),
-                        _crearBotonRedondeado(context,Color.fromRGBO(152, 62, 151, 1.0), Icons.note, 'Noticias',"noticias"),
-                      ]
-                    ),
-                    TableRow(
-                      children: [
-                        _crearBotonRedondeado(context,Colors.green, Icons.keyboard, 'Historial',"historial"),
-                        _crearBotonRedondeado(context,Colors.redAccent, Icons.contact_mail, 'Ver decide',"https://decide.puertoreal.es/")
-                      ]
-                    )
-                  ],
-                ),
-              ],
-        ),
-          ),] 
+          Column(
+            children: <Widget>[
+              SizedBox(height: 20,),
+              Image(
+                image: AssetImage('assets/img/logo_header.png'),
+                fit: BoxFit.cover,
+                height: 130,
+              ),
+              Expanded(child: Container(),),
+              Table(
+                children: [
+                  TableRow(
+                    children: [
+                      _crearBotonRedondeado(context,Colors.blue, Icons.camera_alt, 'Crear Incidencia',"abrirticket"),
+                      _crearBotonRedondeado(context,Color.fromRGBO(152, 62, 151, 1.0), Icons.note, 'Noticias',"noticias"),
+                    ]
+                  ),
+                  TableRow(
+                    children: [
+                      _crearBotonRedondeado(context,Colors.green, Icons.keyboard, 'Historial',"historial"),
+                      _crearBotonRedondeado(context,Colors.redAccent, Icons.contact_mail, 'Ver decide',"https://decide.puertoreal.es/")
+                    ]
+                  )
+                ],
+              ),
+              FlatButton(
+                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white),),
+                onPressed: (){},
+              )
+            ],
+          ),
+        ] 
       ),
     );
   }
