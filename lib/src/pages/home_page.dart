@@ -40,8 +40,10 @@ static final String routeName = 'home';
                 ],
               ),
               FlatButton(
-                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white),),
-                onPressed: (){},
+                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white, fontSize: 18),),
+                onPressed: (){
+                  print('object');
+                },
               )
             ],
           ),
@@ -49,8 +51,6 @@ static final String routeName = 'home';
       ),
     );
   }
-
-
 
   Widget _fondoApp(){
     return Container(
