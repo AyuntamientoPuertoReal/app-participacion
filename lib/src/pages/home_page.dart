@@ -2,6 +2,10 @@ import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
+// 36.529358, -6.186970 coordenadas puerto real
+
 class HomePage extends StatelessWidget {
   @override
 static final String routeName = 'home';
@@ -34,7 +38,7 @@ static final String routeName = 'home';
                   TableRow(
                     children: [
                       _crearBotonRedondeado(context,Colors.green, Icons.keyboard, 'Historial',"historial"),
-                      _crearBotonRedondeado(context,Colors.redAccent, Icons.contact_mail, 'Ver decide',"https://decide.puertoreal.es/")
+                      _crearBotonRedondeado(context,Colors.redAccent, Icons.map, 'Mapa',"mapa")
                     ]
                   )
                 ],
