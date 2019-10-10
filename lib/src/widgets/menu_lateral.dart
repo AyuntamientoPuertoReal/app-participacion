@@ -47,14 +47,16 @@ class MenuLateralWidget extends StatelessWidget {
            onTap: () { 
             // Navigator.pop(context);
              //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+             Navigator.pushNamed(context, 'historial');
            },
          ),
          ListTile(
-           leading: Icon(Icons.settings, color: Colors.blue,),
-           title: Text('Configuracion de usuario'),
+           leading: Icon(Icons.map, color: Colors.blue,),
+           title: Text('Ver Mapa'),
            onTap: () { 
             // Navigator.pop(context);
              //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+             Navigator.pushNamed(context, 'mapa');
            },
          ),
          ListTile(
