@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-
-// 36.529358, -6.186970 coordenadas puerto real
-
 class HomePage extends StatelessWidget {
   @override
 static final String routeName = 'home';

@@ -45,16 +45,14 @@ class MenuLateralWidget extends StatelessWidget {
            leading: Icon(Icons.history, color: Color.fromRGBO(92, 0, 122, 1.0),),
            title: Text('Historial de tickets'),
            onTap: () { 
-            // Navigator.pop(context);
-             //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+             Navigator.pushNamed(context, 'historial');
            },
          ),
          ListTile(
-           leading: Icon(Icons.settings, color: Color.fromRGBO(92, 0, 122, 1.0),),
-           title: Text('Configuracion de usuario'),
+           leading: Icon(Icons.map, color: Color.fromRGBO(92, 0, 122, 1.0),),
+           title: Text('Ver Mapa'),
            onTap: () { 
-            // Navigator.pop(context);
-             //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+             Navigator.pushNamed(context, 'mapa');
            },
          ),
          ListTile(
@@ -62,8 +60,6 @@ class MenuLateralWidget extends StatelessWidget {
            title: Text('Salir de la aplicacion'),
            onTap: () { 
              SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-            // Navigator.pop(context);
-             //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
            },
          ),
        ],
