@@ -6,6 +6,14 @@ import 'package:url_launcher/url_launcher.dart';
 class HomePage extends StatelessWidget {
   @override
 static final String routeName = 'home';
+
+
+final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
+final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
+
+
+// final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
+// final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MenuLateralWidget(),
@@ -19,30 +27,32 @@ static final String routeName = 'home';
             children: <Widget>[
               SizedBox(height: 20,),
               Image(
-                image: AssetImage('assets/img/logo_header.png'),
-                fit: BoxFit.cover,
-                height: 130,
+                image: AssetImage('assets/img/APP-logo_header1.png'),
+                fit: BoxFit.contain,
+                //height: 130,
               ),
               Expanded(child: Container(),),
               Table(
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.blue, Icons.camera_alt, 'Crear Incidencia',"abrirticket"),
-                      _crearBotonRedondeado(context,Color.fromRGBO(152, 62, 151, 1.0), Icons.note, 'Noticias',"noticias"),
-                    ]
+                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'Crear Incidencia',"abrirticket", fondoOscuro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.notifications, 'Noticias',"noticias", fondoClaro),
+                    ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.green, Icons.keyboard, 'Historial',"historial"),
-                      _crearBotonRedondeado(context,Colors.redAccent, Icons.map, 'Mapa',"mapa")
+                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'Historial',"historial", fondoClaro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'Puntos de Interés',"mapa", fondoOscuro)
                     ]
                   )
                 ],
               ),
               FlatButton(
-                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white),),
-                onPressed: (){},
+                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white, fontSize: 16),),
+                onPressed: (){
+                  print('object');
+                },
               )
             ],
           ),
@@ -51,15 +61,13 @@ static final String routeName = 'home';
     );
   }
 
-
-
   Widget _fondoApp(){
     return Container(
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/img/auth_bg.jpg'),
+          image: AssetImage('assets/img/login.jpg'),
           fit: BoxFit.cover
         )
         // gradient: LinearGradient(
@@ -75,13 +83,13 @@ static final String routeName = 'home';
   }
 
 
-  Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page){    
+  Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo){    
     return Container(
-          height: 140.0,
+          height: 100.0,
           //width: 10.0,
-          margin: EdgeInsets.all(10.0),
+          margin: EdgeInsets.all(6.0),
           decoration: BoxDecoration(
-            color: Color.fromRGBO(255, 255, 255, 0.6),
+            color: fondo,
             // color: Color.fromRGBO(62, 66, 107, 0.7),
             borderRadius: BorderRadius.circular(20.0)
           ),
@@ -97,13 +105,14 @@ static final String routeName = 'home';
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(height: 5.0,),
-                CircleAvatar(
-                  backgroundColor: color,
-                  radius:35.0,
-                  child: Icon(icono, color: Colors.white, size:30.0),
-                ),
+                Icon(icono, color: Colors.white, size:50.0),
+                // CircleAvatar(
+                //   backgroundColor: color,
+                //   radius:35.0,
+                //   child: Icon(icono, color: Colors.white, size:30.0),
+                // ),
                 //SizedBox(height: 2.0),
-                Text(texto, style: TextStyle(color: color),)
+                Text(texto, style: TextStyle(color: color, fontSize: 16),)
               ],
             ),
           ),
