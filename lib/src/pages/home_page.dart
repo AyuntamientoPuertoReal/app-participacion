@@ -8,8 +8,8 @@ class HomePage extends StatelessWidget {
 static final String routeName = 'home';
 
 
-final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
-final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
+final fondoOscuro = Color.fromRGBO(103, 58, 183, 0.6);
+final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
 
 
 // final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
@@ -18,7 +18,7 @@ final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
     return Scaffold(
       drawer: MenuLateralWidget(),
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text(''),
       ),
       body: Stack(
         children:<Widget>[
@@ -36,14 +36,14 @@ final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'Crear Incidencia',"abrirticket", fondoOscuro),
-                      _crearBotonRedondeado(context,Colors.white, Icons.notifications, 'Noticias',"noticias", fondoClaro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'CREAR INCIDENCIA',"abrirticket", fondoOscuro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIA',"noticias", fondoClaro),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'Historial',"historial", fondoClaro),
-                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'Puntos de Interés',"mapa", fondoOscuro)
+                      _crearBotonRedondeado(context,Colors.white, Icons.history, 'HISTORIAL',"historial", fondoClaro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"mapa", fondoOscuro)
                     ]
                   )
                 ],
@@ -105,14 +105,15 @@ final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(height: 5.0,),
-                Icon(icono, color: Colors.white, size:50.0),
+                Icon(icono, color: Colors.white, size:40.0),
                 // CircleAvatar(
                 //   backgroundColor: color,
                 //   radius:35.0,
                 //   child: Icon(icono, color: Colors.white, size:30.0),
                 // ),
                 //SizedBox(height: 2.0),
-                Text(texto, style: TextStyle(color: color, fontSize: 16),)
+                Text(texto, style: TextStyle(color: color, fontSize: 14),),
+                SizedBox(height: 3.0,),
               ],
             ),
           ),
