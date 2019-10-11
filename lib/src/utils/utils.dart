@@ -1,5 +1,6 @@
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
+import 'package:latlong/latlong.dart';
 
  String decrypted;
 
@@ -22,3 +23,12 @@ void generateToken() async {
   print(encrypted.base64);
 
 }
+
+ LatLng getCoordenadas(String valor){
+    // 36.529358, -6.186970 coordenadas puerto real
+    final coordenadas = valor.split(',');
+    final lat = double.parse(coordenadas[0]);
+    final long = double.parse(coordenadas[1]);
+    
+    return LatLng(lat, long);
+  }
