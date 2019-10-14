@@ -37,7 +37,7 @@ final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
                   TableRow(
                     children: [
                       _crearBotonRedondeado(context,Colors.white, Icons.build, 'CREAR INCIDENCIA',"abrirticket", fondoOscuro),
-                      _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIA',"noticias", fondoClaro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIAS',"noticias", fondoClaro),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
@@ -49,9 +49,9 @@ final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
                 ],
               ),
               FlatButton(
-                child: Text('Ir a Decide Puerto Real >',style: TextStyle(color: Colors.white, fontSize: 16),),
+                child: Text('Acceder a Decide Puerto Real >',style: TextStyle(color: Colors.white, fontSize: 16),),
                 onPressed: (){
-                  print('object');
+                  _launchUrl('https://decide.puertoreal.es/');
                 },
               )
             ],
@@ -91,7 +91,8 @@ final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
           decoration: BoxDecoration(
             color: fondo,
             // color: Color.fromRGBO(62, 66, 107, 0.7),
-            borderRadius: BorderRadius.circular(20.0)
+            borderRadius: BorderRadius.circular(20.0),
+            border: Border.all(width: 1.0, color: Color.fromRGBO(92, 0, 122, 1.0))
           ),
           child: FlatButton(
             onPressed: (){
