@@ -1,3 +1,5 @@
+import 'package:appparticipacion/src/bloc/provider.dart';
+import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
@@ -17,6 +19,10 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final puntoDeInteresBloc = Provider.noticiaBloc(context);
+    puntoDeInteresBloc.cargarNoticia();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Mapa de  puerto real"),
@@ -88,7 +94,7 @@ class _MapaPageState extends State<MapaPage> {
   }
 
   _crearMarcadores(String coordenadas) {
-   return MarkerLayerOptions(
+return MarkerLayerOptions(
       markers: <Marker>[
         Marker(
           width: 100.0,

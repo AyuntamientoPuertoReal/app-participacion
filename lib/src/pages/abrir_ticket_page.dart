@@ -195,6 +195,8 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             ticketModel.fotoUrl = null;
       
           }
+
+          print("Texto de la foto URL"+foto.toString());
       
           setState(() {});
       
@@ -203,24 +205,29 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       
       
         Widget  _mostrarFoto() {
+
+         
           
-          if(ticketModel.fotoUrl != null){ 
+          if(foto != null){ 
             //to-Do retornar imagen
+            print("foto.path:"+foto.path+"||");
             return FadeInImage(
-              // image: NetworkImage("https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-              image: NetworkImage(ticketModel.fotoUrl),
+            // image: NetworkImage("https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+              image: FileImage(foto),
               placeholder: AssetImage('assets/img/jar-loading.gif'),
               height: 300.0,
               fit: BoxFit.cover,
             );
           } else {
             return Image(
-              image: AssetImage(foto?.path ?? 'assets/img/no-image.png'),
+              image: AssetImage('assets/img/no-image.png'),
               height: 300.0,
               fit: BoxFit.cover,
             );
           }
-      
+        
+
+
         }
       
         obtenerGeo(int valor) async {
