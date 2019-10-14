@@ -11,7 +11,7 @@ class MapaPage extends StatefulWidget {
 class _MapaPageState extends State<MapaPage> {
 
   final map = new MapController();
-  final String _coordenadas = "36.527845, -6.191586";
+  final List<String> _coordenadas = ["36.527845, -6.191586", "36.528371, -6.180022", "36.528124, -6.187882"];
   String tipoMapa = "streets";
 
 
@@ -24,7 +24,7 @@ class _MapaPageState extends State<MapaPage> {
           IconButton(
             icon: Icon(Icons.my_location),
             onPressed: (){
-              map.move(utils.getCoordenadas(_coordenadas), 15);
+              map.move(utils.getCoordenadas(_coordenadas[0]), 15);
             },
           )
         ],
@@ -34,12 +34,12 @@ class _MapaPageState extends State<MapaPage> {
     );
   }
 
-  _crearFlutterMap(String valor) {
+  _crearFlutterMap(List<String> valor) {
 
      return FlutterMap(
      mapController: map,
      options: MapOptions(
-       center: utils.getCoordenadas(valor),
+       center: utils.getCoordenadas(valor[0]),
        zoom: 15
      ),
      layers: [
@@ -87,18 +87,24 @@ class _MapaPageState extends State<MapaPage> {
    );
   }
 
-  _crearMarcadores(String coordenadas) {
-   return MarkerLayerOptions(
-      markers: <Marker>[
-        Marker(
-          width: 100.0,
-          height: 100.0,
-          point: utils.getCoordenadas(coordenadas),
-          builder: (context) => Container(
-            child: InkWell(child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor), onTap: () => _detallePuntoInteres()),
-          ),
+  _crearMarcadores(List<String> coordenadas) {
+
+    List<Marker> lista =[];
+    coordenadas.forEach((m){
+      Marker marca = Marker(
+        width: 100.0,
+        height: 100.0,
+        point: utils.getCoordenadas(m),
+        builder: (context) => Container(
+          child: InkWell(child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor), onTap: () => _detallePuntoInteres()),
         )
-      ]
+      );
+      lista.add(marca);
+    });
+
+
+   return MarkerLayerOptions(
+      markers: lista
     );
   }
 
