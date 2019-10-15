@@ -25,6 +25,7 @@ class _MapaPageState extends State<MapaPage> {
 
     Future<List<PuntoInteresModel>> _listaPuntos = pI.cargarPuntoInteres();
 
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Mapa de  puerto real"),
@@ -41,29 +42,46 @@ class _MapaPageState extends State<MapaPage> {
       floatingActionButton: _crearBotonFlotante(context),
     );
   }
-
   Widget _crearFlutterMap(PuntoInteresBloc puntosInteresBloc, Future<List<PuntoInteresModel>> _listaPuntos) {
     List<Marker> lista =[];
+    List<PuntoInteresModel> listaPImodel = [];
+    PuntoInteresModel modelo_PI = new PuntoInteresModel();
     return FutureBuilder(
       future: _listaPuntos,
       builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
         if(snapshot.hasData){
           snapshot.data.forEach((m){
-            Marker marca = Marker(
+
+            
+           // print("Name M"+m.name);
+
+           // print("Description M"+m.description);
+
+            Marker marca = Marker(              
               width: 100.0,
               height: 100.0,
               point: utils.getCoordenadas(m.geo),
               builder: (context) => Container(
-                child: InkWell(child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor), onTap: () => _detallePuntoInteres()),
-              )
+
+                  child: Column(
+                    children: <Widget>[
+                      Text(m.name.toString(), style: TextStyle(fontSize: 6),overflow: TextOverflow.ellipsis,),
+                      InkWell(
+                        child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor),
+                        onTap: () => _detallePuntoInteres(m)
+                      ),    
+                    ],
+                  ),
+                  
+                ),
             );
             lista.add(marca);
-          });
-
+          }); 
           return FlutterMap(
             mapController: map,
             options: MapOptions(
-              center: utils.getCoordenadas("36.527845, -6.191586")
+              center: utils.getCoordenadas("36.527845, -6.191586"),
+              zoom: 15
             ),
             layers: [
               _crearMapa(),
@@ -120,8 +138,9 @@ class _MapaPageState extends State<MapaPage> {
    );
   }
 
-  _detallePuntoInteres() {
-    // To-Do al hacer clic en el marcador, llevara al detalle del punto en concreto, por ejemplo informacion del ayuntamiento o el impro
-    print("entro dentro del evento del marcador");
+  _detallePuntoInteres(PuntoInteresModel model) {
+    
+    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: model);
+
   }
 }

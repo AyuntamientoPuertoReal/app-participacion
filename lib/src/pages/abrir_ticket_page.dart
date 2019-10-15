@@ -85,7 +85,8 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         labelText: 'Descripción de la incidencia',
       ),
       onSaved: (value) => ticketModel.descripcion = value,
-      validator: (value){/*
+      validator: (value){
+        /*
         if(value.length <  3){
           return 'Ingrese la descripcion de';
         } else {
@@ -174,7 +175,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       ticketModel.fotoUrl = null;
 
     }
-
     setState(() {});
   }
 

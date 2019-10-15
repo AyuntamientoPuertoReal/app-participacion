@@ -23,7 +23,7 @@ class PuntoInteresModel {
         id: json["id"],
         name: json["name"],
         description: json["description"],
-        urlImage: json["url_image"],
+        urlImage: json["urlImage"],
         geo: json["geo"],
     );
 
@@ -31,7 +31,10 @@ class PuntoInteresModel {
         // "id": id,
         "name": name,
         "description": description,
-        "url_image": urlImage,
+        "urlImage": urlImage,
         "geo": geo,
     };
+
+
+
 }

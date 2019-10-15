@@ -19,8 +19,8 @@ void generateToken() async {
   final encrypted = encrypter.encrypt(devideId, iv: iv);
    decrypted = encrypter.decrypt(encrypted, iv: iv);
 
-  print(decrypted);
-  print(encrypted.base64);
+  print("Decryped token: "+decrypted);
+  print("Encrypted token"+encrypted.base64);
 
 }
 
