@@ -26,7 +26,6 @@ class _NoticiasPageState extends State<NoticiasPage> {
     noticiaBloc.cargarNoticia();
     
 
-
     return Scaffold(
       drawer: MenuLateralWidget(),
       appBar: AppBar(
