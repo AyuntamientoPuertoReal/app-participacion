@@ -28,7 +28,7 @@ class PuntoInteresModel {
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
+        // "id": id,
         "name": name,
         "description": description,
         "url_image": urlImage,
