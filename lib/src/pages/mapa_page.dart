@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
+
 class MapaPage extends StatefulWidget {
 
   @override
@@ -16,19 +17,14 @@ class _MapaPageState extends State<MapaPage> {
   final map = new MapController();
   final List<String> _coordenadas = ["36.527845, -6.191586", "36.528371, -6.180022", "36.528124, -6.187882"];
   String tipoMapa = "streets";
-   List<String> listaCoordenadas = [];
-  PuntoInteresProvider pI = new PuntoInteresProvider();
-
-   
-
-
+  PuntoInteresProvider pI= new PuntoInteresProvider();
   @override
   Widget build(BuildContext context) {
+    final puntosInteresBloc = Provider.puntoInteresBloc(context);
+    puntosInteresBloc.cargarPuntosInteres();
 
-    final puntoDeInteresBloc = Provider.puntoInteresBloc(context);
-    puntoDeInteresBloc.cargarPuntosInteres();
+    Future<List<PuntoInteresModel>> _listaPuntos = pI.cargarPuntoInteres();
 
-    final _listaPI = pI.cargarPuntoInteres();
 
     return Scaffold(
       appBar: AppBar(
@@ -42,28 +38,67 @@ class _MapaPageState extends State<MapaPage> {
           )
         ],
       ),
-      //body: _crearPuntosInteres(puntoDeInteresBloc),
-      //body: _crearFlutterMap(_coordenadas,puntoDeInteresBloc),
-      body: _cargarMarcadores(puntoDeInteresBloc,_listaPI),
+      body: _crearFlutterMap(puntosInteresBloc, _listaPuntos),
       floatingActionButton: _crearBotonFlotante(context),
     );
   }
+  Widget _crearFlutterMap(PuntoInteresBloc puntosInteresBloc, Future<List<PuntoInteresModel>> _listaPuntos) {
+    List<Marker> lista =[];
+    List<PuntoInteresModel> listaPImodel = [];
+    PuntoInteresModel modelo_PI = new PuntoInteresModel();
+    return FutureBuilder(
+      future: _listaPuntos,
+      builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
+        if(snapshot.hasData){
+          snapshot.data.forEach((m){
 
-  _crearFlutterMap(List<String> valor,PuntoInteresBloc puntoDeInteresBloc) {
+            
+           // print("Name M"+m.name);
 
-     return FlutterMap(
-     mapController: map,
-     options: MapOptions(
-       center: utils.getCoordenadas("36.527845, -6.191586"),
-       zoom: 15
-     ),
-     layers: [
-       _crearMapa(),
-       _crearMarcadores(valor,puntoDeInteresBloc),
-     ],
+           // print("Description M"+m.description);
 
-   );
+            Marker marca = Marker(              
+              width: 100.0,
+              height: 100.0,
+              point: utils.getCoordenadas(m.geo),
+              builder: (context) => Container(
 
+                  child: Column(
+                    children: <Widget>[
+                      Text(m.name.toString(), style: TextStyle(fontSize: 6),overflow: TextOverflow.ellipsis,),
+                      InkWell(
+                        child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor),
+                        onTap: () => _detallePuntoInteres(m)
+                      ),    
+                    ],
+                  ),
+                  
+                ),
+            );
+            lista.add(marca);
+          }); 
+          return FlutterMap(
+            mapController: map,
+            options: MapOptions(
+              center: utils.getCoordenadas("36.527845, -6.191586"),
+              zoom: 15
+            ),
+            layers: [
+              _crearMapa(),
+              MarkerLayerOptions(
+                markers: lista
+              )
+            ],
+          );
+        } else {
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
+    );
   }
 
   _crearBotonFlotante(BuildContext context) {
@@ -103,73 +138,9 @@ class _MapaPageState extends State<MapaPage> {
    );
   }
 
-
-  _crearMarcadores(List<String> coordenadas,PuntoInteresBloc puntoDeInteresBloc) {
+  _detallePuntoInteres(PuntoInteresModel model) {
     
-    List<Marker> lista =[];
-    
-    listaCoordenadas.forEach((m){
-      Marker marca = Marker(
-        width: 100.0,
-        height: 100.0,
-        point: utils.getCoordenadas(m),
-        builder: (context) => Container(
-          child: InkWell(child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor), onTap: () => _detallePuntoInteres()),
-        )
-      );
-      lista.add(marca);
-    });
-
-   return MarkerLayerOptions(
-      markers: lista
-    );
-  }
-
-  _detallePuntoInteres() {
-    // To-Do al hacer clic en el marcador, llevara al detalle del punto en concreto, por ejemplo informacion del ayuntamiento o el impro
-    print("entro dentro del evento del marcador");
-  }
-
-Widget  _cargarMarcadores(PuntoInteresBloc puntoInteresBloc, Future<List<PuntoInteresModel>> _listaPI){
-   
-
-   return  FutureBuilder(
-      future: _listaPI,
-      builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
-        if(snapshot.hasData){
-        for (var item in snapshot.data) {
-          listaCoordenadas.add(item.geo);
-        }
-        return _crearFlutterMap(listaCoordenadas, puntoInteresBloc);
-
-        }else {
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        
-
-      },
-    );
-
-  }
-
- Widget _crearPuntosInteres(PuntoInteresBloc puntoDeInteresBloc) {
-
-  return StreamBuilder(
-     stream: puntoDeInteresBloc.puntoInteresStream,
-     builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
-       String coordenada = snapshot.data[0].geo;
-       
-       return Container(
-         child: Text("no homo "+coordenada),
-       );
-     },
-   );
-
-   //return Container();
+    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: model);
 
   }
 }
