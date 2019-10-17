@@ -80,7 +80,10 @@ class _MapaPageState extends State<MapaPage> {
 
                   child: Column(
                     children: <Widget>[
-                      Text(m.name.toString(), style: TextStyle(fontSize: 12, color: Colors.black), overflow: TextOverflow.ellipsis,),
+                      Container(
+                        child: Text(m.name.toString(), style: TextStyle(fontSize: 12, color: Colors.white), overflow: TextOverflow.ellipsis,),
+                        color: Color.fromRGBO(0, 0, 0, 0.4),
+                      ),
                       InkWell(
                         child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor),
                         onTap: () => _detallePuntoInteres(m)
@@ -176,7 +179,7 @@ class _MapaPageState extends State<MapaPage> {
       return Column(
         children: <Widget>[
         SizedBox(height: 50),
-        Text("Leyenda del mapa", style: TextStyle(fontSize: 20)),
+        Text('Ubicaciones de Mapa', style: TextStyle(fontSize: 20)),
 
          new Expanded(
            child: new ListView.builder(
