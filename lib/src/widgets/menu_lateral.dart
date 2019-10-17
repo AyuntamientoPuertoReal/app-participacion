@@ -3,6 +3,8 @@ import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:flutter/services.dart';
 
 class MenuLateralWidget extends StatelessWidget {
+  //final fondo = Color.fromRGBO(162, 0, 125, 1.0);
+  final fondo = Color.fromRGBO(103, 58, 183, 1.0);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -19,7 +21,7 @@ class MenuLateralWidget extends StatelessWidget {
             ),
          ),
          ListTile(
-           leading: Icon(Icons.pages, color: Color.fromRGBO(92, 0, 122, 1.0),),
+           leading: Icon(Icons.home, color: fondo),
            title: Text('Inicio'),
            onTap: (){
              Navigator.pushNamed(context, HomePage.routeName);
@@ -27,7 +29,7 @@ class MenuLateralWidget extends StatelessWidget {
          ),
 
          ListTile(
-           leading: Icon(Icons.party_mode, color: Color.fromRGBO(92, 0, 122, 1.0),),
+           leading: Icon(Icons.announcement, color: fondo),
            title: Text('Noticias'),
            onTap: (){
              Navigator.pushNamed(context, 'noticias');
@@ -35,29 +37,33 @@ class MenuLateralWidget extends StatelessWidget {
          ),
 
          ListTile(
-           leading: Icon(Icons.people, color: Color.fromRGBO(92, 0, 122, 1.0),),
-           title: Text('Abrir Ticket'),
+           leading: Icon(Icons.build, color: fondo),
+           title: Text('Crear Incidencia'),
            onTap: (){
              Navigator.pushNamed(context, 'abrirticket');
            },
          ),
          ListTile(
-           leading: Icon(Icons.history, color: Color.fromRGBO(92, 0, 122, 1.0),),
-           title: Text('Historial de tickets'),
+           leading: Icon(Icons.history, color: fondo),
+           title: Text('Historial de Incidencias'),
            onTap: () { 
              Navigator.pushNamed(context, 'historial');
            },
          ),
          ListTile(
-           leading: Icon(Icons.map, color: Color.fromRGBO(92, 0, 122, 1.0),),
+           leading: Icon(Icons.map, color: fondo),
            title: Text('Ver Mapa'),
            onTap: () { 
              Navigator.pushNamed(context, 'mapa');
            },
          ),
+         Divider(
+           height: 2.0,
+           thickness: 1,
+         ),
          ListTile(
-           leading: Icon(Icons.exit_to_app, color: Color.fromRGBO(92, 0, 122, 1.0),),
-           title: Text('Salir de la aplicacion'),
+           leading: Icon(Icons.exit_to_app, color: fondo),
+           title: Text('Salir de la aplicación'),
            onTap: () { 
              SystemChannels.platform.invokeMethod('SystemNavigator.pop');
            },
