@@ -23,36 +23,59 @@ class _HistorialPageState extends State<HistorialPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Historial Page"),
+        title: Text("Historial de Incidencias"),
       ),
       drawer: MenuLateralWidget(),
-      body: _crearListadoTickets(ticketBloc)
+      body: _crearListadoTickets(ticketBloc),
+      
     );
   }
 
  Widget _crearListadoTickets(TicketBloc ticketBloc) {
 
    return StreamBuilder(
-     stream: ticketBloc.ticketStream ,
-     builder: (BuildContext context, AsyncSnapshot snapshot){
+     stream: ticketBloc.ticketStream,
+     builder: (BuildContext context, AsyncSnapshot<List<TicketModel>> snapshot ){
       
       if(snapshot.hasData){
 
         final data = snapshot.data;
+        
+      return ListView.builder(
+        itemCount: snapshot.data.length,
+        itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: <Widget>[
+                ListTile(
+                  leading: FadeInImage(
+                    image: NetworkImage(data[index].fotoUrl),
+                    placeholder: AssetImage('assets/img/jar-loading.gif'),
+                    width: 50.0,
+                    fit: BoxFit.contain,
+                  ),
+                  title: Text(data[index].descripcion,overflow: TextOverflow.ellipsis,),
+                  subtitle: Row(
+                    children: <Widget>[
+                      Text('01/08/2019'),
+                      SizedBox( width: 10,),
+                      Text(data[index].solucionado.toString()),
+                    ],
+                  ),
+                  onTap: (){
 
-       return ListView.builder(
-         padding: EdgeInsets.all(20.0),
-         itemCount: data.length,
-         itemBuilder: (context, i){
-           return Column(
-             children: <Widget>[
-                SizedBox(height: 15.0),
-                _crearTicket(context,data[i]),
-                SizedBox(height: 15.0),
-             ],
-           );
-         }
-       );
+                    Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
+                  },
+                ),
+                Divider(
+                  thickness: 2.0,
+                ),
+              ],
+            );
+        },
+        
+
+      );
+
       }else {
          return Center(child: CircularProgressIndicator());
        }
@@ -68,3 +91,40 @@ class _HistorialPageState extends State<HistorialPage> {
   }
 
 }
+
+// ListView(
+//   children: peliculas.map((pelicula){
+//     return ListTile(
+//       leading: FadeInImage(
+//         image: NetworkImage(pelicula.getPosterImg()),
+//         placeholder: AssetImage('assets/img/no-image.jpg'),
+//         width: 50.0,
+//         fit: BoxFit.contain,
+//       ),
+//       title: Text(pelicula.title),
+//       subtitle: Text(pelicula.originalTitle),
+//       onTap: (){
+//         close(context,null);
+//         pelicula.uniqueId ='';
+//         Navigator.pushNamed(context, 'detalle', arguments: pelicula);
+//       },
+//     );
+//   }).toList(),
+// );
+
+
+// Antiguo 
+
+// ListView.builder(
+//   padding: EdgeInsets.all(20.0),
+//   itemCount: data.length,
+//   itemBuilder: (context, i){
+//     return Column(
+//       children: <Widget>[
+//         SizedBox(height: 15.0),
+//         _crearTicket(context,data[i]),
+//         SizedBox(height: 15.0),
+//       ],
+//     );
+//   }
+// );

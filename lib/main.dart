@@ -1,5 +1,6 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/pages/abrir_ticket_page.dart';
+import 'package:appparticipacion/src/pages/detalle_ticket_page.dart';
 import 'package:appparticipacion/src/pages/historial_page.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:appparticipacion/src/pages/mapa_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           'historial'           : (BuildContext context) => HistorialPage(),
           'mapa'                : (BuildContext context) => MapaPage(),
           'puntoInteresDetalle' : (BuildContext context) => PuntosInteresDetallePage(),
+          'detalleTicket'       : (BuildContext context) => DetalleTicketPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(152, 62, 151, 1.0)
