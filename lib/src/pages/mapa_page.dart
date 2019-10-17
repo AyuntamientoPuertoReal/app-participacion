@@ -1,6 +1,8 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
 import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
+import 'package:appparticipacion/src/widgets/menu_lateral.dart';
+import 'package:appparticipacion/src/widgets/widget_filtroMapa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
@@ -24,9 +26,13 @@ class _MapaPageState extends State<MapaPage> {
     puntosInteresBloc.cargarPuntosInteres();
 
     Future<List<PuntoInteresModel>> _listaPuntos = pI.cargarPuntoInteres();
-
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer:Drawer(
+      child: _llamarMarcadores(context,puntosInteresBloc)
+      ),
       appBar: AppBar(
         title: Text("Mapa de  puerto real"),
         actions: <Widget>[
@@ -35,6 +41,12 @@ class _MapaPageState extends State<MapaPage> {
             onPressed: (){
               map.move(utils.getCoordenadas(_coordenadas[0]), 15);
             },
+          ),
+          IconButton(
+            icon: Icon(Icons.location_on),
+            onPressed: (){
+              _scaffoldKey.currentState.openEndDrawer();
+            },
           )
         ],
       ),
@@ -42,6 +54,9 @@ class _MapaPageState extends State<MapaPage> {
       floatingActionButton: _crearBotonFlotante(context),
     );
   }
+
+
+
   Widget _crearFlutterMap(PuntoInteresBloc puntosInteresBloc, Future<List<PuntoInteresModel>> _listaPuntos) {
     List<Marker> lista =[];
     List<PuntoInteresModel> listaPImodel = [];
@@ -65,7 +80,7 @@ class _MapaPageState extends State<MapaPage> {
 
                   child: Column(
                     children: <Widget>[
-                      Text(m.name.toString(), style: TextStyle(fontSize: 6),overflow: TextOverflow.ellipsis,),
+                      Text(m.name.toString(), style: TextStyle(fontSize: 12, color: Colors.black), overflow: TextOverflow.ellipsis,),
                       InkWell(
                         child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor),
                         onTap: () => _detallePuntoInteres(m)
@@ -143,4 +158,67 @@ class _MapaPageState extends State<MapaPage> {
     Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: model);
 
   }
+
+  Widget _llamarMarcadores(BuildContext context, PuntoInteresBloc puntosInteresBloc) {
+    List<Widget> lista = [];
+    List<PuntoInteresModel>listaModel= [];
+
+   return StreamBuilder(
+      stream: puntosInteresBloc.puntoInteresStream ,
+      builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
+        if(snapshot.hasData){
+        final data = snapshot.data;
+
+      // snapshot.data.forEach((m){
+      //     listaModel.add(m);
+      //     print(m.name);
+      //  }); 
+      return Column(
+        children: <Widget>[
+        SizedBox(height: 50),
+        Text("Leyenda del mapa", style: TextStyle(fontSize: 20)),
+
+         new Expanded(
+           child: new ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int i) {
+              return ListTile(
+                 leading: Icon(Icons.map, color: Color.fromRGBO(92, 0, 122, 1.0),),
+                 title: Text(data[i].name),
+                 trailing: IconButton(
+                   icon: Icon(Icons.arrow_forward_ios),
+                   onPressed: (){
+
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: data[i]);
+                    
+                   },
+                 ),
+                 onTap: (){
+                   Navigator.of(context).pop();
+                   map.move(utils.getCoordenadas(data[i].geo), 18); //Navigator.pushNamed(context, HomePage.routeName);
+                 },
+               );
+            },
+   ),
+         ),
+        ],
+      );
+
+  // return ListView(
+  //   children: <Widget>[
+  //     Text("data"),
+  //     Text("sssssss")
+  //   ],
+  // );
+
+        }else{
+          return Container();
+        }
+      },
+    );
+
+
+  }
+
 }
