@@ -190,7 +190,8 @@ class _MapaPageState extends State<MapaPage> {
                    onPressed: (){
 
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: data[i]);
+                    //Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: data[i]);
+                    utils.openMap(data[i].geo);
                     
                    },
                  ),

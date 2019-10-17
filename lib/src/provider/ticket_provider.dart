@@ -77,12 +77,12 @@ class TicketProvider {
       final prodTemp = TicketModel.fromJson(prod);
       prodTemp.id = id;
 
-      if(prodTemp.token == utils.decrypted){
+     // if(prodTemp.token == utils.decrypted){
 
         //print("tocken:"+prodTemp.token);
         tickets.add(prodTemp);
 
-      }
+     // }
 
 
     });
