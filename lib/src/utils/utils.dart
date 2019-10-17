@@ -1,6 +1,7 @@
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:latlong/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
  String decrypted;
 
@@ -31,4 +32,16 @@ void generateToken() async {
     final long = double.parse(coordenadas[1]);
     
     return LatLng(lat, long);
+  }
+
+  openMap(String valor) async {
+    final coordenadas = valor.split(',');
+    final lat = double.parse(coordenadas[0]);
+    final long = double.parse(coordenadas[1]);
+    String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
   }
