@@ -1,9 +1,7 @@
-import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/menu_lateral.dart';
-import 'package:appparticipacion/src/widgets/widget_historial_tickets.dart';
 import 'package:flutter/material.dart';
 
 
@@ -83,48 +81,5 @@ class _HistorialPageState extends State<HistorialPage> {
 
      },
    );
-
   }
-
-  _crearTicket(BuildContext context,TicketModel data) {
-    return historialTicket(context, data);
-  }
-
 }
-
-// ListView(
-//   children: peliculas.map((pelicula){
-//     return ListTile(
-//       leading: FadeInImage(
-//         image: NetworkImage(pelicula.getPosterImg()),
-//         placeholder: AssetImage('assets/img/no-image.jpg'),
-//         width: 50.0,
-//         fit: BoxFit.contain,
-//       ),
-//       title: Text(pelicula.title),
-//       subtitle: Text(pelicula.originalTitle),
-//       onTap: (){
-//         close(context,null);
-//         pelicula.uniqueId ='';
-//         Navigator.pushNamed(context, 'detalle', arguments: pelicula);
-//       },
-//     );
-//   }).toList(),
-// );
-
-
-// Antiguo 
-
-// ListView.builder(
-//   padding: EdgeInsets.all(20.0),
-//   itemCount: data.length,
-//   itemBuilder: (context, i){
-//     return Column(
-//       children: <Widget>[
-//         SizedBox(height: 15.0),
-//         _crearTicket(context,data[i]),
-//         SizedBox(height: 15.0),
-//       ],
-//     );
-//   }
-// );

@@ -5,7 +5,6 @@ import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.d
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 class TicketProvider {
@@ -80,23 +79,21 @@ class TicketProvider {
      // if(prodTemp.token == utils.decrypted){
 
         //print("tocken:"+prodTemp.token);
-        tickets.add(prodTemp);
+      tickets.add(prodTemp);
 
      // }
 
 
     });
 
-    
-
     return tickets;
 
   }
 
-  Future<int> borrarProducto(String id)async{
+  Future<int> borrarTicket(String id)async{
 
-    final url = '$_url/ticketCiudadano/$id.json?auth=${ _prefs.token }';
-    final response = await http.delete(url);
+    // final url = '$_url/ticketCiudadano/$id.json?auth=${ _prefs.token }';
+    // final response = await http.delete(url);
 
     return 1;
   }

@@ -1,16 +1,12 @@
-import 'dart:io';
-
 import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/models/noticias_model.dart';
-import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/widgets/widget_noticia.dart';
 
 
 class NoticiasPage extends StatefulWidget {
-
 
   @override
   _NoticiasPageState createState() => _NoticiasPageState();
@@ -56,39 +52,32 @@ class _NoticiasPageState extends State<NoticiasPage> {
     );
   }
 
- Widget _crearListadoNoticias(NoticiaBloc noticiabloc) {
+  Widget _crearListadoNoticias(NoticiaBloc noticiabloc) {
 
-   return StreamBuilder(
-     stream: noticiabloc.noticiasStream ,
-     builder: (BuildContext context, AsyncSnapshot<List<NoticiaModel>> snapshot){
-       if(snapshot.hasData){
-         final data = snapshot.data;
-      
-       //return noticia2(snapshot.data[0]);
-       return ListView.builder(
-         padding: EdgeInsets.all(20.0),
-         itemCount: snapshot.data.length,
-         itemBuilder: (context, i) { 
-           return Column(
-             children: <Widget>[
-               SizedBox(height: 15.0),
-                _crearNoticia(context,data[i]),
+    return StreamBuilder(
+      stream: noticiabloc.noticiasStream ,
+      builder: (BuildContext context, AsyncSnapshot<List<NoticiaModel>> snapshot){
+      if(snapshot.hasData){
+        final data = snapshot.data;
+        return ListView.builder(
+          padding: EdgeInsets.all(20.0),
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, i) { 
+            return Column(
+              children: <Widget>[
                 SizedBox(height: 15.0),
-             ],
-           );
-           }
-       );
-
-       /* return Container(
-         child: Text(snapshot.data[0].description),
-       );*/
-
-       }else {
-         return Center(child: CircularProgressIndicator());
-       }
-     },
-   );
- }
+                  _crearNoticia(context,data[i]),
+                  SizedBox(height: 15.0),
+              ],
+            );
+            }
+        );
+      }else {
+        return Center(child: CircularProgressIndicator());
+      }
+      },
+    );
+  }
 
   _crearNoticia(BuildContext context ,NoticiaModel noticiaModel) {
 
@@ -99,6 +88,4 @@ class _NoticiasPageState extends State<NoticiasPage> {
     }
 
   }
-
-
 }

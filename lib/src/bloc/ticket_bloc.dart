@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:appparticipacion/src/models/ticket_model.dart';
@@ -49,7 +48,7 @@ class TicketBloc {
 
   void borrarTicket(String id) async {
 
-   await _ticketProvider.borrarProducto(id);
+   await _ticketProvider.borrarTicket(id);
 
   }
 

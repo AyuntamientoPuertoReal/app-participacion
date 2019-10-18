@@ -85,14 +85,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         labelText: 'Descripción de la incidencia',
       ),
       onSaved: (value) => ticketModel.descripcion = value,
-      validator: (value){
-        /*
-        if(value.length <  3){
-          return 'Ingrese la descripcion de';
-        } else {
-          return null;
-        }*/
-      },
+      // validator: (value){
+        
+      //   if(value.length <  3){
+      //     return 'Ingrese la descripcion de';
+      //   } else {
+      //     return null;
+      //   }
+      // },
     );
   }
 
@@ -154,11 +154,11 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
-  _seleccionarFoto() async {
+  // _seleccionarFoto() async {
 
-    _procesarImagen(ImageSource.gallery);
+  //   _procesarImagen(ImageSource.gallery);
 
-  }
+  // }
 
   _tomarFoto() async {
 

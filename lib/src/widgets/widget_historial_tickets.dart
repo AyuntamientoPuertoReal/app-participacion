@@ -1,4 +1,3 @@
-import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:flutter/material.dart';
 
