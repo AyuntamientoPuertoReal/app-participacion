@@ -1,15 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/models/noticias_model.dart';
-import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
-
-
 
 class NoticiaProvider{
 
   final String _url = 'https://flutter-varios-8bb9d.firebaseio.com';
-  final _prefs = new PreferenciasUsuario();
-
 
   Future<bool> crearNoticia(NoticiaModel noticia)async{
     
@@ -52,8 +47,8 @@ class NoticiaProvider{
 
   Future<int> borrarNoticia(String id) async{
 
-    final url = '$_url/noticias/$id.json';
-    final response = await http.delete(url);
+    //final url = '$_url/noticias/$id.json';
+    //final response = await http.delete(url);
 
     return 1;
   }
