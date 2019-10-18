@@ -1,5 +1,6 @@
 import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class PuntosInteresDetallePage extends StatelessWidget {
   @override
@@ -20,13 +21,32 @@ class PuntosInteresDetallePage extends StatelessWidget {
             Image(
               image: NetworkImage(puntoDeInteres.urlImage),
             ),
-            SizedBox(height: 10),
-            Text(puntoDeInteres.description),
-            SizedBox(height: 10),
-            Text(puntoDeInteres.geo)
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+              children: <Widget>[
+              Text(puntoDeInteres.description),
+              SizedBox(height: 50),
+              RaisedButton.icon(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: Colors.blue,
+                textColor: Colors.white,
+                label: Text("Ver en Google Maps", style: TextStyle(fontSize: 18)),
+                icon: Icon(Icons.compare),
+                onPressed: (){
+                   utils.openMap(puntoDeInteres.geo);
+                },
+              ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
+
   }
 }

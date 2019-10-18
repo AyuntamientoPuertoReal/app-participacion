@@ -67,11 +67,6 @@ class _MapaPageState extends State<MapaPage> {
         if(snapshot.hasData){
           snapshot.data.forEach((m){
 
-            
-           // print("Name M"+m.name);
-
-           // print("Description M"+m.description);
-
             Marker marca = Marker(              
               width: 100.0,
               height: 100.0,
@@ -89,8 +84,7 @@ class _MapaPageState extends State<MapaPage> {
                         onTap: () => _detallePuntoInteres(m)
                       ),    
                     ],
-                  ),
-                  
+                  ),              
                 ),
             );
             lista.add(marca);
@@ -151,7 +145,6 @@ class _MapaPageState extends State<MapaPage> {
      additionalOptions: {
        'accessToken' : 'pk.eyJ1IjoieGVsZW4iLCJhIjoiY2swZ2ZpMGEyMDZpNTNmbnNicG04eDVnbSJ9.ZWd5LMcBo0EYfSgaM3_AtA',
        'id'          : 'mapbox.$tipoMapa' 
-       // streets, dark, light, outdoors, satellite
      }
    );
   }
@@ -163,19 +156,14 @@ class _MapaPageState extends State<MapaPage> {
   }
 
   Widget _llamarMarcadores(BuildContext context, PuntoInteresBloc puntosInteresBloc) {
-    List<Widget> lista = [];
-    List<PuntoInteresModel>listaModel= [];
 
    return StreamBuilder(
       stream: puntosInteresBloc.puntoInteresStream ,
       builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
         if(snapshot.hasData){
+
         final data = snapshot.data;
 
-      // snapshot.data.forEach((m){
-      //     listaModel.add(m);
-      //     print(m.name);
-      //  }); 
       return Column(
         children: <Widget>[
         SizedBox(height: 50),
@@ -193,28 +181,20 @@ class _MapaPageState extends State<MapaPage> {
                    onPressed: (){
 
                     Navigator.of(context).pop();
-                    //Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: data[i]);
-                    utils.openMap(data[i].geo);
+                    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: data[i]);
                     
                    },
                  ),
                  onTap: (){
                    Navigator.of(context).pop();
-                   map.move(utils.getCoordenadas(data[i].geo), 18); //Navigator.pushNamed(context, HomePage.routeName);
-                 },
-               );
-            },
-   ),
+                   map.move(utils.getCoordenadas(data[i].geo), 18);
+             },
+            );
+           },
+          ),
          ),
         ],
-      );
-
-  // return ListView(
-  //   children: <Widget>[
-  //     Text("data"),
-  //     Text("sssssss")
-  //   ],
-  // );
+       );
 
         }else{
           return Container();
