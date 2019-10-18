@@ -27,8 +27,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   var geolocator = Geolocator();
   var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
 
-  
-
   @override
   Widget build(BuildContext context) {
 
