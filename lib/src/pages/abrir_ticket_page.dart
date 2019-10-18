@@ -62,7 +62,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
                 
             },
           ),
-
           IconButton(
             icon: Icon(Icons.camera_alt, size: 25),
             onPressed: _tomarFoto,
@@ -131,7 +130,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     if(formkey.currentState.validate()){
 
       formkey.currentState.save();
-
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
@@ -168,12 +166,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
     scaffoldKey.currentState.showSnackBar(snackBar);
   }
-
-  // _seleccionarFoto() async {
-
-  //   _procesarImagen(ImageSource.gallery);
-
-  // }
 
   _tomarFoto() async {
 
