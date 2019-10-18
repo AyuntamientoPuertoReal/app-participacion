@@ -27,8 +27,6 @@ class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
   }
 
  Widget _llamarMarcadores(BuildContext context, PuntoInteresBloc puntosInteresBloc) {
-    List<Widget> lista = [];
-    List<PuntoInteresModel>listaModel= [];
 
    return StreamBuilder(
       stream: puntosInteresBloc.puntoInteresStream ,
