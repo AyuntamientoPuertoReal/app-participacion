@@ -32,6 +32,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   @override
   Widget build(BuildContext context) {
 
+    String mensaje="Para poder crear una incidencia siga los siguientes pasos:\n"+
+     "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
+     "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
+     "\n3- Pulse el botón Guardar y todo el proceso habrá terminado";
     ticketBloc = Provider.ticketbloc(context);
 
     final TicketModel prodData = ModalRoute.of(context).settings.arguments;
@@ -44,12 +48,23 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       appBar: AppBar(
         title: Text('Crear incidencia'),
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(Icons.photo_size_select_actual),
-          //   onPressed: _seleccionarFoto,
-          // ),
           IconButton(
-            icon: Icon(Icons.camera_alt),
+            icon: Icon(Icons.help, size: 25),
+            onPressed: (){
+
+              final snackbar = SnackBar(
+              content: Text( mensaje ),
+              duration: Duration( milliseconds: 15000),
+              );
+
+              scaffoldKey.currentState.showSnackBar(snackbar);
+            
+                
+            },
+          ),
+
+          IconButton(
+            icon: Icon(Icons.camera_alt, size: 25),
             onPressed: _tomarFoto,
           ),
         ],
