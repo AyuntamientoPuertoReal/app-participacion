@@ -54,7 +54,7 @@ class _HistorialPageState extends State<HistorialPage> {
                   title: Text(data[index].descripcion,overflow: TextOverflow.ellipsis,),
                   subtitle: Row(
                     children: <Widget>[
-                      Text('01/08/2019'),
+                      Text(data[index].fechaCreacion),
                       SizedBox( width: 10,),
                       Text(data[index].solucionado.toString()),
                     ],
