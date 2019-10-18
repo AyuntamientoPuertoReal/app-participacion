@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
+import 'package:appparticipacion/src/widgets/widget_modal.dart';
 //import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -47,6 +48,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         title: Text('Crear incidencia'),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.live_help, size: 25),
+            onPressed: () => mostrarModal(context, mensaje)
+          ),
+          IconButton(
             icon: Icon(Icons.help, size: 25),
             onPressed: (){
 
@@ -64,6 +69,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             icon: Icon(Icons.camera_alt, size: 25),
             onPressed: _tomarFoto,
           ),
+          
         ],
       ),
       body: SingleChildScrollView(
@@ -184,23 +190,39 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   Widget _mostrarFoto() {
-
-    if(ticketModel.fotoUrl != null){ 
+    if(foto != null){ 
       //to-Do retornar imagen
+      //print("foto.path:"+foto.path+"||");
       return FadeInImage(
-        // image: NetworkImage("https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-        image: NetworkImage(ticketModel.fotoUrl),
+        image: FileImage(foto),
         placeholder: AssetImage('assets/img/jar-loading.gif'),
         height: 300.0,
         fit: BoxFit.cover,
       );
     } else {
       return Image(
-        image: AssetImage(foto?.path ?? 'assets/img/no-image.png'),
+        image: AssetImage('assets/img/no-image.png'),
         height: 300.0,
         fit: BoxFit.cover,
       );
     }
+
+    // if(ticketModel.fotoUrl != null){ 
+    //   //to-Do retornar imagen
+    //   return FadeInImage(
+    //     // image: NetworkImage("https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+    //     image: NetworkImage(ticketModel.fotoUrl),
+    //     placeholder: AssetImage('assets/img/jar-loading.gif'),
+    //     height: 300.0,
+    //     fit: BoxFit.cover,
+    //   );
+    // } else {
+    //   return Image(
+    //     image: FileImage(foto ?? null),
+    //     height: 300.0,
+    //     fit: BoxFit.cover,
+    //   );
+    // }
   }
 
   obtenerGeo(int valor) async {
