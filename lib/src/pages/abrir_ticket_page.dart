@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
-//import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 class AbrirTicketPage extends StatefulWidget {
@@ -144,7 +143,9 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       if(ticketModel.id == null){
         Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
         String coordenada = position.latitude.toString()+","+position.longitude.toString();
+        String fecha = utils.obtenerFechaCreacionTicket();
 
+        ticketModel.fechaCreacion=fecha;
         ticketModel.solucionado=false;
         ticketModel.coordenadas = coordenada;
         ticketBloc.crearTicket(ticketModel);
@@ -160,8 +161,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     mostrarSnackbar('Registro Guardado');
     Navigator.pushReplacementNamed(context, 'home');
   }
-  
-  void mostrarSnackbar(String mensaje){
+    void mostrarSnackbar(String mensaje){
 
     final snackBar = SnackBar(
       content: Text(mensaje),

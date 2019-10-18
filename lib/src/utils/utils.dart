@@ -44,4 +44,12 @@ void generateToken() async {
     } else {
       throw 'Could not open the map.';
     }
+
+  }
+
+    String obtenerFechaCreacionTicket(){
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second);
+    
+    return date.toString();
   }

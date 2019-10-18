@@ -50,7 +50,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                 SizedBox(width: 20,),
                 Text('Fecha:'),
                 SizedBox(width: 2,),
-                Text('01/08/2019'),
+                Text(ticket.fechaCreacion),
               ],
             )
           ],
