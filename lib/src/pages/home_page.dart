@@ -4,21 +4,30 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 class HomePage extends StatelessWidget {
-  @override
-static final String routeName = 'home';
+  
+  static final String routeName = 'home';
 
 
-final fondoOscuro = Color.fromRGBO(103, 58, 183, 0.6);
-final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
+  final fondoOscuro = Color.fromRGBO(103, 58, 183, 0.6);
+  final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
 
 
 // final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
 // final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MenuLateralWidget(),
       appBar: AppBar(
         title: Text(''),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ir a la Web', style: TextStyle(color: Colors.white, fontSize: 16),),
+            onPressed: (){
+              _launchUrl('http://participacion.puertoreal.es/');
+            },
+          )
+        ],
       ),
       body: Stack(
         children:<Widget>[
@@ -49,7 +58,7 @@ final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
                 ],
               ),
               FlatButton(
-                child: Text('Acceder a Decide Puerto Real >',style: TextStyle(color: Colors.white, fontSize: 16),),
+                child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Colors.white, fontSize: 16),),
                 onPressed: (){
                   _launchUrl('https://decide.puertoreal.es/');
                 },
@@ -125,7 +134,7 @@ final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
     if (await canLaunch(url)) {
     await launch(url);
   } else {
-    throw 'Could not launch $url';
+    throw 'No se pudo abrir $url';
   }
 }
 

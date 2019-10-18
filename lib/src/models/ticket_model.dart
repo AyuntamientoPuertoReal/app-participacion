@@ -1,4 +1,3 @@
-import 'package:latlong/latlong.dart';
 import 'dart:convert';
 
 TicketModel ticketModelFromJson(String str) => TicketModel.fromJson(json.decode(str));

@@ -1,5 +1,4 @@
 import 'package:appparticipacion/src/models/noticias_model.dart';
-import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -57,23 +56,13 @@ class NoticiasDetalles extends StatelessWidget {
      padding: EdgeInsets.symmetric(horizontal: 20.0),
      child: Row(
        children: <Widget>[
-         /*Hero(
-           tag: noticiaModel.id,
-           child: ClipRRect(
-             borderRadius: BorderRadius.circular(20.0),
-             child: Image(
-               image: NetworkImage(noticiaModel.imageUrl),
-               height: 150.0,
-             ),
-           ),
-         ),*/
          SizedBox(width: 20.0),
          Flexible(
            child: Column(
              children: <Widget>[
-               Text(noticiaModel.title, style: Theme.of(context).textTheme.title,overflow: TextOverflow.ellipsis),
+               Text(noticiaModel.title, style: Theme.of(context).textTheme.title),
                SizedBox(height: 15.0),
-               Text(noticiaModel.description, style: Theme.of(context).textTheme.subhead,overflow: TextOverflow.clip),
+               Text(noticiaModel.description, style: Theme.of(context).textTheme.subhead),
              ],
            ),
          )
@@ -89,23 +78,15 @@ Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
      return Container(
      padding: EdgeInsets.all(20.0),
      child: _mostrarHtml(noticiaModel)
-  
-
-
-    /* child: Text(
-       //noticiaModel.description,
-       "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas , las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum"
-       ,style: TextStyle(fontSize: 20.0) ,textAlign: TextAlign.justify,
-      ),*/
    );
 
   }
 }
 
  Widget _mostrarHtml(NoticiaModel noticia) {
-   String prueba="<a href='https://github.com'>https://github.com</a><br />";
+   //String prueba="<a href='https://github.com'>https://github.com</a><br />";
    return Html(
-  data: noticia.body
+     data: noticia.body
   /*"""
     <!--For a much more extensive example, look at example/main.dart-->
     <div>
@@ -120,26 +101,25 @@ Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
       <!--You can pretty much put any html in here!-->
     </div>
   """*/,
-  //Optional parameters:
-  padding: EdgeInsets.all(8.0),
-  useRichText: false,
-  //backgroundColor: Colors.white70,
-  defaultTextStyle: TextStyle(fontFamily: 'serif'),
-  linkStyle: const TextStyle(
-    color: Colors.redAccent,
-  ),
-  onLinkTap: (url) {
-    // open url in a webview
-    print("Opening $url...");
-    _launchUrl(url);
-  },
-  onImageTap: (src) {
+    //Optional parameters:
+    padding: EdgeInsets.all(8.0),
+    useRichText: false,
+    //backgroundColor: Colors.white70,
+    defaultTextStyle: TextStyle(fontFamily: 'serif'),
+    linkStyle: const TextStyle(
+      color: Colors.redAccent,
+    ),
+    onLinkTap: (url) {
+      // open url in a webview
+      print("Opening $url...");
+      _launchUrl(url);
+    },
+    onImageTap: (src) {
 
-    // Display the image in large form.
-    print(src);
-  },
+      // Display the image in large form.
+      print(src);
+    },
   //Must have useRichText set to false for this to work.
-  
   );
 }
 
