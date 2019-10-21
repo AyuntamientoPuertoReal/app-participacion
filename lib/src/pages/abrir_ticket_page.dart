@@ -47,23 +47,23 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         title: Text('Crear incidencia'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.live_help, size: 25),
+            icon: Icon(Icons.help, size: 25),
             onPressed: () => mostrarModal(context, mensaje)
           ),
-          IconButton(
-            icon: Icon(Icons.help, size: 25),
-            onPressed: (){
+          // IconButton(
+          //   icon: Icon(Icons.help, size: 25),
+          //   onPressed: (){
 
-              final snackbar = SnackBar(
-              content: Text( mensaje ),
-              duration: Duration( milliseconds: 15000),
-              );
+          //     final snackbar = SnackBar(
+          //     content: Text( mensaje ),
+          //     duration: Duration( milliseconds: 15000),
+          //     );
 
-              scaffoldKey.currentState.showSnackBar(snackbar);
+          //     scaffoldKey.currentState.showSnackBar(snackbar);
             
                 
-            },
-          ),
+          //   },
+          // ),
           IconButton(
             icon: Icon(Icons.camera_alt, size: 25),
             onPressed: _tomarFoto,
