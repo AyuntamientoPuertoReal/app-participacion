@@ -68,7 +68,8 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
                           Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                         },
                       ),
-                    ],)
+                    ],
+                   ),
                   ],
                 ),
               );
@@ -104,7 +105,18 @@ final card = Container(
                     Text(noticia.description),
                   ],
                  ),
-                )
+                ),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: <Widget>[
+                 FlatButton(
+                   child: Text('Ver Noticia'),
+                    onPressed: (){
+                      Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                     },
+                  ),
+                ],
+              ),
             ],
           ),
 

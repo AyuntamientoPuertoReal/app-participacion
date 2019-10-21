@@ -7,15 +7,11 @@ class HomePage extends StatelessWidget {
   
   static final String routeName = 'home';
 
-
-  final fondoOscuro = Color.fromRGBO(103, 58, 183, 0.6);
-  final fondoClaro = Color.fromRGBO(126, 87, 195, 0.6);
-
-
-// final fondoOscuro = Color.fromRGBO(92, 0, 122, 0.6);
-// final fondoClaro = Color.fromRGBO(193, 88, 220, 0.6);
   @override
   Widget build(BuildContext context) {
+  final fondoApp = Color.fromRGBO(162, 0, 125, 0.75);
+
+
     return Scaffold(
       drawer: MenuLateralWidget(),
       appBar: AppBar(
@@ -36,7 +32,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 20,),
               Image(
-                image: AssetImage('assets/img/APP-logo_header1.png'),
+                image: AssetImage('assets/img/APP-logo_header2.png'),
                 fit: BoxFit.contain,
                 //height: 130,
               ),
@@ -45,20 +41,20 @@ class HomePage extends StatelessWidget {
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'CREAR INCIDENCIA',"abrirticket", fondoOscuro),
-                      _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIAS',"noticias", fondoClaro),
+                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'CREAR INCIDENCIA',"abrirticket", fondoApp),
+                      _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIAS',"noticias", fondoApp),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.history, 'HISTORIAL',"historial", fondoClaro),
-                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"mapa", fondoOscuro)
+                      _crearBotonRedondeado(context,Colors.white, Icons.history, 'HISTORIAL',"historial", fondoApp),
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"mapa", fondoApp)
                     ]
                   )
                 ],
               ),
               FlatButton(
-                child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Colors.white, fontSize: 16),),
+                child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),),
                 onPressed: (){
                   _launchUrl('https://decide.puertoreal.es/');
                 },
@@ -76,7 +72,7 @@ class HomePage extends StatelessWidget {
       height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/img/login.jpg'),
+          image: AssetImage('assets/img/login2.jpg'),
           fit: BoxFit.cover
         )
         // gradient: LinearGradient(
