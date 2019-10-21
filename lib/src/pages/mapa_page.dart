@@ -32,7 +32,7 @@ class _MapaPageState extends State<MapaPage> {
       child: _llamarMarcadores(context,puntosInteresBloc)
       ),
       appBar: AppBar(
-        title: Text("Mapa de  puerto real"),
+        title: Text("Mapa"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.my_location),
@@ -72,8 +72,9 @@ class _MapaPageState extends State<MapaPage> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        child: Text(m.name.toString(), style: TextStyle(fontSize: 12, color: Colors.white), overflow: TextOverflow.ellipsis,),
-                        color: Color.fromRGBO(0, 0, 0, 0.4),
+                        padding: EdgeInsets.all(2),
+                        child: Text(m.name.toString(), style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.w900), overflow: TextOverflow.ellipsis,),
+                        //color: Color.fromRGBO(0, 0, 0, 0.4),
                       ),
                       InkWell(
                         child: Icon(Icons.location_on, size: 40.0, color: Theme.of(context).primaryColor),

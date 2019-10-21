@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void mostrarModal(BuildContext context, String mensaje){
     showDialog(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (context){
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

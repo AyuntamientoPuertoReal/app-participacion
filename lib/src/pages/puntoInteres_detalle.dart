@@ -22,13 +22,13 @@ class PuntosInteresDetallePage extends StatelessWidget {
               Image(
                 image: NetworkImage(puntoDeInteres.urlImage),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Container(
                 padding: EdgeInsets.all(20),
                 child: Column(
                 children: <Widget>[
                 Text(puntoDeInteres.description),
-                SizedBox(height: 50),
+                SizedBox(height: 30),
                 RaisedButton.icon(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
