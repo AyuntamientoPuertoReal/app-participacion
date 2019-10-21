@@ -206,23 +206,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         fit: BoxFit.cover,
       );
     }
-
-    // if(ticketModel.fotoUrl != null){ 
-    //   //to-Do retornar imagen
-    //   return FadeInImage(
-    //     // image: NetworkImage("https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-    //     image: NetworkImage(ticketModel.fotoUrl),
-    //     placeholder: AssetImage('assets/img/jar-loading.gif'),
-    //     height: 300.0,
-    //     fit: BoxFit.cover,
-    //   );
-    // } else {
-    //   return Image(
-    //     image: FileImage(foto ?? null),
-    //     height: 300.0,
-    //     fit: BoxFit.cover,
-    //   );
-    // }
   }
 
   obtenerGeo(int valor) async {
