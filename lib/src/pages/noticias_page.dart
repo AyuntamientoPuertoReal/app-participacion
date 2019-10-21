@@ -23,7 +23,6 @@ class _NoticiasPageState extends State<NoticiasPage> {
     
 
     return Scaffold(
-      drawer: MenuLateralWidget(),
       appBar: AppBar(
         title: Text("Noticias"),
         actions: <Widget>[

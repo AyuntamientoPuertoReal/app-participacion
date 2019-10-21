@@ -23,7 +23,6 @@ class _HistorialPageState extends State<HistorialPage> {
       appBar: AppBar(
         title: Text("Historial de Incidencias"),
       ),
-      drawer: MenuLateralWidget(),
       body: _crearListadoTickets(ticketBloc),
       
     );

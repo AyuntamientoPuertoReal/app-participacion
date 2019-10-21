@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           'detalleTicket'       : (BuildContext context) => DetalleTicketPage(),
         },
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(152, 62, 151, 1.0)
+          primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
         ),
       ),
     );

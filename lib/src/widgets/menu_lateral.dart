@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 
 class MenuLateralWidget extends StatelessWidget {
   //final fondo = Color.fromRGBO(162, 0, 125, 1.0);
-  final fondo = Color.fromRGBO(103, 58, 183, 1.0);
+  
   @override
   Widget build(BuildContext context) {
+    final fondo = Theme.of(context).primaryColor;
     return Drawer(
      child: ListView(
        padding: EdgeInsets.zero,
@@ -15,7 +16,7 @@ class MenuLateralWidget extends StatelessWidget {
             child: Container(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/img/menu-img.png'),
+                image: AssetImage('assets/img/fondo_menu_lateral3.jpg'),
                 fit: BoxFit.cover
               )
             ),
