@@ -15,39 +15,42 @@ class PuntosInteresDetallePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(""+puntoDeInteres.name)
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
+      body: SingleChildScrollView(
+          child: Stack(
             children: <Widget>[
-              Image(
-                image: NetworkImage(puntoDeInteres.urlImage),
-              ),
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                children: <Widget>[
-                Text(puntoDeInteres.description),
-                SizedBox(height: 30),
-                RaisedButton.icon(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+             Column(
+              children: <Widget>[
+                Image(
+                  image: NetworkImage(puntoDeInteres.urlImage),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                  children: <Widget>[
+                  Text(puntoDeInteres.description),
+                  SizedBox(height: 30),
+                  RaisedButton.icon(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    label: Text("Ver en Google Maps", style: TextStyle(fontSize: 18)),
+                    icon: Icon(Icons.compare),
+                    onPressed: (){
+                       utils.openMap(puntoDeInteres.geo);
+                        },
+                      ),
+                    ],
                   ),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  label: Text("Ver en Google Maps", style: TextStyle(fontSize: 18)),
-                  icon: Icon(Icons.compare),
-                  onPressed: (){
-                     utils.openMap(puntoDeInteres.geo);
-                  },
                 ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
+           ],
+
           ),
         ),
-      ),
     );
 
   }
