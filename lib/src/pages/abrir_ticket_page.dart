@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
+import 'package:appparticipacion/src/models/tipo_incidencia_model.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -21,6 +22,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
   TicketBloc ticketBloc;
   TicketModel ticketModel = new TicketModel();
+  TipoIncidenciaModel tipoIncidencia;
   bool _guardando = false;
   File foto;
 
@@ -29,17 +31,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    tipoIncidencia = ModalRoute.of(context).settings.arguments;
+    print(tipoIncidencia.tipo);
     String mensaje="Para poder crear una incidencia siga los siguientes pasos:\n"+
      "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
      "\n3- Pulse el botón Guardar y todo el proceso habrá terminado";
     ticketBloc = Provider.ticketbloc(context);
 
-    final TicketModel prodData = ModalRoute.of(context).settings.arguments;
-    if(prodData != null){
-      ticketModel = prodData;
-    }
 
     return Scaffold(
       key: scaffoldKey,
