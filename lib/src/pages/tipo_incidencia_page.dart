@@ -18,8 +18,20 @@ class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
       appBar: AppBar(
         title: Text('Crear Incidencia'),
       ),
-      body: _cargarTiposIncidencias(context,tipoIncidenciaBloc),
-      
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 10),
+          Container(
+            padding: EdgeInsets.all(14),
+            child: Text('Elige el tipo de incidencia que quieres enviar al Ayuntamiento: ', style: TextStyle(fontSize: 20),)
+          ),
+          SizedBox(height: 10),
+          Divider(
+            thickness: 0.0,
+          ),
+          _cargarTiposIncidencias(context,tipoIncidenciaBloc),
+        ],
+      ),
     );
   }
 
@@ -49,16 +61,22 @@ class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
             listaTipos.add(
               Divider(
                 thickness: 1.0,
-              
               )
             );
           });
-          return ListView(
-            children: listaTipos,
-            
+
+          return new Expanded(
+            child: ListView(
+              children: listaTipos.toList(),
+            ),
           );
+
         } else{
-          return Container();
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
       }
     );
