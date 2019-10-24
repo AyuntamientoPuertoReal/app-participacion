@@ -54,7 +54,7 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
                           children: <Widget>[
                             Text(noticia.date),
                             SizedBox(height: 15.0),
-                            Text(noticia.description),
+                            Text(noticia.description, overflow: TextOverflow.ellipsis),
                           ],
                         ),
                       ),
@@ -102,7 +102,7 @@ final card = Container(
                     SizedBox(height: 15.0),
                     Text(noticia.date),
                     SizedBox(height: 15.0),
-                    Text(noticia.description),
+                    Text(noticia.description, overflow: TextOverflow.ellipsis)
                   ],
                  ),
                 ),
