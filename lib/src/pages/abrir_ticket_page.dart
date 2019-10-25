@@ -138,6 +138,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.fechaCreacion=fecha;
         ticketModel.solucionado=false;
         ticketModel.coordenadas = coordenada;
+        ticketModel.tipoIncidencia = tipoIncidencia.tipo;
 
         ticketBloc.crearTicket(ticketModel);
         print("Se guardo");
