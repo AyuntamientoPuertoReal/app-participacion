@@ -117,17 +117,10 @@ class _MapaPageState extends State<MapaPage> {
      onPressed: (){
         // streets, dark, light, outdoors, satellite
         if( tipoMapa == 'streets' ){
-          tipoMapa='dark';
-        }else if( tipoMapa == 'dark'){
-          tipoMapa='light';
-        }else if( tipoMapa == 'light'){
-          tipoMapa='outdoors';
-        }else if( tipoMapa == 'outdoors'){
           tipoMapa='satellite';
-        } else if(tipoMapa == 'satellite'){
+        }else if( tipoMapa == 'satellite'){
           tipoMapa='streets';
         }
-
         setState(() {});
      },
    );
