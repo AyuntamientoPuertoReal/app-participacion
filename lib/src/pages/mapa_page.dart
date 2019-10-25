@@ -91,7 +91,8 @@ class _MapaPageState extends State<MapaPage> {
             mapController: map,
             options: MapOptions(
               center: utils.getCoordenadas("36.527845, -6.191586"),
-              zoom: 15
+              zoom: 15,
+              minZoom: 13
             ),
             layers: [
               _crearMapa(),
