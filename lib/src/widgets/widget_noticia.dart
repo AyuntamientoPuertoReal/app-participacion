@@ -33,44 +33,49 @@ Widget  cardTipo1() {
 
 Widget  noticia2(BuildContext context, NoticiaModel noticia) {
           
-              return Card(
-                elevation: 10.0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Container(
-                      height: 85,
-                      child: ListTile(
-                       // leading: Icon(Icons.photo_album,color: Colors.blue,),
-                        leading: Image(
-                         // image: AssetImage('assets/img/no-image.png'),
-                          image: NetworkImage(noticia.imageUrl),
-                          fit: BoxFit.fitWidth,
-                        ),
-                        title: Text(noticia.title),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(noticia.date),
-                            SizedBox(height: 15.0),
-                            Text(noticia.description, overflow: TextOverflow.ellipsis),
-                          ],
+              return InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                },
+                child: Card(
+                  elevation: 10.0,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Container(
+                        height: 85,
+                        child: ListTile(
+                         // leading: Icon(Icons.photo_album,color: Colors.blue,),
+                          leading: Image(
+                           // image: AssetImage('assets/img/no-image.png'),
+                            image: NetworkImage(noticia.imageUrl),
+                            fit: BoxFit.fitWidth,
+                          ),
+                          title: Text(noticia.title),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(noticia.date),
+                              SizedBox(height: 15.0),
+                              Text(noticia.description, overflow: TextOverflow.ellipsis),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                      FlatButton(
-                        child: Text('Ver Noticia'),
-                        onPressed: (){
-                          Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
-                        },
-                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                        FlatButton(
+                          child: Text('Ver Noticia'),
+                          onPressed: (){
+                            //Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                          },
+                        ),
+                      ],
+                     ),
                     ],
-                   ),
-                  ],
+                  ),
                 ),
               );
           
@@ -112,7 +117,7 @@ final card = Container(
                  FlatButton(
                    child: Text('Ver Noticia'),
                     onPressed: (){
-                      Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                      //Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                      },
                   ),
                 ],
@@ -123,24 +128,28 @@ final card = Container(
         );
 
 
-    return Container(
-     
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 20.0,
-            spreadRadius: 2.0,
-            offset: Offset(2.0, 10.0)
-            )
-        ]
+    return InkWell(
+      onTap: (){
+        Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.white,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 20.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 10.0)
+              )
+          ]
+        ),
+         child: ClipRRect(
+           borderRadius: BorderRadius.circular(20.0),
+           child: card,
+         ),
       ),
-       child: ClipRRect(
-         borderRadius: BorderRadius.circular(20.0),
-         child: card,
-       ),
     );
 
   }

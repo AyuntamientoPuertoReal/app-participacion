@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuLateralWidget extends StatelessWidget {
   //final fondo = Color.fromRGBO(162, 0, 125, 1.0);
@@ -23,6 +24,24 @@ class MenuLateralWidget extends StatelessWidget {
          ),
          ListTile(
            leading: Icon(Icons.home, color: fondo),
+           title: Text('Web Participación Ciudadana'),
+           onTap: (){
+             _launchUrl('http://participacion.puertoreal.es/');
+           },
+         ),
+         ListTile(
+           leading: Icon(Icons.home, color: fondo),
+           title: Text('Web Decide Puerto Real'),
+           onTap: (){
+             _launchUrl('http://decide.puertoreal.es/');
+           },
+         ),
+         Divider(
+           height: 2.0,
+           thickness: 1,
+         ),
+         ListTile(
+           leading: Icon(Icons.home, color: fondo),
            title: Text('Inicio'),
            onTap: (){
              Navigator.pushNamed(context, HomePage.routeName);
@@ -39,14 +58,14 @@ class MenuLateralWidget extends StatelessWidget {
 
          ListTile(
            leading: Icon(Icons.build, color: fondo),
-           title: Text('Crear Incidencia'),
+           title: Text('Enviar Incidencia'),
            onTap: (){
              Navigator.pushNamed(context, 'abrirticket');
            },
          ),
          ListTile(
            leading: Icon(Icons.history, color: fondo),
-           title: Text('Historial de Incidencias'),
+           title: Text('Mis Incidencias'),
            onTap: () { 
              Navigator.pushNamed(context, 'historial');
            },
@@ -72,5 +91,12 @@ class MenuLateralWidget extends StatelessWidget {
        ],
      ),
    );
+  }
+  void _launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'No se pudo abrir $url';
+    }
   }
 }

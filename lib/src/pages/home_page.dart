@@ -17,12 +17,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(''),
         actions: <Widget>[
-          FlatButton(
-            child: Text('Ir a la Web', style: TextStyle(color: Colors.white, fontSize: 16),),
-            onPressed: (){
-              _launchUrl('http://participacion.puertoreal.es/');
-            },
-          )
+          // FlatButton(
+          //   child: Text('Ir a la Web', style: TextStyle(color: Colors.white, fontSize: 16),),
+          //   onPressed: (){
+          //     _launchUrl('http://participacion.puertoreal.es/');
+          //   },
+          // )
         ],
       ),
       body: Stack(
@@ -41,23 +41,26 @@ class HomePage extends StatelessWidget {
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'CREAR INCIDENCIA',"tipoincidencia", fondoApp),
+                      _crearBotonRedondeado(context,Colors.white, Icons.build, 'ENVIAR INCIDENCIA',"tipoincidencia", fondoApp),
                       _crearBotonRedondeado(context,Colors.white, Icons.announcement, 'NOTICIAS',"noticias", fondoApp),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.history, 'HISTORIAL',"historial", fondoApp),
+                      _crearBotonRedondeado(context,Colors.white, Icons.history, 'MIS INCIDENCIAS',"historial", fondoApp),
                       _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"mapa", fondoApp)
                     ]
                   )
                 ],
               ),
-              FlatButton(
-                child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),),
-                onPressed: (){
-                  _launchUrl('https://decide.puertoreal.es/');
-                },
+              // FlatButton(
+              //   child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),),
+              //   onPressed: (){
+              //     _launchUrl('https://decide.puertoreal.es/');
+              //   },
+              // )
+              SizedBox(
+                height: 12,
               )
             ],
           ),
