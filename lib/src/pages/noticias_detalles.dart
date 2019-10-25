@@ -12,22 +12,44 @@ class NoticiasDetalles extends StatelessWidget {
 
     print(noticia.toString());
     return Scaffold(
-      body: CustomScrollView(
-       slivers: <Widget>[
-         _crearAppBar(noticia),
-         SliverList(
-           delegate: SliverChildListDelegate(
-             [
-               SizedBox(height: 10.0),
-               _crearTitulo(context, noticia),
-               _crearDescripcion(context,noticia),
-             ]
-           ),
-         )
-       ],
+      appBar: AppBar(
+        title: Text(noticia.title),
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            FadeInImage(
+              image: NetworkImage(noticia.imageUrl),
+              placeholder: AssetImage('assets/img/loading.gif'),
+              fadeInDuration: Duration(milliseconds: 150),
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+            SizedBox(height: 20.0,),
+            _crearTitulo(context, noticia),
+            _crearDescripcion(context, noticia)
+          ],
+        ),
+      ) 
+      
+      // CustomScrollView(
+        
+      //  slivers: <Widget>[
+      //    //_crearAppBar(noticia),
+      //    SliverList(
+      //      delegate: SliverChildListDelegate(
+      //        [
+      //          SizedBox(height: 10.0),
+      //          _crearTitulo(context, noticia),
+      //          _crearDescripcion(context,noticia),
+      //        ]
+      //      ),
+      //    )
+      //  ],
+      // ),
     );
   }
+  
 
  Widget _crearAppBar(NoticiaModel noticia) {
    return SliverAppBar(

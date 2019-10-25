@@ -1,7 +1,6 @@
 import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/models/noticias_model.dart';
-import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/widgets/widget_noticia.dart';
 
@@ -59,14 +58,13 @@ class _NoticiasPageState extends State<NoticiasPage> {
       if(snapshot.hasData){
         final data = snapshot.data;
         return ListView.builder(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(12.0),
           itemCount: snapshot.data.length,
           itemBuilder: (context, i) { 
             return Column(
               children: <Widget>[
                 SizedBox(height: 15.0),
                   _crearNoticia(context,data[i]),
-                  SizedBox(height: 15.0),
               ],
             );
             }
