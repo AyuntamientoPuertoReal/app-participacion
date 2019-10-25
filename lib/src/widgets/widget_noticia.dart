@@ -69,7 +69,7 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
                         FlatButton(
                           child: Text('Ver Noticia'),
                           onPressed: (){
-                            //Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                            Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                           },
                         ),
                       ],
@@ -117,7 +117,7 @@ final card = Container(
                  FlatButton(
                    child: Text('Ver Noticia'),
                     onPressed: (){
-                      //Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                      Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                      },
                   ),
                 ],

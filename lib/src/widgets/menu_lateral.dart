@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuLateralWidget extends StatelessWidget {
@@ -23,14 +24,21 @@ class MenuLateralWidget extends StatelessWidget {
             ),
          ),
          ListTile(
-           leading: Icon(Icons.home, color: fondo),
+           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
            title: Text('Web Participación Ciudadana'),
            onTap: (){
              _launchUrl('http://participacion.puertoreal.es/');
            },
          ),
          ListTile(
-           leading: Icon(Icons.home, color: fondo),
+           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
+           title: Text('Web Ayuntamiento'),
+           onTap: (){
+             _launchUrl('http://puertoreal.es/');
+           },
+         ),
+         ListTile(
+           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
            title: Text('Web Decide Puerto Real'),
            onTap: (){
              _launchUrl('http://decide.puertoreal.es/');

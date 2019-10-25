@@ -119,7 +119,8 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
    // if(!formkey.currentState.validate()) return;
     print("Estado de guardado = $_guardando");
     if(formkey.currentState.validate()){
-
+      //  mostrarModal(context,'Registro esta siendo Guardado');
+        mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
       // cuando el formulario es valido
       setState(() { _guardando = true;});
@@ -137,10 +138,12 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.fechaCreacion=fecha;
         ticketModel.solucionado=false;
         ticketModel.coordenadas = coordenada;
-        ticketBloc.crearTicket(ticketModel);
-        print("Se guardo");Navigator.pushReplacementNamed(context, 'home');
 
-        mostrarModal(context,'Registro Guardado');
+        ticketBloc.crearTicket(ticketModel);
+        print("Se guardo");
+        
+       Navigator.pushReplacementNamed(context, 'home');
+
       //  Navigator.pushReplacementNamed(context, 'home');
       } else {
         mostrarModal(context,'Registro No Guardado');
@@ -151,13 +154,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     }
   
    // setState(() { _guardando = true;   });
-   Navigator.pop(context);
+  
+  // Navigator.pop(context);
   }
     void mostrarSnackbar(String mensaje){
 
     final snackBar = SnackBar(
       content: Text(mensaje),
-      duration: Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 20000),
     );
 
     scaffoldKey.currentState.showSnackBar(snackBar);
@@ -170,14 +174,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   _procesarImagen( ImageSource origen)async{
-    _fotoSeleccionada = true;
+    
     foto = await ImagePicker.pickImage(
       source: origen
     );
 
     if(foto != null){
       ticketModel.fotoUrl = null;
-
+      _fotoSeleccionada = true;
     }
     setState(() {});
   }
