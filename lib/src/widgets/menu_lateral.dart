@@ -80,9 +80,9 @@ class MenuLateralWidget extends StatelessWidget {
          ),
          ListTile(
            leading: Icon(Icons.map, color: fondo),
-           title: Text('Ver Mapa'),
+           title: Text('Ver Puntos de Interes'),
            onTap: () { 
-             Navigator.pushNamed(context, 'mapa');
+             Navigator.pushNamed(context, 'puntoInteres');
            },
          ),
          Divider(
