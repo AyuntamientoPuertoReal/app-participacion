@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:flutter_icons/flutter_icons.dart';
 
 
 class MapaPage extends StatefulWidget {
@@ -90,7 +91,8 @@ class _MapaPageState extends State<MapaPage> {
             mapController: map,
             options: MapOptions(
               center: utils.getCoordenadas("36.527845, -6.191586"),
-              zoom: 15
+              zoom: 15,
+              minZoom: 13
             ),
             layers: [
               _crearMapa(),
@@ -111,23 +113,25 @@ class _MapaPageState extends State<MapaPage> {
   }
 
   _crearBotonFlotante(BuildContext context) {
+    IconData icono;
+    IconData icon = AntDesign.getIconData("stepforward");
+
+    if(tipoMapa.contains("streets")){
+      icono = FontAwesome.getIconData("globe");
+    } else {
+      icono = Foundation.getIconData("map");
+    }
+
     return FloatingActionButton(
-     child: Icon(Icons.repeat),
+     child: Icon(icono),
      backgroundColor: Theme.of(context).primaryColor,
      onPressed: (){
         // streets, dark, light, outdoors, satellite
         if( tipoMapa == 'streets' ){
-          tipoMapa='dark';
-        }else if( tipoMapa == 'dark'){
-          tipoMapa='light';
-        }else if( tipoMapa == 'light'){
-          tipoMapa='outdoors';
-        }else if( tipoMapa == 'outdoors'){
           tipoMapa='satellite';
-        } else if(tipoMapa == 'satellite'){
+        }else if( tipoMapa == 'satellite'){
           tipoMapa='streets';
         }
-
         setState(() {});
      },
    );

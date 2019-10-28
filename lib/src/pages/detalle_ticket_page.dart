@@ -30,6 +30,8 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 15),
+            Text("Tipo de incidencia: "+ticket.tipoIncidencia),
+            SizedBox(height: 15),
             FadeInImage(
               image: NetworkImage(ticket.fotoUrl),
               placeholder: AssetImage('assets/img/jar-loading.gif'),
@@ -44,15 +46,15 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('Estado:'),
+                Text('Estado: '),
                 SizedBox(width: 2,),
                 Text(ticket.solucionado.toString(), style: TextStyle(color: color),),
                 SizedBox(width: 20,),
-                Text('Fecha:'),
+                Text('Fecha de creación: '),
                 SizedBox(width: 2,),
-                Text(ticket.fechaCreacion),
+                Text(ticket.fechaCreacion, overflow: TextOverflow.ellipsis,),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -24,7 +24,9 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   TicketModel ticketModel = new TicketModel();
   TipoIncidenciaModel tipoIncidencia;
   bool _guardando = false;
+  bool _fotoSeleccionada= false;
   File foto;
+  Widget boton;
 
   var geolocator = Geolocator();
   var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
@@ -49,25 +51,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             icon: Icon(Icons.help, size: 25),
             onPressed: () => mostrarModal(context, mensaje)
           ),
-          // IconButton(
-          //   icon: Icon(Icons.help, size: 25),
-          //   onPressed: (){
-
-          //     final snackbar = SnackBar(
-          //     content: Text( mensaje ),
-          //     duration: Duration( milliseconds: 15000),
-          //     );
-
-          //     scaffoldKey.currentState.showSnackBar(snackbar);
-            
-                
-          //   },
-          // ),
           IconButton(
             icon: Icon(Icons.camera_alt, size: 25),
             onPressed: _tomarFoto,
-          ),
-          
+          ),          
         ],
       ),
       body: SingleChildScrollView(
@@ -77,8 +64,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             key: formkey,
             child: Column(
               children: <Widget>[
+                Text("INCIDENCIA: "+tipoIncidencia.tipo),
+                SizedBox(height: 20),
                 _mostrarFoto(),
-                _crearNombre(),
+                _crearDescripcionIncidencia(),
                 SizedBox(height: 20.0,),
                 _crearBoton()
               ],
@@ -89,7 +78,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     );
   }
 
-  Widget _crearNombre() {
+  Widget _crearDescripcionIncidencia() {
     return TextFormField(
       initialValue: ticketModel.descripcion,
       textCapitalization: TextCapitalization.sentences,
@@ -101,20 +90,20 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         labelText: 'Descripción de la incidencia',
       ),
       onSaved: (value) => ticketModel.descripcion = value,
-      // validator: (value){
+      validator: (value){
         
-      //   if(value.length <  3){
-      //     return 'Ingrese la descripcion de';
-      //   } else {
-      //     return null;
-      //   }
-      // },
+        if(value.length <  3){
+          return 'Ingrese la descripcion de la incidencia';
+        } else if(_fotoSeleccionada!=true){
+          return 'Ingrese la foto de la incidencia';
+          //return 'null';
+        }
+      },
     );
   }
 
   Widget _crearBoton() {
     return RaisedButton.icon(
-      
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -127,10 +116,11 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   void _submit() async {
-    if(!formkey.currentState.validate()) return;
-    print(ticketModel.descripcion);
+   // if(!formkey.currentState.validate()) return;
+    print("Estado de guardado = $_guardando");
     if(formkey.currentState.validate()){
-
+      //  mostrarModal(context,'Registro esta siendo Guardado');
+        mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
       // cuando el formulario es valido
       setState(() { _guardando = true;});
@@ -140,6 +130,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       }
 
       if(ticketModel.id == null){
+       
         Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
         String coordenada = position.latitude.toString()+","+position.longitude.toString();
         String fecha = utils.obtenerFechaCreacionTicket();
@@ -147,24 +138,31 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.fechaCreacion=fecha;
         ticketModel.solucionado=false;
         ticketModel.coordenadas = coordenada;
+        ticketModel.tipoIncidencia = tipoIncidencia.tipo;
+
         ticketBloc.crearTicket(ticketModel);
+        print("Se guardo");
+        
+       Navigator.pushReplacementNamed(context, 'home');
+
+      //  Navigator.pushReplacementNamed(context, 'home');
       } else {
-        // productosBloc.editarProducto(producto);
+        mostrarModal(context,'Registro No Guardado');
       }
   
     } else {
       return;
     }
   
-    //setState(() { _guardando = true;   });
-    mostrarSnackbar('Registro Guardado');
-    Navigator.pushReplacementNamed(context, 'home');
+   // setState(() { _guardando = true;   });
+  
+  // Navigator.pop(context);
   }
     void mostrarSnackbar(String mensaje){
 
     final snackBar = SnackBar(
       content: Text(mensaje),
-      duration: Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 20000),
     );
 
     scaffoldKey.currentState.showSnackBar(snackBar);
@@ -177,13 +175,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   _procesarImagen( ImageSource origen)async{
+    
     foto = await ImagePicker.pickImage(
       source: origen
     );
 
     if(foto != null){
       ticketModel.fotoUrl = null;
-
+      _fotoSeleccionada = true;
     }
     setState(() {});
   }
@@ -199,10 +198,13 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         fit: BoxFit.cover,
       );
     } else {
-      return Image(
-        image: AssetImage('assets/img/no-image.png'),
-        height: 300.0,
-        fit: BoxFit.cover,
+      return InkWell(
+        child: Image(
+          image: AssetImage('assets/img/tomar-foto.jpg'),
+          height: 300.0,
+          fit: BoxFit.cover,
+        ),
+        onTap: _tomarFoto,
       );
     }
   }

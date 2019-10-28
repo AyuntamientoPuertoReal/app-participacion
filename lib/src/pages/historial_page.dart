@@ -43,6 +43,8 @@ class _HistorialPageState extends State<HistorialPage> {
         itemBuilder: (BuildContext context, int index) {
             return Column(
               children: <Widget>[
+                SizedBox(height: 10),
+                Text(data[index].tipoIncidencia),
                 ListTile(
                   leading: FadeInImage(
                     image: NetworkImage(data[index].fotoUrl),
