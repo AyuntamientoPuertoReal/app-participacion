@@ -24,37 +24,60 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
       appBar: AppBar(
         title: Text('Detalle Incidencia'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 15),
-            Text("Tipo de incidencia: "+ticket.tipoIncidencia),
-            SizedBox(height: 15),
-            FadeInImage(
-              image: NetworkImage(ticket.fotoUrl),
-              placeholder: AssetImage('assets/img/jar-loading.gif'),
-              height: 300,
-              fit: BoxFit.cover,
+            SizedBox(height: 10,),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: <Widget>[
+                  Text(ticket.descripcion, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),),
+                  SizedBox(height: 20,),
+                  RaisedButton.icon(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    label: Text("Ver seguimiento", style: TextStyle(fontSize: 18)),
+                    icon: Icon(Icons.assignment),
+                    onPressed: (){
+                        
+                    },
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[  
+                      Text('Estado: '),
+                      SizedBox(width: 2,),
+                      Text(ticket.solucionado.toString(), style: TextStyle(color: color),),
+                      Expanded(
+                        child: Container(),
+                      ),
+                    ],
+                  ),
+                  
+                ],
+              ),
             ),
-            SizedBox(height: 25),
-            Text('Descripción de tu incidencia', style: TextStyle(fontSize: 17, color: Colors.black45,),textAlign: TextAlign.center,),
-            SizedBox(height: 25,),
-            Text(ticket.descripcion, style: TextStyle(fontSize: 16),),
-            SizedBox(height: 25,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Estado: '),
-                SizedBox(width: 2,),
-                Text(ticket.solucionado.toString(), style: TextStyle(color: color),),
-                SizedBox(width: 20,),
-                Text('Fecha de creación: '),
-                SizedBox(width: 2,),
-                Text(ticket.fechaCreacion, overflow: TextOverflow.ellipsis,),
-              ],
-            ),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FadeInImage(
+                    image: NetworkImage(ticket.fotoUrl),
+                    placeholder: AssetImage('assets/img/jar-loading.gif'),
+                    height: 300,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            )
           ],
         ),
       ),
