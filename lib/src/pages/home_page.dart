@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                   TableRow(
                     children: [
                       _crearBotonRedondeado(context,Colors.white, Icons.history, 'MIS INCIDENCIAS',"historial", fondoApp),
-                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"mapa", fondoApp)
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"puntoInteres", fondoApp)
                     ]
                   )
                 ],

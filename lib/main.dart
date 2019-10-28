@@ -7,6 +7,7 @@ import 'package:appparticipacion/src/pages/mapa_page.dart';
 import 'package:appparticipacion/src/pages/noticias_detalles.dart';
 import 'package:appparticipacion/src/pages/noticias_page.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
+import 'package:appparticipacion/src/pages/puntoInteres_page.dart';
 import 'package:appparticipacion/src/pages/tipo_incidencia_page.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           'puntoInteresDetalle' : (BuildContext context) => PuntosInteresDetallePage(),
           'detalleTicket'       : (BuildContext context) => DetalleTicketPage(),
           'tipoincidencia'      : (BuildContext context) => TipoIncidenciaPage(),
+          'puntoInteres'        : (BuildContext context) => PuntoInteresPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
