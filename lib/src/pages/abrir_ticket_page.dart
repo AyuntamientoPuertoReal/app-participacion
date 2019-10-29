@@ -45,7 +45,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Crear incidencia'),
+        title: Text('Nueva Incidencia'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.help, size: 25),
@@ -64,9 +64,12 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             key: formkey,
             child: Column(
               children: <Widget>[
-                Text("INCIDENCIA: "+tipoIncidencia.tipo),
+                Text("INCIDENCIA: "+tipoIncidencia.tipo, style: TextStyle(fontSize: 16),),
                 SizedBox(height: 20),
                 _mostrarFoto(),
+                SizedBox(height: 10.0,),
+                Text('Al realizar la foto, se tomará tu ubicación para saber donde está la incidencia.'),
+                SizedBox(height: 10.0,),
                 _crearDescripcionIncidencia(),
                 SizedBox(height: 20.0,),
                 _crearBoton()
@@ -131,13 +134,13 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
       if(ticketModel.id == null){
        
-        Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
-        String coordenada = position.latitude.toString()+","+position.longitude.toString();
+        // Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
+        // String coordenada = position.latitude.toString()+","+position.longitude.toString();
         String fecha = utils.obtenerFechaCreacionTicket();
 
         ticketModel.fechaCreacion=fecha;
         ticketModel.solucionado=false;
-        ticketModel.coordenadas = coordenada;
+        // ticketModel.coordenadas = coordenada;
         ticketModel.tipoIncidencia = tipoIncidencia.tipo;
 
         ticketBloc.crearTicket(ticketModel);
@@ -182,6 +185,9 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
     if(foto != null){
       ticketModel.fotoUrl = null;
+      Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
+      String coordenada = position.latitude.toString()+","+position.longitude.toString();
+      ticketModel.coordenadas = coordenada;
       _fotoSeleccionada = true;
     }
     setState(() {});

@@ -47,9 +47,10 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
                         height: 85,
                         child: ListTile(
                          // leading: Icon(Icons.photo_album,color: Colors.blue,),
-                          leading: Image(
+                          leading: FadeInImage(
                            // image: AssetImage('assets/img/no-image.png'),
                             image: NetworkImage(noticia.imageUrl),
+                            placeholder: AssetImage('assets/img/jar-loading.gif'),
                             fit: BoxFit.fitWidth,
                           ),
                           title: Text(noticia.title),
