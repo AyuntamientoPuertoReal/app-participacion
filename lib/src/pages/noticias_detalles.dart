@@ -20,7 +20,7 @@ class NoticiasDetalles extends StatelessWidget {
           children: <Widget>[
             FadeInImage(
               image: NetworkImage(noticia.imageUrl),
-              placeholder: AssetImage('assets/img/loading.gif'),
+              placeholder: AssetImage('assets/img/jar-loading.gif'),
               fadeInDuration: Duration(milliseconds: 150),
               fit: BoxFit.cover,
               width: double.infinity,

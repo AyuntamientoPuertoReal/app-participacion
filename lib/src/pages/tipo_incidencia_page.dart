@@ -16,7 +16,7 @@ class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
     tipoIncidenciaBloc.cargarTipoIncidencia();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Crear Incidencia'),
+        title: Text('Nueva Incidencia'),
       ),
       body: Column(
         children: <Widget>[
