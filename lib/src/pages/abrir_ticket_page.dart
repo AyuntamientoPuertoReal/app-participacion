@@ -64,11 +64,11 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             key: formkey,
             child: Column(
               children: <Widget>[
-                Text("INCIDENCIA: "+tipoIncidencia.tipo, style: TextStyle(fontSize: 16),),
+                Text("INCIDENCIA: "+tipoIncidencia.tipo, style: TextStyle(fontSize: 20),),
                 SizedBox(height: 20),
                 _mostrarFoto(),
                 SizedBox(height: 10.0,),
-                Text('Al realizar la foto, se tomará tu ubicación para saber donde está la incidencia.'),
+                Text('AVISO: Al realizar la foto, se tomará tu ubicación para saber donde está la incidencia.',style: TextStyle(fontSize: 16),),
                 SizedBox(height: 10.0,),
                 _crearDescripcionIncidencia(),
                 SizedBox(height: 20.0,),
@@ -91,6 +91,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         labelText: 'Descripción de la incidencia',
+        labelStyle: TextStyle(color: Theme.of(context).primaryColor)
+      ),
+      style: TextStyle(
+        color: Colors.blue
       ),
       onSaved: (value) => ticketModel.descripcion = value,
       validator: (value){
@@ -110,7 +114,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      color: Colors.deepPurple,
+      color: Theme.of(context).primaryColor,
       textColor: Colors.white,
       label: Text('Enviar', style: TextStyle(fontSize: 18),),
       icon: Icon(Icons.save),

@@ -43,6 +43,7 @@ class AyudaPage extends StatelessWidget {
                     _crearTexto("Tome su foto y ponga una descripción"),
                     SizedBox(width: 50),
                     _crearTexto("Envie su incidencia"),
+
                     ],
                   ),
                 ],
