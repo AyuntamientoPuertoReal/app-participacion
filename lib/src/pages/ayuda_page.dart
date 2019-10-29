@@ -33,7 +33,8 @@ class AyudaPage extends StatelessWidget {
               ),
               Wrap(
                 direction: Axis.vertical,
-                children:<Widget>[ Row(
+                children:<Widget>[ 
+                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(width: 10),
@@ -42,8 +43,9 @@ class AyudaPage extends StatelessWidget {
                     _crearTexto("Tome su foto y ponga una descripción"),
                     SizedBox(width: 50),
                     _crearTexto("Envie su incidencia"),
-                  ],
-                ),
+
+                    ],
+                  ),
                 ],
               ),
               SizedBox(height: 15),

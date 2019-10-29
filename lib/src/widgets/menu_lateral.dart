@@ -49,43 +49,6 @@ class MenuLateralWidget extends StatelessWidget {
            thickness: 1,
          ),
          ListTile(
-           leading: Icon(Icons.home, color: fondo),
-           title: Text('Inicio'),
-           onTap: (){
-             Navigator.pushNamed(context, HomePage.routeName);
-           },
-         ),
-
-         ListTile(
-           leading: Icon(Icons.announcement, color: fondo),
-           title: Text('Noticias'),
-           onTap: (){
-             Navigator.pushNamed(context, 'noticias');
-           },
-         ),
-
-         ListTile(
-           leading: Icon(Icons.build, color: fondo),
-           title: Text('Enviar Incidencia'),
-           onTap: (){
-             Navigator.pushNamed(context, 'abrirticket');
-           },
-         ),
-         ListTile(
-           leading: Icon(Icons.history, color: fondo),
-           title: Text('Mis Incidencias'),
-           onTap: () { 
-             Navigator.pushNamed(context, 'historial');
-           },
-         ),
-         ListTile(
-           leading: Icon(Icons.map, color: fondo),
-           title: Text('Ver Puntos de Interes'),
-           onTap: () { 
-             Navigator.pushNamed(context, 'puntoInteres');
-           },
-         ),
-         ListTile(
            leading: Icon(Icons.help, color: fondo),
            title: Text('Ayuda'),
            onTap: (){
