@@ -4,7 +4,6 @@ import 'package:appparticipacion/src/pages/ayuda_page.dart';
 import 'package:appparticipacion/src/pages/detalle_ticket_page.dart';
 import 'package:appparticipacion/src/pages/historial_page.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
-import 'package:appparticipacion/src/pages/mapa_page.dart';
 import 'package:appparticipacion/src/pages/noticias_detalles.dart';
 import 'package:appparticipacion/src/pages/noticias_page.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
           'noticias'            : (BuildContext context) => NoticiasPage(),
           'noticiasDetalle'     : (BuildContext context) => NoticiasDetalles(),
           'historial'           : (BuildContext context) => HistorialPage(),
-          'mapa'                : (BuildContext context) => MapaPage(),
           'puntoInteresDetalle' : (BuildContext context) => PuntosInteresDetallePage(),
           'detalleTicket'       : (BuildContext context) => DetalleTicketPage(),
           'tipoincidencia'      : (BuildContext context) => TipoIncidenciaPage(),
