@@ -31,15 +31,20 @@ class AyudaPage extends StatelessWidget {
                   _crearCirculo(context,"3"),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(width: 10),
-                  _crearTexto("Elija un tipo de incidencia"),
-                  SizedBox(width: 40),
-                  _crearTexto("Tome su foto y ponga una descripción"),
-                  SizedBox(width: 50),
-                  _crearTexto("Envie su incidencia"),
+              Wrap(
+                direction: Axis.vertical,
+                children:<Widget>[ 
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(width: 10),
+                    _crearTexto("Elija un tipo de incidencia"),
+                    SizedBox(width: 40),
+                    _crearTexto("Tome su foto y ponga una descripción"),
+                    SizedBox(width: 50),
+                    _crearTexto("Envie su incidencia"),
+                    ],
+                  ),
                 ],
               ),
               SizedBox(height: 15),
