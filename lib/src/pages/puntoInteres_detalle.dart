@@ -20,8 +20,9 @@ class PuntosInteresDetallePage extends StatelessWidget {
             children: <Widget>[
              Column(
               children: <Widget>[
-                Image(
+                FadeInImage(
                   image: NetworkImage(puntoDeInteres.urlImage),
+                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                 ),
                 SizedBox(height: 10),
                 Container(
