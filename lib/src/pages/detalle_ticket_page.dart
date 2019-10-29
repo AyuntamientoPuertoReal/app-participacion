@@ -44,7 +44,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                     label: Text("Ver seguimiento", style: TextStyle(fontSize: 18)),
                     icon: Icon(Icons.assignment),
                     onPressed: (){
-                        
+                        Navigator.pushNamed(context, 'seguimientoTicketPage');
                     },
                   ),
                   SizedBox(height: 20,),
