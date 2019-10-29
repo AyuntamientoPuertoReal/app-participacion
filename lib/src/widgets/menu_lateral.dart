@@ -85,6 +85,13 @@ class MenuLateralWidget extends StatelessWidget {
              Navigator.pushNamed(context, 'puntoInteres');
            },
          ),
+         ListTile(
+           leading: Icon(Icons.help, color: fondo),
+           title: Text('Ayuda'),
+           onTap: (){
+             Navigator.pushNamed(context, 'ayudaPage');
+           },
+         ),
          Divider(
            height: 2.0,
            thickness: 1,
