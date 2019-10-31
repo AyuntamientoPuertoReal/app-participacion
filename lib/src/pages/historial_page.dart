@@ -1,8 +1,9 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
-import 'package:appparticipacion/src/widgets/menu_lateral.dart';
+import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:flutter/material.dart';
+
 
 
 class HistorialPage extends StatefulWidget {
@@ -56,8 +57,10 @@ class _HistorialPageState extends State<HistorialPage> {
                   subtitle: Row(
                     children: <Widget>[
                       Text(data[index].fechaCreacion),
-                      SizedBox( width: 10,),
-                      Text(data[index].solucionado.toString()),
+                      //SizedBox( width: 10,),
+                      //Text(data[index].solucionado.toString()),
+                      Expanded(child: Container(),),
+                      estado(data[index].estado),
                     ],
                   ),
                   onTap: (){
@@ -65,6 +68,7 @@ class _HistorialPageState extends State<HistorialPage> {
                     Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
                   },
                 ),
+                
                 Divider(
                   thickness: 2.0,
                 ),

@@ -1,5 +1,6 @@
 
 import 'package:appparticipacion/src/models/ticket_model.dart';
+import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:flutter/material.dart';
 
 class DetalleTicketPage extends StatefulWidget {
@@ -15,11 +16,11 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
   @override
   Widget build(BuildContext context) {
     final TicketModel ticket = ModalRoute.of(context).settings.arguments;
-    if(ticket.solucionado){
-      color = Colors.green;
-    }else {
-      color = Colors.orange;
-    }
+    // if(ticket.solucionado){
+    //   color = Colors.green;
+    // }else {
+    //   color = Colors.orange;
+    // }
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalle Incidencia'),
@@ -40,7 +41,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                     children: <Widget>[  
                       Text('Estado: '),
                       SizedBox(width: 2,),
-                      Text(ticket.solucionado.toString(), style: TextStyle(color: color),),
+                      estado(ticket.estado),
                       Expanded(
                         child: Container(),
                       ),

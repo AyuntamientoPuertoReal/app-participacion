@@ -143,7 +143,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         String fecha = utils.obtenerFechaCreacionTicket();
 
         ticketModel.fechaCreacion=fecha;
-        ticketModel.solucionado=false;
+        ticketModel.estado='Enviada';
         // ticketModel.coordenadas = coordenada;
         ticketModel.tipoIncidencia = tipoIncidencia.tipo;
 
