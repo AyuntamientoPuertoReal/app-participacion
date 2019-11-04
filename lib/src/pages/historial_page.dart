@@ -45,7 +45,16 @@ class _HistorialPageState extends State<HistorialPage> {
             return Column(
               children: <Widget>[
                 SizedBox(height: 10),
-                Text(data[index].tipoIncidencia),
+                Container(
+                  padding: EdgeInsets.only(right: 10, left: 10),
+                  child: Row(
+                    children: <Widget>[
+                      Text(data[index].tipoIncidencia,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                      Expanded(child: Container(),),
+                      estado(data[index].estado),
+                    ],
+                  ),
+                ),
                 ListTile(
                   leading: FadeInImage(
                     image: NetworkImage(data[index].fotoUrl),
@@ -59,8 +68,8 @@ class _HistorialPageState extends State<HistorialPage> {
                       Text(data[index].fechaCreacion),
                       //SizedBox( width: 10,),
                       //Text(data[index].solucionado.toString()),
-                      Expanded(child: Container(),),
-                      estado(data[index].estado),
+                      //Expanded(child: Container(),),
+                      //estado(data[index].estado),
                     ],
                   ),
                   onTap: (){
@@ -70,7 +79,8 @@ class _HistorialPageState extends State<HistorialPage> {
                 ),
                 
                 Divider(
-                  thickness: 2.0,
+                  thickness: 1.0,
+                  color: Colors.black,
                 ),
               ],
             );
