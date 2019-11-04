@@ -1,6 +1,7 @@
 
 import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
 import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
+import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/bloc/tipo_incidencia_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ final _ticketBloc = new TicketBloc();
 final _noticiaBloc = new NoticiaBloc();
 final _puntosInteresBloc = new PuntoInteresBloc();
 final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
+final _seguimientoTicketBloc = new SeguimientoTicketBloc();
 
 
 
@@ -50,5 +52,10 @@ final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
     static TipoIncidenciaBloc tipoIncidenciaBloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._tipoIncidenciaBloc;
     }
+
+    static SeguimientoTicketBloc seguimientoTicketBloc ( BuildContext context ) {
+    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._seguimientoTicketBloc;
+    }
+    
 
 }

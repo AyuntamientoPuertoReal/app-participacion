@@ -1,4 +1,7 @@
 
+import 'package:appparticipacion/src/bloc/provider.dart';
+import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
+import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,9 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
   @override
   Widget build(BuildContext context) {
     final TicketModel ticket = ModalRoute.of(context).settings.arguments;
+
+    final seguimientoTicket = Provider.seguimientoTicketBloc(context);
+    seguimientoTicket.verEstado();
     // if(ticket.solucionado){
     //   color = Colors.green;
     // }else {
@@ -65,10 +71,58 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                   SizedBox(height: 20),
                 ],
               ),
-            )
+            ),
+            Divider(thickness: 3),
+            SizedBox(height: 10),
+            Center(child: Text("Actualizaciones del ayuntamiento"),),
+            SizedBox(height: 10),
+            pintaMensajeAyuntamiento(seguimientoTicket,ticket),
           ],
         ),
       ),
     );
   }
+}
+
+Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketModel ticket){
+  String mensaje = "";
+
+ return StreamBuilder(
+    stream: seguimientoTicket.ticketStream ,
+    builder: (BuildContext context, AsyncSnapshot<List<SeguimientoTicketModel>> snapshot){
+      if(snapshot.hasData){
+        final data=snapshot.data;
+
+        data.forEach((f){
+          if(f.estado == ticket.estado){
+            mensaje=f.mensaje;
+          }
+        });
+
+      //  if(ticket.estado == data[0].estado){
+          return Container(
+            padding: EdgeInsets.all(5),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+              border: Border.all(
+                width: 2
+              )
+            ),
+              child: Center(
+                  child: Text(mensaje), 
+              ),
+            ),
+          );
+       // } 
+      } else {
+        return CircularProgressIndicator();
+      }
+      
+    },
+  );
+
+  // return Container(
+  //   child: Text("data"),
+  // );
 }
