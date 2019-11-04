@@ -119,7 +119,33 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       textColor: Colors.white,
       label: Text('Enviar', style: TextStyle(fontSize: 18),),
       icon: Icon(Icons.save),
-      onPressed: (_guardando) ? null : _submit,
+      onPressed: (_guardando) ? null : _showDialog,
+    );
+  }
+  void _showDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text("Enviar incidencia"),
+          content: Text("Se va a enviar la incidencia."),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("Aceptar"),
+              onPressed: (){
+                _submit();
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text("Cancelar"),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }
     );
   }
 
