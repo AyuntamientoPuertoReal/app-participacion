@@ -4,6 +4,7 @@ import 'package:latlong/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
  String decrypted;
+ String encryptedString;
 
 
 void generateToken() async {
@@ -22,7 +23,8 @@ void generateToken() async {
 
   print("Decryped token: "+decrypted);
   print("Encrypted token"+encrypted.base64);
-
+  encryptedString = encrypted.base64.toString();
+  print("encryptedToken "+encryptedString);
 }
 
  LatLng getCoordenadas(String valor){
