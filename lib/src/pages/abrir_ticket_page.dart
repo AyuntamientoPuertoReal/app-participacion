@@ -30,6 +30,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
   var geolocator = Geolocator();
   var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+  TextEditingController _inputFieldDateController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
   Widget _crearDescripcionIncidencia() {
     return TextFormField(
-      initialValue: ticketModel.descripcion,
+      controller: _inputFieldDateController,
       textCapitalization: TextCapitalization.sentences,
       maxLines: null,
       maxLength: 400,
@@ -170,6 +171,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
         ticketModel.fechaCreacion=fecha;
         ticketModel.estado='Enviada';
+        ticketModel.token=utils.encryptedString.toString();
         // ticketModel.coordenadas = coordenada;
         ticketModel.tipoIncidencia = tipoIncidencia.tipo;
 

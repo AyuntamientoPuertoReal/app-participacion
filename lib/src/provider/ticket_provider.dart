@@ -5,6 +5,8 @@ import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.d
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:encrypt/encrypt.dart';
 
 
 class TicketProvider {
@@ -60,7 +62,7 @@ class TicketProvider {
 
   Future<List<TicketModel>> cargarTicketsCiudadanos() async {
 
-    final url = '$_url/ticketCiudadano.json';
+    final url = '$_url/ticketCiudadano.json?token=a60a3e79075e3442';
 
     final response = await http.get(url); 
 
@@ -76,13 +78,15 @@ class TicketProvider {
       final prodTemp = TicketModel.fromJson(prod);
       prodTemp.id = id;
 
-     // if(prodTemp.token == utils.decrypted){
+    //  if(prodTemp.token == utils.encryptedString.toString()){
 
-        //print("tocken:"+prodTemp.token);
+      print("tocken objeto: "+prodTemp.token);
+      print("tocken desencriptado clase: "+utils.decrypted);
+      print("tocken encryptado clase: "+utils.encryptedString.toString());
+
       tickets.add(prodTemp);
 
      // }
-
 
     });
 
