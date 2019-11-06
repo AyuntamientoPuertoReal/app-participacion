@@ -22,7 +22,7 @@ class _HistorialPageState extends State<HistorialPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Historial de Incidencias"),
+        title: Text("Mis Incidencias"),
       ),
       body: _crearListadoTickets(ticketBloc),
       
@@ -42,47 +42,52 @@ class _HistorialPageState extends State<HistorialPage> {
       return ListView.builder(
         itemCount: snapshot.data.length,
         itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: <Widget>[
-                SizedBox(height: 10),
-                Container(
-                  padding: EdgeInsets.only(right: 10, left: 10),
-                  child: Row(
-                    children: <Widget>[
-                      Text(data[index].tipoIncidencia,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                      Expanded(child: Container(),),
-                      estado(data[index].estado),
-                    ],
+            return InkWell(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.only(right: 10, left: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Text(data[index].tipoIncidencia,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                        Expanded(child: Container(),),
+                        estado(data[index].estado),
+                      ],
+                    ),
                   ),
-                ),
-                ListTile(
-                  leading: FadeInImage(
-                    image: NetworkImage(data[index].fotoUrl),
-                    placeholder: AssetImage('assets/img/jar-loading.gif'),
-                    width: 50.0,
-                    fit: BoxFit.contain,
-                  ),
-                  title: Text(data[index].descripcion,overflow: TextOverflow.ellipsis,),
-                  subtitle: Row(
-                    children: <Widget>[
-                      Text(data[index].fechaCreacion),
-                      //SizedBox( width: 10,),
-                      //Text(data[index].solucionado.toString()),
-                      //Expanded(child: Container(),),
-                      //estado(data[index].estado),
-                    ],
-                  ),
-                  onTap: (){
+                  ListTile(
+                    leading: FadeInImage(
+                      image: NetworkImage(data[index].fotoUrl),
+                      placeholder: AssetImage('assets/img/jar-loading.gif'),
+                      width: 50.0,
+                      fit: BoxFit.contain,
+                    ),
+                    title: Text(data[index].descripcion,overflow: TextOverflow.ellipsis,),
+                    subtitle: Row(
+                      children: <Widget>[
+                        Text(data[index].fechaCreacion),
+                        //SizedBox( width: 10,),
+                        //Text(data[index].solucionado.toString()),
+                        //Expanded(child: Container(),),
+                        //estado(data[index].estado),
+                      ],
+                    ),
+                    onTap: (){
 
-                    Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
-                  },
-                ),
-                
-                Divider(
-                  thickness: 1.0,
-                  color: Colors.black,
-                ),
-              ],
+                      Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
+                    },
+                  ),
+                  
+                  Divider(
+                    thickness: 1.0,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
+              onTap: (){
+                Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
+              },
             );
         },
         

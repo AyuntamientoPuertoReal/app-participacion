@@ -22,11 +22,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
 
     final seguimientoTicket = Provider.seguimientoTicketBloc(context);
     seguimientoTicket.verEstado();
-    // if(ticket.solucionado){
-    //   color = Colors.green;
-    // }else {
-    //   color = Colors.orange;
-    // }
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalle Incidencia'),
@@ -98,8 +94,6 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
             mensaje=f.mensaje;
           }
         });
-
-      //  if(ticket.estado == data[0].estado){
           return Container(
             padding: EdgeInsets.all(5),
             child: Container(
@@ -121,8 +115,4 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
       
     },
   );
-
-  // return Container(
-  //   child: Text("data"),
-  // );
 }

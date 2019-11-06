@@ -28,6 +28,9 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   File foto;
   Widget boton;
 
+  String longitud;
+  String latitud;
+
   var geolocator = Geolocator();
   var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
   TextEditingController _inputFieldDateController = new TextEditingController();
@@ -99,7 +102,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       ),
       onSaved: (value) => ticketModel.descripcion = value,
       validator: (value){
-        
+
         if(value.length <  3){
           return 'Ingrese la descripcion de la incidencia';
         } else if(_fotoSeleccionada!=true){
@@ -153,9 +156,9 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
    // if(!formkey.currentState.validate()) return;
     print("Estado de guardado = $_guardando");
     if(formkey.currentState.validate()){
-      //  mostrarModal(context,'Registro esta siendo Guardado');
-        mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
+      mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
+
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
@@ -165,22 +168,21 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
       if(ticketModel.id == null){
        
-        // Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
-        // String coordenada = position.latitude.toString()+","+position.longitude.toString();
         String fecha = utils.obtenerFechaCreacionTicket();
 
         ticketModel.fechaCreacion=fecha;
-        ticketModel.estado='Enviada';
-        ticketModel.token=utils.encryptedString.toString();
-        // ticketModel.coordenadas = coordenada;
-        ticketModel.tipoIncidencia = tipoIncidencia.tipo;
+        ticketModel.latitud=latitud;
+        ticketModel.longitud=longitud;
+       // ticketModel.token=utils.encryptedString.toString();
+        ticketModel.token="1";
+        ticketModel.tipoIncidencia = "1";
+
+        print(ticketModel.toJson());
 
         ticketBloc.crearTicket(ticketModel);
-        print("Se guardo");
         
        Navigator.pushReplacementNamed(context, 'home');
 
-      //  Navigator.pushReplacementNamed(context, 'home');
       } else {
         mostrarModal(context,'Registro No Guardado');
       }
@@ -188,8 +190,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     } else {
       return;
     }
-  
-   // setState(() { _guardando = true;   });
   
   // Navigator.pop(context);
   }
@@ -219,6 +219,8 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       ticketModel.fotoUrl = null;
       Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
       String coordenada = position.latitude.toString()+","+position.longitude.toString();
+      latitud = position.latitude.toString();
+      longitud = position.longitude.toString();
       ticketModel.coordenadas = coordenada;
       _fotoSeleccionada = true;
     }

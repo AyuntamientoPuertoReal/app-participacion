@@ -14,11 +14,6 @@ final card = Container(
                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                  fadeInDuration: Duration(seconds: 4 ),
               ),
-              /*
-              Image(
-                image: NetworkImage('https://diariomisiones.com/wp-content/uploads/2019/04/milos-meme-1024x531.jpg'),
-              ),
-              */
               Container(
                 padding: EdgeInsets.all(20),
                 child: Column(

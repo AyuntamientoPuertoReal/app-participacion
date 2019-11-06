@@ -96,14 +96,6 @@ Widget _crearTexto(String texto){
           image: AssetImage('assets/img/login2.jpg'),
           fit: BoxFit.cover
         )
-        // gradient: LinearGradient(
-        //   begin: FractionalOffset(0.0, 0.6),
-        //   end: FractionalOffset(0.0, 1.0),
-        //   colors: [
-        //     Color.fromRGBO(52, 54, 101, 1.0),
-        //     Color.fromRGBO(35, 37, 57, 1.0)
-        //   ]
-        // ),
       ),
     );
   }

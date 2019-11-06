@@ -1,6 +1,5 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
-import 'package:appparticipacion/src/widgets/widget_noticia.dart';
 import 'package:appparticipacion/src/widgets/widget_puntos_interes.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,7 @@ class _PuntoInteresPageState extends State<PuntoInteresPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ventana de puntos de interes"),
+        title: Text("Puntos de Interés"),
       ),
       body: _crearListadoPuntosInteres(puntoIntereBloc),
     );
