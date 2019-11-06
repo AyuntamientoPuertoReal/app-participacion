@@ -34,10 +34,6 @@ class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
         if(snapshot.hasData){
         final data = snapshot.data;
 
-      // snapshot.data.forEach((m){
-      //     listaModel.add(m);
-      //     print(m.name);
-      //  }); 
       return Column(
         children: <Widget>[
         SizedBox(height: 50),
@@ -60,21 +56,14 @@ class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
                    },
                  ),
                  onTap: (){
-                   map.move(utils.getCoordenadas(data[i].geo), 15); //Navigator.pushNamed(context, HomePage.routeName);
-                 },
-               );
-            },
-   ),
-         ),
-        ],
-      );
-
-  // return ListView(
-  //   children: <Widget>[
-  //     Text("data"),
-  //     Text("sssssss")
-  //   ],
-  // );
+                   map.move(utils.getCoordenadas(data[i].geo), 15); 
+                  },
+                );
+              },
+            ),
+           ),
+          ],
+        );
 
         }else{
           return Container();

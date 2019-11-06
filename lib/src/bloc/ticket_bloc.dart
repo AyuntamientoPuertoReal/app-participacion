@@ -38,20 +38,6 @@ class TicketBloc {
 
   }
 
-   void editarProducto(TicketModel ticket) async {
-
-   _cargandoController.sink.add(true);
-   await _ticketProvider.editarTicketCiudadano(ticket);
-   _cargandoController.sink.add(false);
-
-  }
-
-  void borrarTicket(String id) async {
-
-   await _ticketProvider.borrarTicket(id);
-
-  }
-
    dispose(){
     _ticketController?.close();
     _cargandoController?.close();

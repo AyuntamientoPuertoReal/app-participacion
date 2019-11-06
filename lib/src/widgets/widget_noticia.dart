@@ -10,7 +10,6 @@ Widget  cardTipo1() {
                 child: Column(
                   children: <Widget>[
                     ListTile(
-                     // leading: Icon(Icons.photo_album,color: Colors.blue,),
                       leading: Image(
                         image: AssetImage('assets/img/no-image.png'),
                       ),
@@ -46,9 +45,7 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
                       Container(
                         height: 85,
                         child: ListTile(
-                         // leading: Icon(Icons.photo_album,color: Colors.blue,),
                           leading: FadeInImage(
-                           // image: AssetImage('assets/img/no-image.png'),
                             image: NetworkImage(noticia.imageUrl),
                             placeholder: AssetImage('assets/img/jar-loading.gif'),
                             fit: BoxFit.fitWidth,
@@ -95,11 +92,6 @@ final card = Container(
                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                  fadeInDuration: Duration(seconds: 4 ),
               ),
-              /*
-              Image(
-                image: NetworkImage('https://diariomisiones.com/wp-content/uploads/2019/04/milos-meme-1024x531.jpg'),
-              ),
-              */
               Container(
                 padding: EdgeInsets.all(20),
                 child: Column(

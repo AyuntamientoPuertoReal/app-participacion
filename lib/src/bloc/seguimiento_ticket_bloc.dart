@@ -1,6 +1,5 @@
 import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
 import 'package:appparticipacion/src/provider/seguimiento_ticket_provider_page.dart';
-import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SeguimientoTicketBloc {
@@ -21,5 +20,8 @@ class SeguimientoTicketBloc {
 
   }
 
-
+  dispose(){
+    _seguimientoTicketController?.close();
+    _cargandoController?.close();
+  }
 }

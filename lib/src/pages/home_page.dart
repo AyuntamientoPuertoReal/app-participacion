@@ -16,14 +16,6 @@ class HomePage extends StatelessWidget {
       drawer: MenuLateralWidget(),
       appBar: AppBar(
         title: Text(''),
-        actions: <Widget>[
-          // FlatButton(
-          //   child: Text('Ir a la Web', style: TextStyle(color: Colors.white, fontSize: 16),),
-          //   onPressed: (){
-          //     _launchUrl('http://participacion.puertoreal.es/');
-          //   },
-          // )
-        ],
       ),
       body: Stack(
         children:<Widget>[
@@ -53,12 +45,6 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
-              // FlatButton(
-              //   child: Text('Acceder a Decide Puerto Real',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),),
-              //   onPressed: (){
-              //     _launchUrl('https://decide.puertoreal.es/');
-              //   },
-              // )
               SizedBox(
                 height: 12,
               )
@@ -78,14 +64,6 @@ class HomePage extends StatelessWidget {
           image: AssetImage('assets/img/login2.jpg'),
           fit: BoxFit.cover
         )
-        // gradient: LinearGradient(
-        //   begin: FractionalOffset(0.0, 0.6),
-        //   end: FractionalOffset(0.0, 1.0),
-        //   colors: [
-        //     Color.fromRGBO(52, 54, 101, 1.0),
-        //     Color.fromRGBO(35, 37, 57, 1.0)
-        //   ]
-        // ),
       ),
     );
   }
@@ -94,7 +72,6 @@ class HomePage extends StatelessWidget {
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo){    
     return Container(
           height: 100.0,
-          //width: 10.0,
           margin: EdgeInsets.all(6.0),
           decoration: BoxDecoration(
             color: fondo,
@@ -115,12 +92,6 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 5.0,),
                 Icon(icono, color: Colors.white, size:40.0),
-                // CircleAvatar(
-                //   backgroundColor: color,
-                //   radius:35.0,
-                //   child: Icon(icono, color: Colors.white, size:30.0),
-                // ),
-                //SizedBox(height: 2.0),
                 Text(texto, style: TextStyle(color: color, fontSize: 14),),
                 SizedBox(height: 3.0,),
               ],

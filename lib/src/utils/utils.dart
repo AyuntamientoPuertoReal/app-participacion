@@ -6,6 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
  String decrypted;
  String encryptedString;
 
+ 
+
 
 void generateToken() async {
 

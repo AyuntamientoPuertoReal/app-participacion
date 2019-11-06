@@ -8,9 +8,6 @@ class PuntosInteresDetallePage extends StatelessWidget {
 
     final PuntoInteresModel puntoDeInteres = ModalRoute.of(context).settings.arguments;
 
-    print("name "+puntoDeInteres.name);
-   // print("descripcion "+puntoDeInteres.description);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(""+puntoDeInteres.name)
@@ -49,7 +46,6 @@ class PuntosInteresDetallePage extends StatelessWidget {
               ],
             ),
            ],
-
           ),
         ),
     );

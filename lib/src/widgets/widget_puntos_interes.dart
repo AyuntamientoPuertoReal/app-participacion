@@ -18,10 +18,8 @@ Widget crearPuntoInteres(BuildContext context, PuntoInteresModel puntoInteres){
             Container(
               height: 85,
               child: ListTile(
-                // leading: Icon(Icons.photo_album,color: Colors.blue,),
                 leading: FadeInImage(
                 placeholder: AssetImage('assets/img/jar-loading.gif'),
-                  // image: AssetImage('assets/img/no-image.png'),
                 image: NetworkImage(puntoInteres.urlImage),
                 fit: BoxFit.fitWidth,
                 ),
@@ -53,7 +51,7 @@ Widget crearPuntoInteres(BuildContext context, PuntoInteresModel puntoInteres){
                       utils.openMap(puntoInteres.geo);
                       },
                   ),
-                Expanded(child: Container(),),
+                Expanded(child: Container()),
                 //SizedBox(width: 85.0),
                 FlatButton(
                   child: Text('Mas info', style: TextStyle(fontSize: 18)),

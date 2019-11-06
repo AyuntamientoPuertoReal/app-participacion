@@ -31,46 +31,29 @@ class NoticiasDetalles extends StatelessWidget {
           ],
         ),
       ) 
-      
-      // CustomScrollView(
-        
-      //  slivers: <Widget>[
-      //    //_crearAppBar(noticia),
-      //    SliverList(
-      //      delegate: SliverChildListDelegate(
-      //        [
-      //          SizedBox(height: 10.0),
-      //          _crearTitulo(context, noticia),
-      //          _crearDescripcion(context,noticia),
-      //        ]
-      //      ),
-      //    )
-      //  ],
-      // ),
     );
   }
   
 
- Widget _crearAppBar(NoticiaModel noticia) {
-   return SliverAppBar(
-    elevation: 2.0,
-    backgroundColor: Colors.indigo,
-    expandedHeight: 200.0,
-    floating: false,
-    pinned: true,
+//  Widget _crearAppBar(NoticiaModel noticia) {
+//    return SliverAppBar(
+//     elevation: 2.0,
+//     backgroundColor: Colors.indigo,
+//     expandedHeight: 200.0,
+//     floating: false,
+//     pinned: true,
 
-    flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-       // title: Text(noticia.title,style: TextStyle(color: Colors.white, fontSize: 16.0)),
-         background: FadeInImage(
-           image: NetworkImage(noticia.imageUrl),
-           placeholder: AssetImage('assets/img/loading.gif'),
-           fadeInDuration: Duration(milliseconds: 150),
-           fit: BoxFit.cover,
-         ),  
-     ),
-   );
- }
+//     flexibleSpace: FlexibleSpaceBar(
+//         centerTitle: true,
+//          background: FadeInImage(
+//            image: NetworkImage(noticia.imageUrl),
+//            placeholder: AssetImage('assets/img/loading.gif'),
+//            fadeInDuration: Duration(milliseconds: 150),
+//            fit: BoxFit.cover,
+//          ),  
+//      ),
+//    );
+//  }
 
  Widget _crearTitulo(BuildContext context, NoticiaModel noticiaModel) {
 
@@ -106,23 +89,8 @@ Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
 }
 
  Widget _mostrarHtml(NoticiaModel noticia) {
-   //String prueba="<a href='https://github.com'>https://github.com</a><br />";
    return Html(
-     data: noticia.body
-  /*"""
-    <!--For a much more extensive example, look at example/main.dart-->
-    <div>
-      <h1>Demo Page</h1>
-      <p>This is a fantastic nonexistent product that you should buy!</p>
-      <h2>Pricing</h2>
-      <p>Lorem ipsum <b>dolor</b> sit amet.</p>
-      <h2>The Team</h2>
-      <p>There isn't <i>really</i> a team...</p>
-      <h2>Installation</h2>
-      <p>You <u>cannot</u> install a nonexistent product!</p>
-      <!--You can pretty much put any html in here!-->
-    </div>
-  """*/,
+     data: noticia.body,
     //Optional parameters:
     padding: EdgeInsets.all(8.0),
     useRichText: false,
@@ -137,11 +105,8 @@ Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
       _launchUrl(url);
     },
     onImageTap: (src) {
-
-      // Display the image in large form.
       print(src);
     },
-  //Must have useRichText set to false for this to work.
   );
 }
 
