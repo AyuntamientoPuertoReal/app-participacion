@@ -198,6 +198,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     final snackBar = SnackBar(
       content: Text(mensaje),
       duration: Duration(milliseconds: 20000),
+      
     );
 
     scaffoldKey.currentState.showSnackBar(snackBar);
