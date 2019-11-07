@@ -3,6 +3,7 @@ import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/models/tipo_incidencia_model.dart';
+import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -20,6 +21,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   final formkey          = GlobalKey<FormState>();
   final scaffoldKey      = GlobalKey<ScaffoldState>();
 
+  final prefs = new PreferenciasUsuario();
   TicketBloc ticketBloc;
   TicketModel ticketModel = new TicketModel();
   TipoIncidenciaModel tipoIncidencia;
@@ -174,7 +176,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
        // ticketModel.token=utils.encryptedString.toString();
-        ticketModel.token="1";
+        ticketModel.token=utils.prefs.idToken;
         ticketModel.tipoIncidencia = "1";
 
         print(ticketModel.toJson());
