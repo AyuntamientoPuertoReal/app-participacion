@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:appparticipacion/src/models/puntos_interes_model.dart';
-export 'package:appparticipacion/src/models/puntos_interes_model.dart';
 
 
 class SeguimientoTicketProvider {

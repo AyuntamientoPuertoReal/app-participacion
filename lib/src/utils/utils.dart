@@ -1,3 +1,7 @@
+import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
+import 'package:appparticipacion/src/models/phone_identifier_model.dart';
+import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:appparticipacion/src/provider/phone_identifier_provider.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:latlong/latlong.dart';
@@ -5,27 +9,77 @@ import 'package:url_launcher/url_launcher.dart';
 
  String decrypted;
  String encryptedString;
+ //PhoneIdentifierBloc _phoneIdentifier;
+ final prefs = new PreferenciasUsuario();
+ PhoneIdentifierBloc phoneIdentifierBloc;
+ PhoneIdentifierModel phoneModel = new PhoneIdentifierModel();
+ PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
+
+
+ String url = 'http://172.16.19.78:3000/api/v1/';
+ String tokenApicasso = "f162d4a9db174b4e9019967d190fea76";
+ 
 
 
 void generateToken() async {
 
+ //phoneIdentifierBloc = Provider.phoneIdentifierBloc(context);
+   // await prefs.initPrefs();
+
+
   String devideId = await FlutterUdid.udid;
 
-  print(devideId);
-
-  final key = Key.fromUtf8('qNjp7yM;JqGtC+r~+E.L<36{YkX*7:Lz');
+  //final key = Key.fromUtf8('qNjp7yM;JqGtC+r~+E.L<36{YkX*7:Lz');
+  final key = Key.fromUtf8('k2w9hqA6X4vXBgc8');
   final iv = IV.fromLength(16);
+
+  final encriptedPhoneId = phoneIdentifierEncryption(devideId, key, iv);
+
+  encryptedString = encriptedPhoneId;
+
+  int id = await _comprobarTokenBd(encryptedString);
+
+  if(id != null){
+     prefs.idToken = id.toString();
+  } else{
+   phoneModel.phoneIdentifier=encriptedPhoneId;
+   String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
+  // id = await _comprobarTokenBd(encryptedString);
+   prefs.idToken = identificador;
+  }
+  
+   // print(phoneModel.toJson());
+  
+   // phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
+  
+  
+  
+   
+  
+  
+    // decrypted = encrypter.decrypt(encrypted, iv: iv);
+    
+  //  print("encryptedToken "+encryptedString);
+  
+  }
+  
+  Future<int> _comprobarTokenBd(String tokenEncriptado) async {
+
+  int id = await phoneIdentifierProvider.cargarPhoneIdentifier();
+
+  return id;
+}
+
+String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
 
   final encrypter = Encrypter(AES(key));
 
-  final encrypted = encrypter.encrypt(devideId, iv: iv);
-   decrypted = encrypter.decrypt(encrypted, iv: iv);
+  final encrypted = encrypter.encrypt(deviceId, iv: iv);
 
-  print("Decryped token: "+decrypted);
-  print("Encrypted token"+encrypted.base64);
-  encryptedString = encrypted.base64.toString();
-  print("encryptedToken "+encryptedString);
+  return encrypted.base64.toString();
 }
+
+
 
  LatLng getCoordenadas(String valor){
     // 36.529358, -6.186970 coordenadas puerto real

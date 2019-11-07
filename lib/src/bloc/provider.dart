@@ -1,5 +1,6 @@
 
 import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
+import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
 import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
 import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
@@ -13,6 +14,7 @@ final _noticiaBloc = new NoticiaBloc();
 final _puntosInteresBloc = new PuntoInteresBloc();
 final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
 final _seguimientoTicketBloc = new SeguimientoTicketBloc();
+final _phoneIdentifierBloc = new PhoneIdentifierBloc();
 
 
 
@@ -55,6 +57,9 @@ final _seguimientoTicketBloc = new SeguimientoTicketBloc();
 
     static SeguimientoTicketBloc seguimientoTicketBloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._seguimientoTicketBloc;
+    }
+    static PhoneIdentifierBloc phoneIdentifierBloc ( BuildContext context ) {
+    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._phoneIdentifierBloc;
     }
     
 

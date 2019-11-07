@@ -24,29 +24,23 @@ class PreferenciasUsuario {
 
   SharedPreferences _prefs;
 
+  // _prueba(){
+  //   _prefs.setString('token', "parametro");
+  // }
+
   initPrefs() async {
     this._prefs = await SharedPreferences.getInstance();
   }
 
   // GET y SET del nombre
-  get token {
-    return _prefs.getString('token') ?? '';
+  get idToken {
+    return _prefs.getString('idToken') ?? '';
   }
 
-  set token( String value ) {
-    _prefs.setString('token', value);
+  set idToken ( String value ) {
+    _prefs.setString('idToken', value);
   }
   
-
-  // GET y SET de la última página
-  get ultimaPagina {
-    return _prefs.getString('ultimaPagina') ?? 'home';
-  }
-
-  set ultimaPagina( String value ) {
-    _prefs.setString('ultimaPagina', value);
-  }
-
 }
 
 

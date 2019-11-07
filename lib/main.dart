@@ -9,13 +9,22 @@ import 'package:appparticipacion/src/pages/noticias_page.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_page.dart';
 import 'package:appparticipacion/src/pages/tipo_incidencia_page.dart';
+import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
  
 void main() async {
    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+   final prefs = new PreferenciasUsuario();
+   await prefs.initPrefs();
+
+  print("pref token : "+prefs.idToken);
+
+  if(prefs.idToken == ""){
    generateToken();
+  }
+
   runApp(MyApp());
 
 }
@@ -24,6 +33,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    
+  // if(prefs.token == ""){
+  // print("Entro aqui");
+  // }
 
     return Provider(
         child: MaterialApp(

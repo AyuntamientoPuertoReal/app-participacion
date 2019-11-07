@@ -9,6 +9,8 @@ class TicketModel {
     String descripcion;
     String coordenadas;
     String estado;
+    String latitud;
+    String longitud;
     String fotoUrl;
     String token;
     String fechaCreacion;
@@ -18,6 +20,8 @@ class TicketModel {
         this.id,
         this.descripcion        = "",
         this.coordenadas        = "",
+        this.latitud            = "",
+        this.longitud           = "",
         this.estado             = "",
         this.fotoUrl,
         this.token              = "",
@@ -27,24 +31,30 @@ class TicketModel {
 
     factory TicketModel.fromJson(Map<String, dynamic> json) => TicketModel(
         id               : json["id"],
-        descripcion      : json["descripcion"],
+        descripcion      : json["description"],
         coordenadas      : json["coordenadas"],
+        latitud          : json["latitude"],
+        longitud         : json["longitude"],
         estado           : json["estado"],
-        fotoUrl          : json["fotoUrl"],
+        fotoUrl          : json["image_url"],
         fechaCreacion    : json["fechaCreacion"],
-        token            : json["token"],
-        tipoIncidencia   : json["tipoIncidencia"],
+        token            : json["token_id"],
+        tipoIncidencia   : json["incidence_type_id"],
     );
 
     Map<String, dynamic> toJson() => {
-       // "id"        : id,
-        "descripcion"     : descripcion,
-        "coordenadas"     : coordenadas,
-        "estado"          : estado,
-        "fotoUrl"         : fotoUrl,
-        "fechaCreacion"   : fechaCreacion,
-        "token"           : token,
-        "tipoIncidencia"  : tipoIncidencia,
+      "incidence" : {
+        //"id"              : id,
+        "description"        : descripcion,
+        //"coordenadas"        : coordenadas,
+        "latitude"           : latitud,
+        "longitude"          : longitud,
+        //"estado"             : estado,
+        "image_url"          : fotoUrl,
+        //"fechaCreacion"      : fechaCreacion,
+        "token_id"           : token,
+        "incidence_type_id"  : tipoIncidencia,
+      }
     };
 
 }
