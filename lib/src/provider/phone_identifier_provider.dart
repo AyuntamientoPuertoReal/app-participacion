@@ -24,7 +24,7 @@ class PhoneIdentifierProvider {
 
     final decodeData = json.decode(response.body);
 
-    String idmovil = decodeData["id"];
+    String idmovil = decodeData["id"].toString();
 
     return idmovil;
 
@@ -37,6 +37,7 @@ class PhoneIdentifierProvider {
 
     final urlToken = '$url?q[phone_identifier_eq]=$phone_identifier&select=id';
 
+
     final authorizationToken = utils.tokenApicasso;
 
     Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $authorizationToken"};
@@ -48,12 +49,16 @@ class PhoneIdentifierProvider {
     if(decodeData == null) return null;
 
     if(decodeData['error'] != null) return null;
+      
+      if(decodeData['total']>0){
+        int phone = PhoneIdentifierModel.fromJson(decodeData['entries'][0]).id;
+        print("ID movil - "+ phone.toString());
+        print(urlToken);
+        return phone;
+      } else{
+        return null;
+      }
 
-      int phone = PhoneIdentifierModel.fromJson(decodeData['entries'][0]).id;
-      print("ID movil - "+ phone.toString());
-      print(urlToken);
-
-    return phone;
 
   }
 
