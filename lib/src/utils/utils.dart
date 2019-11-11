@@ -17,7 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 
  String url = 'http://192.168.0.102:3000/api/v1/';
- String tokenApicasso = "829be5880ce84c76980cccc93a508b29";
+ String tokenApicasso = "05367c8560e54ba2aeb20ed3102e5aa1";
  
 
 
@@ -90,10 +90,14 @@ String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
     return LatLng(lat, long);
   }
 
-  openMap(String valor) async {
-    final coordenadas = valor.split(',');
-    final lat = double.parse(coordenadas[0]);
-    final long = double.parse(coordenadas[1]);
+  openMap(String latitud, String longitud) async {
+    // final coordenadas = valor.split(',');
+    // final lat = double.parse(coordenadas[0]);
+    // final long = double.parse(coordenadas[1]);
+    final lat  = latitud;
+    final long = longitud;
+
+
     String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$long';
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);

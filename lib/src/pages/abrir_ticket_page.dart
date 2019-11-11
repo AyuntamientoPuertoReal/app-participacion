@@ -40,7 +40,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   @override
   Widget build(BuildContext context) {
     tipoIncidencia = ModalRoute.of(context).settings.arguments;
-    print(tipoIncidencia.tipo);
+    //print(tipoIncidencia.tipo);
     String mensaje="Para poder crear una incidencia siga los siguientes pasos:\n"+
      "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
@@ -70,7 +70,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
             key: formkey,
             child: Column(
               children: <Widget>[
-                Text("INCIDENCIA: "+tipoIncidencia.tipo, style: TextStyle(fontSize: 20),),
+                Text("INCIDENCIA: "+tipoIncidencia.name, style: TextStyle(fontSize: 20),),
                 SizedBox(height: 20),
                 _mostrarFoto(),
                 SizedBox(height: 10.0,),
@@ -115,6 +115,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     );
   }
 
+  
   Widget _crearBoton() {
     return RaisedButton.icon(
       shape: RoundedRectangleBorder(
@@ -136,15 +137,15 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
           content: Text("Se va a enviar la incidencia."),
           actions: <Widget>[
             FlatButton(
-              child: Text("Aceptar"),
+              child: Text("Cancelar"),
               onPressed: (){
-                _submit();
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: Text("Cancelar"),
+              child: Text("Aceptar"),
               onPressed: (){
+                _submit();
                 Navigator.of(context).pop();
               },
             ),
@@ -176,8 +177,8 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
        // ticketModel.token=utils.encryptedString.toString();
-        ticketModel.token=utils.prefs.idToken;
-        ticketModel.tipoIncidencia = "1";
+        ticketModel.phoneIdentifierId=utils.prefs.idToken;
+        ticketModel.tipoIncidencia = tipoIncidencia.id;
 
         print(ticketModel.toJson());
 

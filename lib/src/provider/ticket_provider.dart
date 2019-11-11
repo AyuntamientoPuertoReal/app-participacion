@@ -11,7 +11,7 @@ import 'package:appparticipacion/src/utils/utils.dart' as utils;
 class TicketProvider {
 
  // final String _url = 'https://flutter-varios-8bb9d.firebaseio.com';
-  final String _url = 'http://172.16.19.78:3000/api/v1/incidences';
+  final String _url = utils.url+"incidences";
   //final _prefs = new PreferenciasUsuario();
 
 
@@ -29,7 +29,7 @@ class TicketProvider {
    // final url = "$_url/ticketCiudadano.json";
     final url = _url;
 
-    final token = '98869c76f2094130a80dd2fedde63128';
+    final token = utils.tokenApicasso;
 
   //  Map<String, String> headers = {"Content-type": "application/json", "Http_authorization": "Bearer 98869c76f2094130a80dd2fedde63128"};
 
@@ -79,7 +79,7 @@ class TicketProvider {
 
   Future<List<TicketModel>> cargarTicketsCiudadanos() async {
 
-    final url = '$_url/ticketCiudadano.json?token=a60a3e79075e3442';
+    final url = _url;
 
     final response = await http.get(url); 
 
@@ -97,7 +97,7 @@ class TicketProvider {
 
     //  if(prodTemp.token == utils.encryptedString.toString()){
 
-      print("tocken objeto: "+prodTemp.token);
+      print("tocken objeto: "+prodTemp.phoneIdentifierId);
       print("tocken desencriptado clase: "+utils.decrypted);
       print("tocken encryptado clase: "+utils.encryptedString.toString());
 
