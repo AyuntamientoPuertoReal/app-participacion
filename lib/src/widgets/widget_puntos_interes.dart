@@ -20,14 +20,14 @@ Widget crearPuntoInteres(BuildContext context, PuntoInteresModel puntoInteres){
               child: ListTile(
                 leading: FadeInImage(
                 placeholder: AssetImage('assets/img/jar-loading.gif'),
-                image: NetworkImage(puntoInteres.urlImage),
+                image: NetworkImage(puntoInteres.imageUrl),
                 fit: BoxFit.fitWidth,
                 ),
                 title: Text(puntoInteres.name),
                 subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(puntoInteres.geo),
+                 // Text("Latitud: "+puntoInteres.latitude+", Longitud: "+puntoInteres.longitude),
                   SizedBox(height: 15.0),
                   Text(puntoInteres.description, overflow: TextOverflow.ellipsis),
                 ],
@@ -48,13 +48,13 @@ Widget crearPuntoInteres(BuildContext context, PuntoInteresModel puntoInteres){
                   label: Text('Ver Mapa', style: TextStyle(fontSize: 18)),
                   icon: Icon(FontAwesome.getIconData("globe")),
                   onPressed: (){
-                      utils.openMap(puntoInteres.geo);
+                      utils.openMap(puntoInteres.latitude, puntoInteres.longitude);
                       },
                   ),
                 Expanded(child: Container()),
                 //SizedBox(width: 85.0),
                 FlatButton(
-                  child: Text('Mas info', style: TextStyle(fontSize: 18)),
+                  child: Text('Más info', style: TextStyle(fontSize: 18)),
                   onPressed: (){
                     Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: puntoInteres);
                 },

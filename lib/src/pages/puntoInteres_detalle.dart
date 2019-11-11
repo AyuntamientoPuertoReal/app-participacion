@@ -12,7 +12,7 @@ class PuntosInteresDetallePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(""+puntoDeInteres.name)
+        title: Text("Más información")
       ),
       body: SingleChildScrollView(
           child: Stack(
@@ -20,7 +20,7 @@ class PuntosInteresDetallePage extends StatelessWidget {
              Column(
               children: <Widget>[
                 FadeInImage(
-                  image: NetworkImage(puntoDeInteres.urlImage),
+                  image: NetworkImage(puntoDeInteres.imageUrl),
                   placeholder: AssetImage('assets/img/jar-loading.gif'),
                 ),
                 SizedBox(height: 10),
@@ -28,6 +28,8 @@ class PuntosInteresDetallePage extends StatelessWidget {
                   padding: EdgeInsets.all(20),
                   child: Column(
                   children: <Widget>[
+                  Text(puntoDeInteres.name),
+                  SizedBox(height: 20),
                   Text(puntoDeInteres.description),
                   SizedBox(height: 30),
                   RaisedButton.icon(
@@ -39,15 +41,15 @@ class PuntosInteresDetallePage extends StatelessWidget {
                     label: Text("Ver en Google Maps", style: TextStyle(fontSize: 18)),
                     icon: Icon(Icons.compare),
                     onPressed: (){
-                       utils.openMap(puntoDeInteres.geo);
+                       utils.openMap(puntoDeInteres.latitude, puntoDeInteres.longitude);
                         },
                       ),
 
-                      Container(
-                        child: WebView(
-                          initialUrl: Uri.dataFromString('<html><head></head><body><div class="mapouter"><div class="gmap_canvas"><iframe width="200" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=36.52866345,-6.143663&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.mapouter{position:relative;text-align:right;height:300px;width:500px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></body></html>', mimeType: 'text/html').toString(),
-                        ),
-                      )
+                      // Container(
+                      //   child: WebView(
+                      //     initialUrl: Uri.dataFromString('<html><head></head><body><div class="mapouter"><div class="gmap_canvas"><iframe width="200" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=36.52866345,-6.143663&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.mapouter{position:relative;text-align:right;height:300px;width:500px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></body></html>', mimeType: 'text/html').toString(),
+                      //   ),
+                      // )
                      // _mostrarHtml(puntoDeInteres)
                     ],
                   ),

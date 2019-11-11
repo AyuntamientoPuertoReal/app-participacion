@@ -50,7 +50,7 @@ class _HistorialPageState extends State<HistorialPage> {
                     padding: EdgeInsets.only(right: 10, left: 10),
                     child: Row(
                       children: <Widget>[
-                        Text(data[index].tipoIncidencia,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                        Text(data[index].tipoIncidencia.toString(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
                         Expanded(child: Container(),),
                         estado(data[index].estado),
                       ],

@@ -46,7 +46,7 @@ class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
               ListTile(
                 title: Row(
                   children:<Widget>[
-                    Text(f.tipo),
+                    Text(f.name),
                     Expanded(
                       child: Container(),
                     ),
