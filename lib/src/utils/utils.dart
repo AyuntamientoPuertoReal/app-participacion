@@ -16,8 +16,8 @@ import 'package:url_launcher/url_launcher.dart';
  PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
 
 
- String url = 'http://172.16.19.78:3000/api/v1/';
- String tokenApicasso = "f162d4a9db174b4e9019967d190fea76";
+ String url = 'http://192.168.0.102:3000/api/v1/';
+ String tokenApicasso = "829be5880ce84c76980cccc93a508b29";
  
 
 
