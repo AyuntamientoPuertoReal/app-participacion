@@ -56,7 +56,7 @@ class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
                    },
                  ),
                  onTap: (){
-                   map.move(utils.getCoordenadas(data[i].geo), 15); 
+                   //map.move(utils.getCoordenadas(data[i].latitude), 15); 
                   },
                 );
               },

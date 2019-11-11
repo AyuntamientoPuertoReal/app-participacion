@@ -5,34 +5,38 @@ PuntoInteresModel puntoInteresModelFromJson(String str) => PuntoInteresModel.fro
 String puntoInteresModelToJson(PuntoInteresModel data) => json.encode(data.toJson());
 
 class PuntoInteresModel {
-    String id;
+    int id;
     String name;
     String description;
-    String urlImage;
-    String geo;
+    String imageUrl;
+    String latitude;
+    String longitude;
 
     PuntoInteresModel({
         this.id,
         this.name='',
         this.description='',
-        this.urlImage='',
-        this.geo='',
+        this.imageUrl='',
+        this.latitude='',
+        this.longitude='',
     });
 
     factory PuntoInteresModel.fromJson(Map<String, dynamic> json) => PuntoInteresModel(
-        id: json["id"],
-        name: json["name"],
-        description: json["description"],
-        urlImage: json["urlImage"],
-        geo: json["geo"],
+        id          : json["id"],
+        name        : json["name"],
+        description : json["description"],
+        imageUrl    : json["image_url"],
+        latitude    : json["latitude"],
+        longitude   : json["longitude"],
     );
 
     Map<String, dynamic> toJson() => {
         // "id": id,
-        "name": name,
-        "description": description,
-        "urlImage": urlImage,
-        "geo": geo,
+        "name"          : name,
+        "description"   : description,
+        "image_url"     : imageUrl,
+        "latitude"      : latitude,
+        "longitude"     : longitude,
     };
 
 

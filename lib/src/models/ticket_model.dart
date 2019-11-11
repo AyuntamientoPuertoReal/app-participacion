@@ -12,9 +12,9 @@ class TicketModel {
     String latitud;
     String longitud;
     String fotoUrl;
-    String token;
+    String phoneIdentifierId;
     String fechaCreacion;
-    String tipoIncidencia;
+    int tipoIncidencia;
 
     TicketModel({
         this.id,
@@ -24,9 +24,9 @@ class TicketModel {
         this.longitud           = "",
         this.estado             = "",
         this.fotoUrl,
-        this.token              = "",
+        this.phoneIdentifierId              = "",
         this.fechaCreacion      = "",
-        this.tipoIncidencia     = "",
+        this.tipoIncidencia,
     });
 
     factory TicketModel.fromJson(Map<String, dynamic> json) => TicketModel(
@@ -38,7 +38,7 @@ class TicketModel {
         estado           : json["estado"],
         fotoUrl          : json["image_url"],
         fechaCreacion    : json["fechaCreacion"],
-        token            : json["token_id"],
+        phoneIdentifierId            : json["phone_identifier_id"],
         tipoIncidencia   : json["incidence_type_id"],
     );
 
@@ -52,7 +52,7 @@ class TicketModel {
         //"estado"             : estado,
         "image_url"          : fotoUrl,
         //"fechaCreacion"      : fechaCreacion,
-        "token_id"           : token,
+        "phone_identifier_id"           : phoneIdentifierId,
         "incidence_type_id"  : tipoIncidencia,
       }
     };

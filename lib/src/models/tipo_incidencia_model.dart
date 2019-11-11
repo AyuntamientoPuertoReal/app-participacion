@@ -5,21 +5,29 @@ TipoIncidenciaModel tipoIncidenciaModelFromJson(String str) => TipoIncidenciaMod
 String tipoIncidenciaModelToJson(TipoIncidenciaModel data) => json.encode(data.toJson());
 
 class TipoIncidenciaModel {
-    String id;
-    String tipo;
+    int id;
+    String name;
+    String code;
+    int order;
 
     TipoIncidenciaModel({
         this.id,
-        this.tipo='',
+        this.name='',
+        this.code='',
+        this.order
     });
 
     factory TipoIncidenciaModel.fromJson(Map<String, dynamic> json) => TipoIncidenciaModel(
         id: json["id"],
-        tipo: json["tipo"],
+        name: json["name"],
+        code: json["code"],
+        order: json["order"]
     );
 
     Map<String, dynamic> toJson() => {
         // "id": id,
-        "tipo": tipo,
+        "name": name,
+        "code": code,
+        "order": order
     };
 }
