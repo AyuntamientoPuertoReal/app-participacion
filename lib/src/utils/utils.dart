@@ -7,6 +7,9 @@ import 'package:flutter_udid/flutter_udid.dart';
 import 'package:latlong/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+//Hay que crear archivo secrets.dart en la carpeta utils para configurar los accesos
+import 'package:appparticipacion/src/utils/secrets.dart' as sc;
+
  String decrypted;
  String encryptedString;
  //PhoneIdentifierBloc _phoneIdentifier;
@@ -16,10 +19,8 @@ import 'package:url_launcher/url_launcher.dart';
  PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
 
 
- String url = 'http://192.168.0.102:3000/api/v1/';
- String tokenApicasso = "05367c8560e54ba2aeb20ed3102e5aa1";
- 
-
+ String url = sc.url;
+ String tokenApicasso = sc.tokenApicasso;
 
 void generateToken() async {
 
