@@ -16,21 +16,21 @@ class NoticiasDetalles extends StatelessWidget {
         title: Text(noticia.title),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            FadeInImage(
-              image: NetworkImage(noticia.imageUrl),
-              placeholder: AssetImage('assets/img/jar-loading.gif'),
-              fadeInDuration: Duration(milliseconds: 150),
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
-            SizedBox(height: 20.0,),
-            _crearTitulo(context, noticia),
-            _crearDescripcion(context, noticia)
-          ],
+          child: Column(
+            children: <Widget>[
+              FadeInImage(
+                image: NetworkImage(noticia.imageUrl),
+                placeholder: AssetImage('assets/img/jar-loading.gif'),
+                fadeInDuration: Duration(milliseconds: 150),
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+              SizedBox(height: 20.0,),
+              _crearTitulo(context, noticia),
+              _crearDescripcion(context, noticia)
+            ],
+          ),
         ),
-      ) 
     );
   }
   
