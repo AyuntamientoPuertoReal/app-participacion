@@ -6,6 +6,7 @@ import 'package:appparticipacion/src/pages/historial_page.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:appparticipacion/src/pages/noticias_detalles.dart';
 import 'package:appparticipacion/src/pages/noticias_page.dart';
+import 'package:appparticipacion/src/pages/prueba.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_page.dart';
 import 'package:appparticipacion/src/pages/tipo_incidencia_page.dart';
@@ -22,7 +23,7 @@ void main() async {
   print("pref token : "+prefs.idToken);
 
   if(prefs.idToken == ""){
-   generateToken();
+   //generateToken();
   }
 
   runApp(MyApp());
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Participación Ciudadana',
-        initialRoute: HomePage.routeName,
+        initialRoute: 'home',
         routes: {
           'home'                : (BuildContext context) => HomePage(),
           'abrirticket'         : (BuildContext context) => AbrirTicketPage(),
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           'tipoincidencia'      : (BuildContext context) => TipoIncidenciaPage(),
           'puntoInteres'        : (BuildContext context) => PuntoInteresPage(),
           'ayudaPage'           : (BuildContext context) => AyudaPage(),
+          'prueba'              : (BuildContext context) => Prueba(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
