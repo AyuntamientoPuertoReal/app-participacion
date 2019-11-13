@@ -24,7 +24,7 @@ class TicketModel {
         this.longitud           = "",
         this.estado             = "",
         this.fotoUrl,
-        this.phoneIdentifierId              = "",
+        this.phoneIdentifierId  = "",
         this.fechaCreacion      = "",
         this.tipoIncidencia,
     });
