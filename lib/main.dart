@@ -6,7 +6,6 @@ import 'package:appparticipacion/src/pages/historial_page.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:appparticipacion/src/pages/noticias_detalles.dart';
 import 'package:appparticipacion/src/pages/noticias_page.dart';
-import 'package:appparticipacion/src/pages/prueba.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
 import 'package:appparticipacion/src/pages/puntoInteres_page.dart';
 import 'package:appparticipacion/src/pages/tipo_incidencia_page.dart';
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
           'tipoincidencia'      : (BuildContext context) => TipoIncidenciaPage(),
           'puntoInteres'        : (BuildContext context) => PuntoInteresPage(),
           'ayudaPage'           : (BuildContext context) => AyudaPage(),
-          'prueba'              : (BuildContext context) => Prueba(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
