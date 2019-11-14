@@ -22,7 +22,7 @@ final card = Container(
                     SizedBox(height: 15.0),
                     Text(ticket.descripcion),
                     SizedBox(height: 15.0),
-                    Text(ticket.estado),
+                    Text(ticket.estado.toString()),
                   ],
                  ),
                 )

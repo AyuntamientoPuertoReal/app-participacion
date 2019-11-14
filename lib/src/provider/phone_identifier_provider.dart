@@ -44,6 +44,8 @@ class PhoneIdentifierProvider {
 
     final response = await http.get(urlToken, headers: headers); 
 
+    print(response);
+
     final Map<String, dynamic> decodeData = json.decode(response.body);
 
     if(decodeData == null) return null;

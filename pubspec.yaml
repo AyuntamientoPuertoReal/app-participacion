@@ -36,6 +36,7 @@ dependencies:
   flutter_udid:
   flutter_icons: ^0.3.1
   webview_flutter: ^0.1.2
+  intl: ^0.16.0
 
 dev_dependencies:
   flutter_test:

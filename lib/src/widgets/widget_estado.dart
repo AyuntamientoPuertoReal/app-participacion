@@ -5,18 +5,19 @@ Widget estado(String estado){
   Color color;
   Color colorTexto=Colors.white;
   Color colorBorde=Colors.black;
+  String texto='';
 
   switch(estado){
-    case 'Finalizada': color=Colors.green;colorBorde=color;break;
-    case 'Desestimada': color=Colors.redAccent[700];colorBorde=color;break;
-    case 'En Proceso': color=Colors.orangeAccent;colorTexto=Colors.black;colorBorde=color;break;
-    case 'Enviada': color=Colors.white;colorTexto=Colors.black;colorBorde=colorTexto;break;
+    case '1': color=Colors.white;colorTexto=Colors.black;colorBorde=colorTexto;texto='Enviada';break;
+    case '2': color=Colors.orangeAccent;colorTexto=Colors.black;colorBorde=color;texto='En proceso';break;
+    case '3': color=Colors.redAccent[700];colorBorde=color;texto='Desestimada';break;
+    case '4': color=Colors.green;colorBorde=color;texto='Finalizada';break;
   }
 
   return Container(
     padding: EdgeInsets.all(4),
     //color: color,
-    child: Text(estado, style: TextStyle(color: colorTexto),),
+    child: Text(texto, style: TextStyle(color: colorTexto),),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10.0),
       color: color,
