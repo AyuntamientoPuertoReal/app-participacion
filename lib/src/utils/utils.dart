@@ -35,6 +35,7 @@ void generateToken() async {
   final iv = IV.fromLength(16);
 
   final encriptedPhoneId = phoneIdentifierEncryption(devideId, key, iv);
+  print(encriptedPhoneId);
 
   encryptedString = encriptedPhoneId;
 
