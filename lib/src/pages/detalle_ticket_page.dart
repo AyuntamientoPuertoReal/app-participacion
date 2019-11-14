@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
 import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
+import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
 
 class DetalleTicketPage extends StatefulWidget {
@@ -32,18 +33,20 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10,),
+            Text('INCIDENCIA',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
+            SizedBox(height: 10,),
             Container(
               padding: EdgeInsets.all(15),
               child: Column(
                 children: <Widget>[
-                  Text(ticket.descripcion, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),),
+                  Text(ticket.descripcion, style: TextStyle(fontSize: 18),),
                   SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[  
                       Text('Estado: '),
                       SizedBox(width: 2,),
-                      estado(ticket.estado),
+                      estado(ticket.estado.toString()),
                       Expanded(
                         child: Container(),
                       ),
@@ -53,6 +56,13 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                 ],
               ),
             ),
+            Divider(thickness: 3),
+            SizedBox(height: 10),
+            Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),),
+            pintaMensajeAyuntamiento(seguimientoTicket,ticket),
+            Divider(thickness: 3),
+            SizedBox(height: 10),
+            Text("FOTO ENVIADA",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
             Container(
               padding: EdgeInsets.all(15),
               child: Column(
@@ -70,9 +80,9 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
             ),
             Divider(thickness: 3),
             SizedBox(height: 10),
-            Center(child: Text("Actualizaciones del ayuntamiento"),),
-            SizedBox(height: 10),
-            pintaMensajeAyuntamiento(seguimientoTicket,ticket),
+            Text('LOCALIZACIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
+            retornarIframe(context, ticket.latitud, ticket.longitud),
+            SizedBox(height: 10),          
           ],
         ),
       ),
@@ -100,7 +110,8 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
               border: Border.all(
-                width: 2
+                width: 1,
+                color: Colors.grey
               )
             ),
               child: Center(

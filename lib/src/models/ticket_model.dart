@@ -5,16 +5,17 @@ TicketModel ticketModelFromJson(String str) => TicketModel.fromJson(json.decode(
 String ticketModelToJson(TicketModel data) => json.encode(data.toJson());
 
 class TicketModel {
-    String id;
+    int id;
     String descripcion;
     String coordenadas;
-    String estado;
+    int estado;
     String latitud;
     String longitud;
     String fotoUrl;
     String phoneIdentifierId;
     String fechaCreacion;
     int tipoIncidencia;
+    String nombreIncidencia;
 
     TicketModel({
         this.id,
@@ -22,38 +23,34 @@ class TicketModel {
         this.coordenadas        = "",
         this.latitud            = "",
         this.longitud           = "",
-        this.estado             = "",
+        this.estado             ,
         this.fotoUrl,
         this.phoneIdentifierId  = "",
         this.fechaCreacion      = "",
         this.tipoIncidencia,
+        this.nombreIncidencia   = ""
     });
 
     factory TicketModel.fromJson(Map<String, dynamic> json) => TicketModel(
-        id               : json["id"],
-        descripcion      : json["description"],
-        coordenadas      : json["coordenadas"],
-        latitud          : json["latitude"],
-        longitud         : json["longitude"],
-        estado           : json["estado"],
-        fotoUrl          : json["image_url"],
-        fechaCreacion    : json["fechaCreacion"],
-        phoneIdentifierId            : json["phone_identifier_id"],
-        tipoIncidencia   : json["incidence_type_id"],
+        id                : json["id"],
+        descripcion       : json["description"],
+        latitud           : json["latitude"],
+        longitud          : json["longitude"],
+        estado            : json["status"],
+        fotoUrl           : json["image_url"],
+        fechaCreacion     : json["created_at"],
+        nombreIncidencia  : json["name"],
     );
 
     Map<String, dynamic> toJson() => {
       "incidence" : {
-        //"id"              : id,
-        "description"        : descripcion,
-        //"coordenadas"        : coordenadas,
-        "latitude"           : latitud,
-        "longitude"          : longitud,
-        //"estado"             : estado,
-        "image_url"          : fotoUrl,
-        //"fechaCreacion"      : fechaCreacion,
-        "phone_identifier_id"           : phoneIdentifierId,
-        "incidence_type_id"  : tipoIncidencia,
+        // "id"              : id,
+        "description"         : descripcion,
+        "latitude"            : latitud,
+        "longitude"           : longitud,
+        "image_url"           : fotoUrl,
+        "phone_identifier_id" : phoneIdentifierId,
+        "incidence_type_id"   : tipoIncidencia,
       }
     };
 

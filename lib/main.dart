@@ -22,7 +22,7 @@ void main() async {
   print("pref token : "+prefs.idToken);
 
   if(prefs.idToken == ""){
-   //generateToken();
+   generateToken();
   }
 
   runApp(MyApp());
