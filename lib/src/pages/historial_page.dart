@@ -2,6 +2,7 @@ import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 
@@ -39,9 +40,13 @@ class _HistorialPageState extends State<HistorialPage> {
 
         final data = snapshot.data;
         
+        
       return ListView.builder(
         itemCount: snapshot.data.length,
         itemBuilder: (BuildContext context, int index) {
+          var fecha=DateTime.parse(data[index].fechaCreacion);
+          var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+          String fechaFormateada = formatter.format(fecha);
             return InkWell(
               child: Column(
                 children: <Widget>[
@@ -50,9 +55,9 @@ class _HistorialPageState extends State<HistorialPage> {
                     padding: EdgeInsets.only(right: 10, left: 10),
                     child: Row(
                       children: <Widget>[
-                        Text(data[index].tipoIncidencia.toString(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                        Text(data[index].nombreIncidencia,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
                         Expanded(child: Container(),),
-                        estado(data[index].estado),
+                        estado(data[index].estado.toString()),
                       ],
                     ),
                   ),
@@ -66,7 +71,8 @@ class _HistorialPageState extends State<HistorialPage> {
                     title: Text(data[index].descripcion,overflow: TextOverflow.ellipsis,),
                     subtitle: Row(
                       children: <Widget>[
-                        Text(data[index].fechaCreacion),
+                        // Text(data[index].fechaCreacion),
+                        Text("Enviada el "+fechaFormateada),
                         //SizedBox( width: 10,),
                         //Text(data[index].solucionado.toString()),
                         //Expanded(child: Container(),),

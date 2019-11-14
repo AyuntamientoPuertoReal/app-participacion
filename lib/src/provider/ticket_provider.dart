@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:appparticipacion/src/models/ticket_model.dart';
+import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
 //import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
@@ -8,12 +9,18 @@ import 'package:http_parser/http_parser.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
+
 class TicketProvider {
+  final prefs = new PreferenciasUsuario();
+  
 
+  
  // final String _url = 'https://flutter-varios-8bb9d.firebaseio.com';
-  final String _url = utils.url+"incidences";
-  //final _prefs = new PreferenciasUsuario();
 
+  final String _url = utils.url+"incidences";
+ 
+  //final _prefs = new PreferenciasUsuario();
+  
 
 //  "incidence": {
 //   "description": "Silla caída",
@@ -79,9 +86,16 @@ class TicketProvider {
 
   Future<List<TicketModel>> cargarTicketsCiudadanos() async {
 
-    final url = _url;
+     String prefToken = prefs.idToken; 
+     final String _urlHistorical = utils.url+"incidences_historical/$prefToken";
 
-    final response = await http.get(url); 
+    final url = _urlHistorical;
+
+    final authorizationToken = utils.tokenApicasso;
+
+    Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $authorizationToken"};
+    
+    final response = await http.get(url, headers: headers); 
 
     final Map<String, dynamic> decodeData = json.decode(response.body);
     final List<TicketModel> tickets = new List();
@@ -89,17 +103,17 @@ class TicketProvider {
     if(decodeData == null) return [];
 
     if(decodeData['error'] != null) return [];
+    
+    decodeData['entries'].forEach((i){
 
-    decodeData.forEach((id, prod){
-
-      final prodTemp = TicketModel.fromJson(prod);
-      prodTemp.id = id;
+      final prodTemp = TicketModel.fromJson(i);
+      //prodTemp.id = id;
 
     //  if(prodTemp.token == utils.encryptedString.toString()){
 
-      print("tocken objeto: "+prodTemp.phoneIdentifierId);
-      print("tocken desencriptado clase: "+utils.decrypted);
-      print("tocken encryptado clase: "+utils.encryptedString.toString());
+      // print("tocken objeto: "+prodTemp.phoneIdentifierId);
+      // print("tocken desencriptado clase: "+utils.decrypted);
+      // print("tocken encryptado clase: "+utils.encryptedString.toString());
 
       tickets.add(prodTemp);
 
@@ -108,6 +122,38 @@ class TicketProvider {
     });
 
     return tickets;
+//     final url = _url;
+
+//     print(url);
+
+//     final authorizationToken = utils.tokenApicasso;
+
+//     Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $authorizationToken"};
+    
+//     final response = await http.get(url, headers: headers); 
+
+//     final Map<String, dynamic> decodeData = json.decode(response.body);
+//     final List<PuntoInteresModel> puntosInteres = new List();
+    
+//     if(decodeData == null) return [];
+
+//     if(decodeData['error'] != null) return [];
+
+//  // print(decodeData['entries']);
+    
+//   if(decodeData['total']>0){
+    
+//    // print(decodeData.toString());
+//     decodeData['entries'].forEach((i){
+
+//       PuntoInteresModel prodTemp = PuntoInteresModel.fromJson(i);
+//    //   print(prodTemp.toJson());
+
+//       puntosInteres.add(prodTemp);
+//     });
+//   }
+
+//     return puntosInteres;
 
   }
 
