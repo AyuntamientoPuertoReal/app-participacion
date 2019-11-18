@@ -10,8 +10,8 @@ Widget estado(String estado){
   switch(estado){
     case '1': color=Colors.white;colorTexto=Colors.black;colorBorde=colorTexto;texto='Enviada';break;
     case '2': color=Colors.orangeAccent;colorTexto=Colors.black;colorBorde=color;texto='En proceso';break;
-    case '3': color=Colors.redAccent[700];colorBorde=color;texto='Desestimada';break;
-    case '4': color=Colors.green;colorBorde=color;texto='Finalizada';break;
+    case '3': color=Colors.green;colorBorde=color;texto='Finalizada';break;
+    case '4': color=Colors.redAccent[700];colorBorde=color;texto='Desestimada';break;
   }
 
   return Container(

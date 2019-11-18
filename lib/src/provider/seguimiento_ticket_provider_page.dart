@@ -1,30 +1,67 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 class SeguimientoTicketProvider {
-  final String _url = 'https://flutter-varios-8bb9d.firebaseio.com';
 
   Future<List<SeguimientoTicketModel>> cargarSeguimientoTickets() async {
-    final url = '$_url/seguimientoTicket.json';
-    final response = await http.get(url);
+    int incidenceId = utils.incidenceId;
+    final String _url = utils.url+"incidence_trackings?q[incidence_id_eq]=$incidenceId";
+
+    final authorizationToken = utils.tokenApicasso;
+
+    Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $authorizationToken"};
+    
+    final response = await http.get(_url, headers: headers); 
 
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<SeguimientoTicketModel> seguimientoTicket = new List();
-    
+    final List<SeguimientoTicketModel> listaSeguimiento = new List();
+
     if(decodeData == null) return [];
 
     if(decodeData['error'] != null) return [];
+    
+    if(decodeData['total']>0){
+      decodeData['entries'].forEach((i){
 
-    decodeData.forEach((id, prod){
-      final prodTemp = SeguimientoTicketModel.fromJson(prod);
-      prodTemp.id = id;
+        final prodTemp = SeguimientoTicketModel.fromJson(i);
 
-      seguimientoTicket.add(prodTemp);
-    });
+        listaSeguimiento.add(prodTemp);
 
-    return seguimientoTicket;
+      });
+    }
+
+    return listaSeguimiento;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // final url = '$_url/seguimientoTicket.json';
+    // final response = await http.get(url);
+
+    // final Map<String, dynamic> decodeData = json.decode(response.body);
+    // final List<SeguimientoTicketModel> seguimientoTicket = new List();
+    
+    // if(decodeData == null) return [];
+
+    // if(decodeData['error'] != null) return [];
+
+    // decodeData.forEach((id, prod){
+    //   final prodTemp = SeguimientoTicketModel.fromJson(prod);
+    //   prodTemp.id = id;
+
+    //   seguimientoTicket.add(prodTemp);
+    // });
+
+    // return seguimientoTicket;
   }
 
 }
