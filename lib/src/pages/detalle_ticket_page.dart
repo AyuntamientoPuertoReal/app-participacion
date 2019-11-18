@@ -6,6 +6,7 @@ import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class DetalleTicketPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
   @override
   Widget build(BuildContext context) {
     final TicketModel ticket = ModalRoute.of(context).settings.arguments;
-
+    utils.incidenceId=ticket.id;
     final seguimientoTicket = Provider.seguimientoTicketBloc(context);
     seguimientoTicket.verEstado();
     
@@ -98,13 +99,10 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
     builder: (BuildContext context, AsyncSnapshot<List<SeguimientoTicketModel>> snapshot){
       if(snapshot.hasData){
         final data=snapshot.data;
-
+        List<Widget> lista=[];
         data.forEach((f){
-          if(f.estado == ticket.estado){
-            mensaje=f.mensaje;
-          }
-        });
-          return Container(
+          
+          Widget c= Container(
             padding: EdgeInsets.all(5),
             child: Container(
               padding: EdgeInsets.all(10),
@@ -115,11 +113,33 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
               )
             ),
               child: Center(
-                  child: Text(mensaje), 
-              ),
+                  child: Text(f.message),
             ),
+          )
           );
-       // } 
+          lista.add(c);
+        });
+        if(lista.length < 1){
+          Widget vacio = Container(
+            padding: EdgeInsets.all(5),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: Colors.grey
+              )
+            ),
+              child: Center(
+                  child: Text('Tu incidencia ha sido enviada. Gracias por tu colaboración.'),
+            ),
+          )
+          );
+          lista.add(vacio);
+        }
+          return Column(
+            children: lista
+          );
       } else {
         return CircularProgressIndicator();
       }

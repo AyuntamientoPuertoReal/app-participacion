@@ -86,8 +86,8 @@ class TicketProvider {
 
   Future<List<TicketModel>> cargarTicketsCiudadanos() async {
 
-     String prefToken = prefs.idToken; 
-     final String _urlHistorical = utils.url+"incidences_historical/$prefToken";
+    String prefToken = prefs.idToken; 
+    final String _urlHistorical = utils.url+"incidences_historical/$prefToken";
 
     final url = _urlHistorical;
 

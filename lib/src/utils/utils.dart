@@ -21,6 +21,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
 
  String url = sc.url;
  String tokenApicasso = sc.tokenApicasso;
+ int incidenceId;
 
 void generateToken() async {
 
