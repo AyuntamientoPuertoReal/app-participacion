@@ -46,7 +46,7 @@ Widget estado2(String estado){
   return Container(
     //padding: EdgeInsets.all(4),
     //color: color,
-    child: Text('Estado: '+texto, style: TextStyle(color: colorTexto, fontWeight: FontWeight.w800),),
+    child: Text(texto, style: TextStyle(fontSize: 18, color: colorTexto, fontWeight: FontWeight.w800)),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10.0),
       color: color,

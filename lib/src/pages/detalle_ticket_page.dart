@@ -30,14 +30,14 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalle Incidencia'),
+        title: Text('Incidencia enviada'),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10,),
-            Text('INCIDENCIA',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
+            Text('DESCRIPCIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
             SizedBox(height: 10,),
             Container(
               padding: EdgeInsets.all(15),
@@ -68,6 +68,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
               child: Column(
                 children: <Widget>[
                Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white))),
+               SizedBox(height: 10),
               pintaMensajeAyuntamiento(seguimientoTicket,ticket),
                 ],
               ),
@@ -116,7 +117,7 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
         var fecha=DateTime.parse(ticket.fechaCreacion);
         var formatter = new DateFormat('dd/MM/yyyy');
         String fechaFormateada = formatter.format(fecha);
-
+        double espacioCelda=90;
         Widget enviada= Container(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -124,8 +125,8 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
                 Row(
                   children:<Widget>[
                     Container(
-                      width: 80, 
-                      child: Text(fechaFormateada, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),)
+                      width: espacioCelda, 
+                      child: Text(fechaFormateada, style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
                     ),
                     SizedBox(width: 5,),
                     estado2('1')
@@ -138,10 +139,10 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
                 Row(
                   children: <Widget>[
                     Container(
-                      width: 80,
+                      width: espacioCelda,
                     ),
                     SizedBox(width: 5,),
-                    Expanded(child: Text('Tu incidencia ha sido enviada. Gracias por tu colaboración.', style: TextStyle(color: Colors.white),))
+                    Expanded(child: Text('Tu incidencia ha sido enviada. Gracias por tu colaboración.', style: TextStyle( fontSize:16, color: Colors.white),))
                   ],
                 ),
                 SizedBox(height: 10,)
@@ -164,8 +165,8 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
                 Row(
                   children:<Widget>[
                     Container(
-                      width: 80, 
-                      child: Text(fechaFormateada, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),)
+                      width: espacioCelda, 
+                      child: Text(fechaFormateada, style: TextStyle( fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
                     ),
                     SizedBox(width: 5,),
                     estado2(f.status.toString())
@@ -178,10 +179,10 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
                 Row(
                   children: <Widget>[
                     Container(
-                      width: 80,
+                      width: espacioCelda,
                     ),
                     SizedBox(width: 5,),
-                    Expanded(child: Text(f.message, style: TextStyle(color: Colors.white),))
+                    Expanded(child: Text(f.message, style: TextStyle(fontSize:16, color: Colors.white),))
                   ],
                 ),
                 SizedBox(height: 10,)
