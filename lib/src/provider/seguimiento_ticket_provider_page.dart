@@ -9,7 +9,7 @@ class SeguimientoTicketProvider {
 
   Future<List<SeguimientoTicketModel>> cargarSeguimientoTickets() async {
     int incidenceId = utils.incidenceId;
-    final String _url = utils.url+"incidence_trackings?q[incidence_id_eq]=$incidenceId";
+    final String _url = utils.url+"incidence_trackings?q[incidence_id_eq]=$incidenceId&sort=created_at";
 
     final authorizationToken = utils.tokenApicasso;
 
