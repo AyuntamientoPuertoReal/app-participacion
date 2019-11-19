@@ -5,7 +5,7 @@ NoticiaModel noticiaModelFromJson(String str) => NoticiaModel.fromJson(json.deco
 String noticiaModelToJson(NoticiaModel data) => json.encode(data.toJson());
 
 class NoticiaModel {
-    String id;
+    int id;
     String title;
     String description;
     String body;
@@ -26,8 +26,8 @@ class NoticiaModel {
         title      : json["title"],
         description: json["description"],
         body       : json["body"],
-        date       : json["Date"],
-        imageUrl   : json["imageUrl"],
+        date       : json["date_of_creation"],
+        imageUrl   : json["image_url"],
     );
 
     Map<String, dynamic> toJson() => {
