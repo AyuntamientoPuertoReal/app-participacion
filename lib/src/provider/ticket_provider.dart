@@ -81,7 +81,7 @@ class TicketProvider {
 
     return responseData['secure_url'];
 
-
+                                                                               
   }
 
   Future<List<TicketModel>> cargarTicketsCiudadanos() async {

@@ -28,3 +28,28 @@ Widget estado(String estado){
     ),
   );
 }
+
+Widget estado2(String estado){
+  
+  Color color;
+  Color colorTexto=Colors.white;
+  Color colorBorde=Colors.black;
+  String texto='';
+
+  switch(estado){
+    case '1': texto='Enviada';break;
+    case '2': texto='En proceso';break;
+    case '3': texto='Finalizada';break;
+    case '4': texto='Desestimada';break;
+  }
+
+  return Container(
+    //padding: EdgeInsets.all(4),
+    //color: color,
+    child: Text(texto, style: TextStyle(fontSize: 18, color: colorTexto, fontWeight: FontWeight.w800)),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10.0),
+      color: color,
+    ),
+  );
+}

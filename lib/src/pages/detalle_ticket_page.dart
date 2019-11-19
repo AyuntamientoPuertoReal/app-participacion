@@ -7,6 +7,7 @@ import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:intl/intl.dart';
 
 class DetalleTicketPage extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class DetalleTicketPage extends StatefulWidget {
 class _DetalleTicketPageState extends State<DetalleTicketPage> {
 
   Color color = Colors.black;
+  Color fondoSeguimiento = Color.fromRGBO(231, 242, 252, 1.0);
+  final fondoApp = Color.fromRGBO(162, 0, 125, 0.75);
 
 
   @override
@@ -27,25 +30,25 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalle Incidencia'),
+        title: Text('Incidencia enviada'),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10,),
-            Text('INCIDENCIA',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
+            Text('DESCRIPCIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
             SizedBox(height: 10,),
             Container(
               padding: EdgeInsets.all(15),
               child: Column(
                 children: <Widget>[
-                  Text(ticket.descripcion, style: TextStyle(fontSize: 18),),
+                  Container(alignment: Alignment.centerLeft , child: Text(ticket.descripcion, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),)),
                   SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[  
-                      Text('Estado: '),
+                      Text('Estado actual: '),
                       SizedBox(width: 2,),
                       estado(ticket.estado.toString()),
                       Expanded(
@@ -57,11 +60,20 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                 ],
               ),
             ),
-            Divider(thickness: 3),
+            //Divider(thickness: 3),
             SizedBox(height: 10),
-            Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),),
-            pintaMensajeAyuntamiento(seguimientoTicket,ticket),
-            Divider(thickness: 3),
+            Container(
+              padding: EdgeInsets.only(top: 15, bottom: 15),
+              color: Color.fromRGBO(162, 0, 125, 0.75),
+              child: Column(
+                children: <Widget>[
+               Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white))),
+               SizedBox(height: 10),
+              pintaMensajeAyuntamiento(seguimientoTicket,ticket),
+                ],
+              ),
+            ),
+           // Divider(thickness: 3),
             SizedBox(height: 10),
             Text("FOTO ENVIADA",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
             Container(
@@ -93,6 +105,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
 
 Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketModel ticket){
   String mensaje = "";
+  
 
  return StreamBuilder(
     stream: seguimientoTicket.ticketStream ,
@@ -100,25 +113,86 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
       if(snapshot.hasData){
         final data=snapshot.data;
         List<Widget> lista=[];
+
+        var fecha=DateTime.parse(ticket.fechaCreacion);
+        var formatter = new DateFormat('dd/MM/yyyy');
+        String fechaFormateada = formatter.format(fecha);
+        double espacioCelda=90;
+        Widget enviada= Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children:<Widget>[
+                    Container(
+                      width: espacioCelda, 
+                      child: Text(fechaFormateada, style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
+                    ),
+                    SizedBox(width: 5,),
+                    estado2('1')
+                    //Text(f.status.toString(), style: TextStyle(color: Colors.white),),
+                    //Expanded(child: Container(child: Text(f.message, style: TextStyle(color: Colors.white),overflow: TextOverflow.clip,maxLines: 10,))),
+                  ] 
+                    
+                ),
+                SizedBox(height: 12,),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: espacioCelda,
+                    ),
+                    SizedBox(width: 5,),
+                    Expanded(child: Text('Tu incidencia ha sido enviada. Gracias por tu colaboración.', style: TextStyle( fontSize:16, color: Colors.white),))
+                  ],
+                ),
+                SizedBox(height: 10,)
+                
+              ],
+            ),
+          );
+        
+        lista.add(enviada);
+
+        
         data.forEach((f){
-          
+          var fecha=DateTime.parse(f.date);
+          var formatter = new DateFormat('dd/MM/yyyy');
+          String fechaFormateada = formatter.format(fecha);
           Widget c= Container(
-            padding: EdgeInsets.all(5),
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.grey
-              )
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children:<Widget>[
+                    Container(
+                      width: espacioCelda, 
+                      child: Text(fechaFormateada, style: TextStyle( fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
+                    ),
+                    SizedBox(width: 5,),
+                    estado2(f.status.toString())
+                    //Text(f.status.toString(), style: TextStyle(color: Colors.white),),
+                    //Expanded(child: Container(child: Text(f.message, style: TextStyle(color: Colors.white),overflow: TextOverflow.clip,maxLines: 10,))),
+                  ] 
+                    
+                ),
+                SizedBox(height: 12,),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: espacioCelda,
+                    ),
+                    SizedBox(width: 5,),
+                    Expanded(child: Text(f.message, style: TextStyle(fontSize:16, color: Colors.white),))
+                  ],
+                ),
+                SizedBox(height: 10,)
+                
+              ],
             ),
-              child: Center(
-                  child: Text(f.message),
-            ),
-          )
           );
           lista.add(c);
         });
+        
         if(lista.length < 1){
           Widget vacio = Container(
             padding: EdgeInsets.all(5),
