@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:appparticipacion/src/provider/ticket_provider.dart';
 
 
 class AbrirTicketPage extends StatefulWidget {
@@ -166,7 +167,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       setState(() { _guardando = true;});
 
       if( foto != null){
-        ticketModel.fotoUrl = await ticketBloc.subirFoto(foto); 
+        //ticketModel.fotoUrl = await ticketBloc.subirFoto(foto); 
       }
 
       if(ticketModel.id == null){
@@ -176,13 +177,15 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.fechaCreacion=fecha;
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
+        ticketModel.pictureFile = foto;
        // ticketModel.token=utils.encryptedString.toString();
         ticketModel.phoneIdentifierId=utils.prefs.idToken;
         ticketModel.tipoIncidencia = tipoIncidencia.id;
 
         print(ticketModel.toJson());
-
-        ticketBloc.crearTicket(ticketModel);
+        TicketProvider tk = new TicketProvider();
+        bool creado= await tk.createIncidence(ticketModel);
+        //ticketBloc.crearTicket(ticketModel);
         
        Navigator.pushReplacementNamed(context, 'home');
 
@@ -220,7 +223,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     );
 
     if(foto != null){
-      ticketModel.fotoUrl = null;
+      // ticketModel.fotoUrl = null;
       Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
       String coordenada = position.latitude.toString()+","+position.longitude.toString();
       latitud = position.latitude.toString();
