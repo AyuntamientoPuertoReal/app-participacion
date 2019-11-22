@@ -56,6 +56,8 @@ class TicketProvider {
   Future<String> subirImagen(File imagen) async {
 
     final url = Uri.parse('https://api.cloudinary.com/v1_1/dg0aypaob/image/upload?upload_preset=e4g32rq3');
+
+    String base64Image = base64Encode(imagen.readAsBytesSync());
     final mimeType = mime(imagen.path).split('/'); // imagen/jpeg
 
     final imageUploadRequest = http.MultipartRequest(
