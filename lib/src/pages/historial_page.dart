@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 
@@ -63,7 +64,7 @@ class _HistorialPageState extends State<HistorialPage> {
                   ),
                   ListTile(
                     leading: FadeInImage(
-                      image: NetworkImage(data[index].fotoUrl),
+                      image: NetworkImage(utils.urlImage+data[index].pictureUrl),
                       placeholder: AssetImage('assets/img/jar-loading.gif'),
                       width: 50.0,
                       fit: BoxFit.contain,

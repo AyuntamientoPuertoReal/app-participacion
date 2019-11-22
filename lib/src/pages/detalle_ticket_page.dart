@@ -81,8 +81,9 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  // /*utils.urlImage+data[index].pictureUrl*/"https://statics.vrutal.com/m/8dc9/8dc9464e6a4a09bbff2e1c1c39750af1.jpg"
                   FadeInImage(
-                    image: NetworkImage(ticket.fotoUrl),
+                    image: NetworkImage(utils.urlImage+ticket.pictureUrl),
                     placeholder: AssetImage('assets/img/jar-loading.gif'),
                     height: 300,
                     fit: BoxFit.cover,
