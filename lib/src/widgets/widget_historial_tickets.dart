@@ -10,7 +10,7 @@ final card = Container(
               
               FadeInImage(
 
-                 image: NetworkImage(ticket.fotoUrl),
+                 image: NetworkImage(ticket.pictureUrl),
                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                  fadeInDuration: Duration(seconds: 4 ),
               ),
