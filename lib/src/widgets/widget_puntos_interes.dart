@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:appparticipacion/src/models/puntos_interes_model.dart';
+import 'package:appparticipacion/src/models/interest_points_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 import 'package:flutter_icons/flutter_icons.dart';
 
-Widget crearPuntoInteres(BuildContext context, PuntoInteresModel puntoInteres){
+Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres){
 
   return InkWell(
     onTap: (){

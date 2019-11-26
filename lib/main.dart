@@ -1,43 +1,34 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/pages/abrir_ticket_page.dart';
-import 'package:appparticipacion/src/pages/ayuda_page.dart';
-import 'package:appparticipacion/src/pages/detalle_ticket_page.dart';
-import 'package:appparticipacion/src/pages/historial_page.dart';
+import 'package:appparticipacion/src/pages/create_incidence_page.dart';
+import 'package:appparticipacion/src/pages/help_page.dart';
+import 'package:appparticipacion/src/pages/incidence_details_page.dart';
+import 'package:appparticipacion/src/pages/incidences_historical_page.dart';
 import 'package:appparticipacion/src/pages/home_page.dart';
-import 'package:appparticipacion/src/pages/noticias_detalles.dart';
-import 'package:appparticipacion/src/pages/noticias_page.dart';
-import 'package:appparticipacion/src/pages/puntoInteres_detalle.dart';
-import 'package:appparticipacion/src/pages/puntoInteres_page.dart';
-import 'package:appparticipacion/src/pages/tipo_incidencia_page.dart';
-import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:appparticipacion/src/pages/new_details_page.dart';
+import 'package:appparticipacion/src/pages/news_page.dart';
+import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
+import 'package:appparticipacion/src/pages/interest_points_page.dart';
+import 'package:appparticipacion/src/pages/incidence_types_page.dart';
+import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
  
 void main() async {
-   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-   final prefs = new PreferenciasUsuario();
-   await prefs.initPrefs();
-
-  print("pref token : "+prefs.idToken);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  final prefs = new UserPreferences();
+  await prefs.initPrefs();
 
   if(prefs.idToken == ""){
-   generateToken();
+    generateToken();
   }
 
   runApp(MyApp());
-
 }
  
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    
-  // if(prefs.token == ""){
-  // print("Entro aqui");
-  // }
-
     return Provider(
         child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,15 +36,15 @@ class MyApp extends StatelessWidget {
         initialRoute: 'home',
         routes: {
           'home'                : (BuildContext context) => HomePage(),
-          'abrirticket'         : (BuildContext context) => AbrirTicketPage(),
-          'noticias'            : (BuildContext context) => NoticiasPage(),
-          'noticiasDetalle'     : (BuildContext context) => NoticiasDetalles(),
-          'historial'           : (BuildContext context) => HistorialPage(),
-          'puntoInteresDetalle' : (BuildContext context) => PuntosInteresDetallePage(),
-          'detalleTicket'       : (BuildContext context) => DetalleTicketPage(),
-          'tipoincidencia'      : (BuildContext context) => TipoIncidenciaPage(),
-          'puntoInteres'        : (BuildContext context) => PuntoInteresPage(),
-          'ayudaPage'           : (BuildContext context) => AyudaPage(),
+          'abrirticket'         : (BuildContext context) => CreateIncidencePage(),
+          'noticias'            : (BuildContext context) => NewsPage(),
+          'noticiasDetalle'     : (BuildContext context) => NewDetails(),
+          'historial'           : (BuildContext context) => IncidencesHistoricalPage(),
+          'puntoInteresDetalle' : (BuildContext context) => InterestPointDetailsPage(),
+          'detalleTicket'       : (BuildContext context) => IncidendeDetailsPage(),
+          'tipoincidencia'      : (BuildContext context) => IncidenceTypesPage(),
+          'puntoInteres'        : (BuildContext context) => InterestPointsPage(),
+          'ayudaPage'           : (BuildContext context) => HelpPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)

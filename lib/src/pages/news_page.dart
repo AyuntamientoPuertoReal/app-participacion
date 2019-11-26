@@ -1,17 +1,17 @@
-import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
+import 'package:appparticipacion/src/bloc/news_bloc.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/models/noticias_model.dart';
+import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/widgets/widget_noticia.dart';
 
 
-class NoticiasPage extends StatefulWidget {
+class NewsPage extends StatefulWidget {
 
   @override
-  _NoticiasPageState createState() => _NoticiasPageState();
+  _NewsPageState createState() => _NewsPageState();
 }
 
-class _NoticiasPageState extends State<NoticiasPage> {
+class _NewsPageState extends State<NewsPage> {
   IconData icono = Icons.zoom_in;
   bool noticiaGrande=false;
   @override
@@ -50,11 +50,11 @@ class _NoticiasPageState extends State<NoticiasPage> {
     );
   }
 
-  Widget _crearListadoNoticias(NoticiaBloc noticiabloc) {
+  Widget _crearListadoNoticias(NewsBloc noticiabloc) {
 
     return StreamBuilder(
       stream: noticiabloc.noticiasStream ,
-      builder: (BuildContext context, AsyncSnapshot<List<NoticiaModel>> snapshot){
+      builder: (BuildContext context, AsyncSnapshot<List<NewsModel>> snapshot){
       if(snapshot.hasData){
         final data = snapshot.data;
         return ListView.builder(
@@ -76,7 +76,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
     );
   }
 
-  _crearNoticia(BuildContext context ,NoticiaModel noticiaModel) {
+  _crearNoticia(BuildContext context ,NewsModel noticiaModel) {
 
     if(noticiaGrande){
     return noticia3(context,noticiaModel); 

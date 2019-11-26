@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-PuntoInteresModel puntoInteresModelFromJson(String str) => PuntoInteresModel.fromJson(json.decode(str));
+InterestPointsModel puntoInteresModelFromJson(String str) => InterestPointsModel.fromJson(json.decode(str));
 
-String puntoInteresModelToJson(PuntoInteresModel data) => json.encode(data.toJson());
+String puntoInteresModelToJson(InterestPointsModel data) => json.encode(data.toJson());
 
-class PuntoInteresModel {
+class InterestPointsModel {
     int id;
     String name;
     String description;
@@ -12,7 +12,7 @@ class PuntoInteresModel {
     String latitude;
     String longitude;
 
-    PuntoInteresModel({
+    InterestPointsModel({
         this.id,
         this.name='',
         this.description='',
@@ -21,7 +21,7 @@ class PuntoInteresModel {
         this.longitude='',
     });
 
-    factory PuntoInteresModel.fromJson(Map<String, dynamic> json) => PuntoInteresModel(
+    factory InterestPointsModel.fromJson(Map<String, dynamic> json) => InterestPointsModel(
         id          : json["id"],
         name        : json["name"],
         description : json["description"],

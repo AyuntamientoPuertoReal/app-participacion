@@ -1,18 +1,18 @@
-import 'package:appparticipacion/src/models/ticket_model.dart';
-import 'package:appparticipacion/src/provider/ticket_provider.dart';
+import 'package:appparticipacion/src/models/incidence_model.dart';
+import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class TicketBloc {
+class IncidenceBloc {
 
-   final _ticketController = new BehaviorSubject<List<TicketModel>>();
+   final _ticketController = new BehaviorSubject<List<IncidenceModel>>();
    final _cargandoController = new BehaviorSubject<bool>();
 
-   final _ticketProvider = new TicketProvider();
+   final _ticketProvider = new IncidenceProvider();
 
-     Stream<List<TicketModel>> get ticketStream  => _ticketController.stream;
+     Stream<List<IncidenceModel>> get ticketStream  => _ticketController.stream;
      Stream<bool> get cargando  => _cargandoController.stream;
 
-   void crearTicket(TicketModel ticket) async {
+   void crearTicket(IncidenceModel ticket) async {
 
   _cargandoController.sink.add(true);
   await _ticketProvider.createIncidence(ticket);
@@ -31,6 +31,4 @@ class TicketBloc {
     _ticketController?.close();
     _cargandoController?.close();
   }
-
-
 }

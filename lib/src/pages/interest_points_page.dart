@@ -1,15 +1,15 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
+import 'package:appparticipacion/src/bloc/interest_points_bloc.dart';
 import 'package:appparticipacion/src/widgets/widget_puntos_interes.dart';
 import 'package:flutter/material.dart';
 
 
-class PuntoInteresPage extends StatefulWidget {
+class InterestPointsPage extends StatefulWidget {
   @override
-  _PuntoInteresPageState createState() => _PuntoInteresPageState();
+  _InterestPointsPageState createState() => _InterestPointsPageState();
 }
 
-class _PuntoInteresPageState extends State<PuntoInteresPage> {
+class _InterestPointsPageState extends State<InterestPointsPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -24,7 +24,7 @@ class _PuntoInteresPageState extends State<PuntoInteresPage> {
     );
   }
 
-Widget _crearListadoPuntosInteres(PuntoInteresBloc puntoIntereBloc) {
+Widget _crearListadoPuntosInteres(InterestPointsBloc puntoIntereBloc) {
 
   return StreamBuilder(
     stream: puntoIntereBloc.puntoInteresStream ,

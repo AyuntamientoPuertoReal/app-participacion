@@ -1,6 +1,6 @@
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
-import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
+import 'package:appparticipacion/src/bloc/interest_points_bloc.dart';
+import 'package:appparticipacion/src/provider/interest_points_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -11,7 +11,7 @@ class MenuLateralFiltroMapa extends StatefulWidget {
 }
 
 class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
-  PuntoInteresProvider pI= new PuntoInteresProvider();
+  InterestPointsProvider pI= new InterestPointsProvider();
   final map = new MapController();
 
   @override
@@ -25,11 +25,11 @@ class _MenuLateralFiltroMapaState extends State<MenuLateralFiltroMapa> {
     );
   }
 
- Widget _llamarMarcadores(BuildContext context, PuntoInteresBloc puntosInteresBloc) {
+ Widget _llamarMarcadores(BuildContext context, InterestPointsBloc puntosInteresBloc) {
 
    return StreamBuilder(
       stream: puntosInteresBloc.puntoInteresStream ,
-      builder: (BuildContext context, AsyncSnapshot<List<PuntoInteresModel>> snapshot){
+      builder: (BuildContext context, AsyncSnapshot<List<InterestPointsModel>> snapshot){
         if(snapshot.hasData){
         final data = snapshot.data;
 
