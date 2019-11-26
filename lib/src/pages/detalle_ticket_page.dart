@@ -60,7 +60,6 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                 ],
               ),
             ),
-            //Divider(thickness: 3),
             SizedBox(height: 10),
             Container(
               padding: EdgeInsets.only(top: 15, bottom: 15),
@@ -73,7 +72,6 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
                 ],
               ),
             ),
-           // Divider(thickness: 3),
             SizedBox(height: 10),
             Text("FOTO ENVIADA",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
             Container(
@@ -81,7 +79,6 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // /*utils.urlImage+data[index].pictureUrl*/"https://statics.vrutal.com/m/8dc9/8dc9464e6a4a09bbff2e1c1c39750af1.jpg"
                   FadeInImage(
                     image: NetworkImage(utils.urlImage+ticket.pictureUrl),
                     placeholder: AssetImage('assets/img/jar-loading.gif'),
@@ -105,8 +102,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
 }
 
 Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketModel ticket){
-  String mensaje = "";
-  
+
 
  return StreamBuilder(
     stream: seguimientoTicket.ticketStream ,
@@ -131,8 +127,6 @@ Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketM
                     ),
                     SizedBox(width: 5,),
                     estado2('1')
-                    //Text(f.status.toString(), style: TextStyle(color: Colors.white),),
-                    //Expanded(child: Container(child: Text(f.message, style: TextStyle(color: Colors.white),overflow: TextOverflow.clip,maxLines: 10,))),
                   ] 
                     
                 ),
