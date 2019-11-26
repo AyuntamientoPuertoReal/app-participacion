@@ -1,6 +1,5 @@
 import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -11,8 +10,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   final fondoApp = Color.fromRGBO(162, 0, 125, 0.75);
-
-  IconData icono = Icons.star;
 
     return Scaffold(
       drawer: MenuLateralWidget(),
@@ -28,7 +25,6 @@ class HomePage extends StatelessWidget {
               Image(
                 image: AssetImage('assets/img/APP-logo_header2.png'),
                 fit: BoxFit.contain,
-                //height: 130,
               ),
               Expanded(child: Container(),),
               Table(
@@ -73,8 +69,7 @@ class HomePage extends StatelessWidget {
 
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo,double border,  Color fondoIcono){ 
 
-    return InkWell(
-      
+    return InkWell(    
           onTap: (){
             Navigator.pushNamed(context, page);
           },
@@ -87,13 +82,9 @@ class HomePage extends StatelessWidget {
               alignment: AlignmentDirectional.topStart,
               decoration: BoxDecoration(
                 color: fondo,
-                // color: Color.fromRGBO(62, 66, 107, 0.7),
                 borderRadius: BorderRadius.circular(20.0),
                 border: Border.all(width: border, color: Color.fromRGBO(92, 0, 122, 1.0))
               ),
-              //child:widget_favorito, 
-                
-              
             ),
             
             Column(
@@ -110,27 +101,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  void _launchUrl(String url) async {
-    if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'No se pudo abrir $url';
-  }
-}
-
-Widget _crearCirculo(BuildContext context, IconData icono ){
-  return Container(
-        width: 10,
-        height: 10,
-        decoration: new BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          shape: BoxShape.circle
-        ),
-        child: Center(child: Icon(icono)),
-    );
-}
-
-  
-
 }

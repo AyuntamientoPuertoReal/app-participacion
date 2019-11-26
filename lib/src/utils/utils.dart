@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
 import 'package:appparticipacion/src/models/phone_identifier_model.dart';
 import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
@@ -116,4 +118,16 @@ String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
     DateTime date = new DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second);
     
     return date.toString();
+  }
+
+
+  void comprobarConexionInternet() async {
+  try {
+  final result = await InternetAddress.lookup(sc.url);
+  if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+    print('connected');
+  }
+  } on SocketException catch (_) {
+    print('not connected');
+  }
   }

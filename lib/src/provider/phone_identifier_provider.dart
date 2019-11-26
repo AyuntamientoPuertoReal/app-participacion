@@ -9,7 +9,7 @@ export 'package:appparticipacion/src/models/phone_identifier_model.dart';
 
 class PhoneIdentifierProvider {
 
-  final String phone_identifier = utils.encryptedString;
+  final String phoneIdentifier = utils.encryptedString;
 
   final url = utils.url+"phone_identifiers";
 
@@ -35,7 +35,7 @@ class PhoneIdentifierProvider {
 
    // $url?q[phone_identifier_eq]=$phone_identifier&select=id
 
-    final urlToken = '$url?q[phone_identifier_eq]=$phone_identifier&select=id';
+    final urlToken = '$url?q[phone_identifier_eq]=$phoneIdentifier&select=id';
 
 
     final authorizationToken = utils.tokenApicasso;
