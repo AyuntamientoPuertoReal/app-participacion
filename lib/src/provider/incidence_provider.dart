@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:appparticipacion/src/models/ticket_model.dart';
-import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:appparticipacion/src/models/incidence_model.dart';
+import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 import 'package:path/path.dart';
@@ -9,12 +9,12 @@ import 'package:dio/dio.dart';
 
 
 
-class TicketProvider {
-  final prefs = new PreferenciasUsuario();
+class IncidenceProvider {
+  final prefs = new UserPreferences();
   
   final String _url = utils.url+"incidences";
 
-  Future<bool> createIncidence(TicketModel incidence) async{
+  Future<bool> createIncidence(IncidenceModel incidence) async{
 
     final url = _url+"/send";
 
@@ -45,42 +45,30 @@ class TicketProvider {
       }
 
     } catch(e){
-
       return false;
-      
     }
   }
 
-  Future<List<TicketModel>> cargarTicketsCiudadanos() async {
+  Future<List<IncidenceModel>> cargarTicketsCiudadanos() async {
 
     String prefToken = prefs.idToken; 
     final String _urlHistorical = utils.url+"incidences_historical/$prefToken";
-
     final url = _urlHistorical;
-
     final authorizationToken = utils.tokenApicasso;
-
     Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $authorizationToken"};
-    
     final response = await http.get(url, headers: headers); 
-
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<TicketModel> tickets = new List();
+    final List<IncidenceModel> tickets = new List();
 
     if(decodeData == null) return [];
 
     if(decodeData['error'] != null) return [];
     
     decodeData['entries'].forEach((i){
-
-      final prodTemp = TicketModel.fromJson(i);
-
+      final prodTemp = IncidenceModel.fromJson(i);
       tickets.add(prodTemp);
-
     });
 
     return tickets;
-
-
   }
 }

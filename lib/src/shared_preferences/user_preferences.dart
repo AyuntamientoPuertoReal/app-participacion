@@ -5,28 +5,23 @@ import 'package:shared_preferences/shared_preferences.dart';
     shared_preferences:
 
   Inicializar en el main
-    final prefs = new PreferenciasUsuario();
+    final prefs = new UserPreferences();
     await prefs.initPrefs();
     
     Recuerden que el main() debe de ser async {...
-
 */
 
-class PreferenciasUsuario {
+class UserPreferences {
 
-  static final PreferenciasUsuario _instancia = new PreferenciasUsuario._internal();
+  static final UserPreferences _instancia = new UserPreferences._internal();
 
-  factory PreferenciasUsuario() {
+  factory UserPreferences() {
     return _instancia;
   }
 
-  PreferenciasUsuario._internal();
+  UserPreferences._internal();
 
   SharedPreferences _prefs;
-
-  // _prueba(){
-  //   _prefs.setString('token', "parametro");
-  // }
 
   initPrefs() async {
     this._prefs = await SharedPreferences.getInstance();
@@ -42,5 +37,3 @@ class PreferenciasUsuario {
   }
   
 }
-
-

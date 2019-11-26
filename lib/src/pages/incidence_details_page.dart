@@ -1,20 +1,19 @@
-
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
-import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
-import 'package:appparticipacion/src/models/ticket_model.dart';
+import 'package:appparticipacion/src/bloc/incidence_trackings_bloc.dart';
+import 'package:appparticipacion/src/models/incidence_trackings_model.dart';
+import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 import 'package:intl/intl.dart';
 
-class DetalleTicketPage extends StatefulWidget {
+class IncidendeDetailsPage extends StatefulWidget {
   @override
-  _DetalleTicketPageState createState() => _DetalleTicketPageState();
+  _IncidendeDetailsPageState createState() => _IncidendeDetailsPageState();
 }
 
-class _DetalleTicketPageState extends State<DetalleTicketPage> {
+class _IncidendeDetailsPageState extends State<IncidendeDetailsPage> {
 
   Color color = Colors.black;
   Color fondoSeguimiento = Color.fromRGBO(231, 242, 252, 1.0);
@@ -23,7 +22,7 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
 
   @override
   Widget build(BuildContext context) {
-    final TicketModel ticket = ModalRoute.of(context).settings.arguments;
+    final IncidenceModel ticket = ModalRoute.of(context).settings.arguments;
     utils.incidenceId=ticket.id;
     final seguimientoTicket = Provider.seguimientoTicketBloc(context);
     seguimientoTicket.verEstado();
@@ -101,12 +100,12 @@ class _DetalleTicketPageState extends State<DetalleTicketPage> {
   }
 }
 
-Widget pintaMensajeAyuntamiento(SeguimientoTicketBloc seguimientoTicket, TicketModel ticket){
+Widget pintaMensajeAyuntamiento(IncidenceTrackingsBloc seguimientoTicket, IncidenceModel ticket){
 
 
  return StreamBuilder(
     stream: seguimientoTicket.ticketStream ,
-    builder: (BuildContext context, AsyncSnapshot<List<SeguimientoTicketModel>> snapshot){
+    builder: (BuildContext context, AsyncSnapshot<List<IncidenceTrackingsModel>> snapshot){
       if(snapshot.hasData){
         final data=snapshot.data;
         List<Widget> lista=[];

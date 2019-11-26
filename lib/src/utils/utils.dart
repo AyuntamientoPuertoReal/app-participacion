@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
 import 'package:appparticipacion/src/models/phone_identifier_model.dart';
-import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/provider/phone_identifier_provider.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
@@ -12,83 +12,57 @@ import 'package:url_launcher/url_launcher.dart';
 //Hay que crear archivo secrets.dart en la carpeta utils para configurar los accesos
 import 'package:appparticipacion/src/utils/secrets.dart' as sc;
 
- String decrypted;
- String encryptedString;
- //PhoneIdentifierBloc _phoneIdentifier;
- final prefs = new PreferenciasUsuario();
- PhoneIdentifierBloc phoneIdentifierBloc;
- PhoneIdentifierModel phoneModel = new PhoneIdentifierModel();
- PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
+  String decrypted;
+  String encryptedString;
+
+  final prefs = new UserPreferences();
+  PhoneIdentifierBloc phoneIdentifierBloc;
+  PhoneIdentifierModel phoneModel = new PhoneIdentifierModel();
+  PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
 
 
- String url = sc.url;
- String tokenApicasso = sc.tokenApicasso;
- String urlImage = sc.urlImage;
- int incidenceId;
+  String url = sc.url;
+  String tokenApicasso = sc.tokenApicasso;
+  String urlImage = sc.urlImage;
+  int incidenceId;
 
-void generateToken() async {
+  void generateToken() async {
 
- //phoneIdentifierBloc = Provider.phoneIdentifierBloc(context);
-   // await prefs.initPrefs();
+    String devideId = await FlutterUdid.udid;
+    final key = Key.fromUtf8('k2w9hqA6X4vXBgc8');
+    final iv = IV.fromLength(16);
 
+    final encriptedPhoneId = phoneIdentifierEncryption(devideId, key, iv);
 
-  String devideId = await FlutterUdid.udid;
+    encryptedString = encriptedPhoneId;
 
-  //final key = Key.fromUtf8('qNjp7yM;JqGtC+r~+E.L<36{YkX*7:Lz');
-  final key = Key.fromUtf8('k2w9hqA6X4vXBgc8');
-  final iv = IV.fromLength(16);
+    int id = await _comprobarTokenBd(encryptedString);
 
-  final encriptedPhoneId = phoneIdentifierEncryption(devideId, key, iv);
-  print(encriptedPhoneId);
-
-  encryptedString = encriptedPhoneId;
-
-  int id = await _comprobarTokenBd(encryptedString);
-
-  if(id != null){
-     prefs.idToken = id.toString();
-  } else{
-   phoneModel.phoneIdentifier=encriptedPhoneId;
-   String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
-  // id = await _comprobarTokenBd(encryptedString);
-   prefs.idToken = identificador;
-  }
+    if(id != null){
+      prefs.idToken = id.toString();
+    } else{
+    phoneModel.phoneIdentifier=encriptedPhoneId;
+    String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
   
-   // print(phoneModel.toJson());
-  
-   // phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
-  
-  
-  
-   
-  
-  
-    // decrypted = encrypter.decrypt(encrypted, iv: iv);
-    
-  //  print("encryptedToken "+encryptedString);
-  
+    prefs.idToken = identificador;
+    }
   }
   
   Future<int> _comprobarTokenBd(String tokenEncriptado) async {
+    int id = await phoneIdentifierProvider.cargarPhoneIdentifier();
+    return id;
+  }
 
-  int id = await phoneIdentifierProvider.cargarPhoneIdentifier();
+  String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
+    final encrypter = Encrypter(AES(key));
+    final encrypted = encrypter.encrypt(deviceId, iv: iv);
 
-  return id;
-}
-
-String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
-
-  final encrypter = Encrypter(AES(key));
-
-  final encrypted = encrypter.encrypt(deviceId, iv: iv);
-
-  return encrypted.base64.toString();
-}
+    return encrypted.base64.toString();
+  }
 
 
 
- LatLng getCoordenadas(String valor){
-    // 36.529358, -6.186970 coordenadas puerto real
+  LatLng getCoordenadas(String valor){
     final coordenadas = valor.split(',');
     final lat = double.parse(coordenadas[0]);
     final long = double.parse(coordenadas[1]);
@@ -97,23 +71,18 @@ String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
   }
 
   openMap(String latitud, String longitud) async {
-    // final coordenadas = valor.split(',');
-    // final lat = double.parse(coordenadas[0]);
-    // final long = double.parse(coordenadas[1]);
     final lat  = latitud;
     final long = longitud;
-
-
     String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
     } else {
-      throw 'Could not open the map.';
+      throw 'No se pudo abrir el mapa.';
     }
-
   }
 
-    String obtenerFechaCreacionTicket(){
+  String obtenerFechaCreacionTicket(){
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second);
     
@@ -122,12 +91,12 @@ String phoneIdentifierEncryption(String deviceId,Key key, IV iv ){
 
 
   void comprobarConexionInternet() async {
-  try {
-  final result = await InternetAddress.lookup(sc.url);
-  if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    print('connected');
-  }
-  } on SocketException catch (_) {
-    print('not connected');
-  }
+    try {
+      final result = await InternetAddress.lookup(sc.url);
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+      }
+    } on SocketException catch (_) {
+      print('not connected');
+    }
   }

@@ -1,31 +1,30 @@
 import 'dart:io';
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
-import 'package:appparticipacion/src/models/ticket_model.dart';
-import 'package:appparticipacion/src/models/tipo_incidencia_model.dart';
-import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
+import 'package:appparticipacion/src/models/incidence_model.dart';
+import 'package:appparticipacion/src/models/incidence_types_model.dart';
+import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
-import 'package:appparticipacion/src/provider/ticket_provider.dart';
+import 'package:appparticipacion/src/provider/incidence_provider.dart';
 
-
-class AbrirTicketPage extends StatefulWidget {
+class CreateIncidencePage extends StatefulWidget {
   @override
-  _AbrirTicketPageState createState() => _AbrirTicketPageState();
+  _CreateIncidencePageState createState() => _CreateIncidencePageState();
 }
 
-class _AbrirTicketPageState extends State<AbrirTicketPage> {
+class _CreateIncidencePageState extends State<CreateIncidencePage> {
 
   final formkey          = GlobalKey<FormState>();
   final scaffoldKey      = GlobalKey<ScaffoldState>();
 
-  final prefs = new PreferenciasUsuario();
-  TicketBloc ticketBloc;
-  TicketModel ticketModel = new TicketModel();
-  TipoIncidenciaModel tipoIncidencia;
+  final prefs = new UserPreferences();
+  IncidenceBloc ticketBloc;
+  IncidenceModel ticketModel = new IncidenceModel();
+  IncidenceTypesModel tipoIncidencia;
   bool _guardando = false;
   bool _fotoSeleccionada= false;
   File foto;
@@ -176,7 +175,7 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.tipoIncidencia = tipoIncidencia.id;
 
         print(ticketModel.toJson());
-        TicketProvider tk = new TicketProvider();
+        IncidenceProvider tk = new IncidenceProvider();
         bool creado= await tk.createIncidence(ticketModel);
         
       if(creado){

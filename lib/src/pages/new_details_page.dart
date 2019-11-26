@@ -1,13 +1,13 @@
-import 'package:appparticipacion/src/models/noticias_model.dart';
+import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NoticiasDetalles extends StatelessWidget {
+class NewDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final NoticiaModel noticia = ModalRoute.of(context).settings.arguments;
+    final NewsModel noticia = ModalRoute.of(context).settings.arguments;
     print(noticia.body.toString());
 
     print(noticia.toString());
@@ -34,28 +34,7 @@ class NoticiasDetalles extends StatelessWidget {
     );
   }
   
-
-//  Widget _crearAppBar(NoticiaModel noticia) {
-//    return SliverAppBar(
-//     elevation: 2.0,
-//     backgroundColor: Colors.indigo,
-//     expandedHeight: 200.0,
-//     floating: false,
-//     pinned: true,
-
-//     flexibleSpace: FlexibleSpaceBar(
-//         centerTitle: true,
-//          background: FadeInImage(
-//            image: NetworkImage(noticia.imageUrl),
-//            placeholder: AssetImage('assets/img/loading.gif'),
-//            fadeInDuration: Duration(milliseconds: 150),
-//            fit: BoxFit.cover,
-//          ),  
-//      ),
-//    );
-//  }
-
- Widget _crearTitulo(BuildContext context, NoticiaModel noticiaModel) {
+ Widget _crearTitulo(BuildContext context, NewsModel noticiaModel) {
 
    return Container(
      padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -78,7 +57,7 @@ class NoticiasDetalles extends StatelessWidget {
 
   }
 
-Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
+Widget _crearDescripcion(BuildContext context, NewsModel noticiaModel) {
 
      return Container(
      padding: EdgeInsets.all(20.0),
@@ -88,9 +67,9 @@ Widget _crearDescripcion(BuildContext context, NoticiaModel noticiaModel) {
   }
 }
 
- Widget _mostrarHtml(NoticiaModel noticia) {
-   return Html(
-     data: noticia.body,
+Widget _mostrarHtml(NewsModel noticia) {
+  return Html(
+    data: noticia.body,
     //Optional parameters:
     padding: EdgeInsets.all(8.0),
     useRichText: false,
