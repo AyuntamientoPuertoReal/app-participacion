@@ -41,7 +41,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   @override
   Widget build(BuildContext context) {
     tipoIncidencia = ModalRoute.of(context).settings.arguments;
-    //print(tipoIncidencia.tipo);
     String mensaje="Para poder crear una incidencia siga los siguientes pasos:\n"+
      "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
@@ -105,12 +104,14 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       ),
       onSaved: (value) => ticketModel.descripcion = value,
       validator: (value){
-
+        
         if(value.length <  3){
           return 'Ingrese la descripcion de la incidencia';
         } else if(_fotoSeleccionada!=true){
           return 'Ingrese la foto de la incidencia';
           //return 'null';
+        } else{
+          return 'Ingrese la foto y la descripción de la incidencia';
         }
       },
     );
@@ -157,20 +158,13 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   void _submit() async {
-   // if(!formkey.currentState.validate()) return;
     print("Estado de guardado = $_guardando");
     if(formkey.currentState.validate()){
       mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
-
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
-      if( foto != null){
-        //ticketModel.fotoUrl = await ticketBloc.subirFoto(foto); 
-      }
-
-      if(ticketModel.id == null){
        
         String fecha = utils.obtenerFechaCreacionTicket();
 
@@ -178,15 +172,15 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
         ticketModel.pictureFile = foto;
-       // ticketModel.token=utils.encryptedString.toString();
         ticketModel.phoneIdentifierId=utils.prefs.idToken;
         ticketModel.tipoIncidencia = tipoIncidencia.id;
 
         print(ticketModel.toJson());
         TicketProvider tk = new TicketProvider();
         bool creado= await tk.createIncidence(ticketModel);
-        //ticketBloc.crearTicket(ticketModel);
         
+      if(creado){
+
        Navigator.pushReplacementNamed(context, 'home');
 
       } else {
@@ -197,23 +191,20 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
       return;
     }
   
-  // Navigator.pop(context);
   }
-    void mostrarSnackbar(String mensaje){
+
+  void mostrarSnackbar(String mensaje){
 
     final snackBar = SnackBar(
       content: Text(mensaje),
-      duration: Duration(milliseconds: 20000),
-      
+      duration: Duration(milliseconds: 20000), 
     );
 
     scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
   _tomarFoto() async {
-
     _procesarImagen(ImageSource.camera);
-
   }
 
   _procesarImagen( ImageSource origen)async{
@@ -223,7 +214,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
     );
 
     if(foto != null){
-      // ticketModel.fotoUrl = null;
       Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
       String coordenada = position.latitude.toString()+","+position.longitude.toString();
       latitud = position.latitude.toString();
@@ -236,8 +226,6 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
 
   Widget _mostrarFoto() {
     if(foto != null){ 
-      //to-Do retornar imagen
-      //print("foto.path:"+foto.path+"||");
       return FadeInImage(
         image: FileImage(foto),
         placeholder: AssetImage('assets/img/jar-loading.gif'),

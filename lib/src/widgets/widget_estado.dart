@@ -16,7 +16,6 @@ Widget estado(String estado){
 
   return Container(
     padding: EdgeInsets.all(4),
-    //color: color,
     child: Text(texto, style: TextStyle(color: colorTexto),),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10.0),
@@ -33,7 +32,6 @@ Widget estado2(String estado){
   
   Color color;
   Color colorTexto=Colors.white;
-  Color colorBorde=Colors.black;
   String texto='';
 
   switch(estado){
@@ -44,8 +42,6 @@ Widget estado2(String estado){
   }
 
   return Container(
-    //padding: EdgeInsets.all(4),
-    //color: color,
     child: Text(texto, style: TextStyle(fontSize: 18, color: colorTexto, fontWeight: FontWeight.w800)),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10.0),

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:appparticipacion/src/models/ticket_model.dart';
 import 'package:appparticipacion/src/provider/ticket_provider.dart';
 import 'package:rxdart/rxdart.dart';
@@ -17,21 +15,12 @@ class TicketBloc {
    void crearTicket(TicketModel ticket) async {
 
   _cargandoController.sink.add(true);
-  await _ticketProvider.crearTicketCiudadano(ticket);
+  await _ticketProvider.createIncidence(ticket);
   _cargandoController.sink.add(false);
 
  }
 
-   Future<String> subirFoto(File foto) async {
-
-   _cargandoController.sink.add(true);
-   final fotoUrl = await _ticketProvider.subirImagen(foto);
-   _cargandoController.sink.add(false);
-
-   return fotoUrl;
- }
-
-   void cargartickets() async {
+  void cargartickets() async {
 
    final tickets = await _ticketProvider.cargarTicketsCiudadanos();
    _ticketController.sink.add(tickets);
