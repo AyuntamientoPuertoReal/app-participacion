@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-SeguimientoTicketModel ticketModelFromJson(String str) => SeguimientoTicketModel.fromJson(json.decode(str));
+IncidenceTrackingsModel ticketModelFromJson(String str) => IncidenceTrackingsModel.fromJson(json.decode(str));
 
-String ticketModelToJson(SeguimientoTicketModel data) => json.encode(data.toJson());
+String ticketModelToJson(IncidenceTrackingsModel data) => json.encode(data.toJson());
 
-class SeguimientoTicketModel {
+class IncidenceTrackingsModel {
     int id;
     int incidenceId;
     int staffId;
@@ -13,7 +13,7 @@ class SeguimientoTicketModel {
     String message;
     String date;
 
-    SeguimientoTicketModel({
+    IncidenceTrackingsModel({
         this.id,
         this.incidenceId,
         this.staffId,
@@ -23,7 +23,7 @@ class SeguimientoTicketModel {
         this.date = ''
     });
 
-    factory SeguimientoTicketModel.fromJson(Map<String, dynamic> json) => SeguimientoTicketModel(
+    factory IncidenceTrackingsModel.fromJson(Map<String, dynamic> json) => IncidenceTrackingsModel(
         id               : json["id"],
         incidenceId      : json[""],
         staffId          : json["staff_id"],

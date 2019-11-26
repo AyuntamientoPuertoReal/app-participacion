@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'dart:io';
 
-TicketModel ticketModelFromJson(String str) => TicketModel.fromJson(json.decode(str));
+IncidenceModel ticketModelFromJson(String str) => IncidenceModel.fromJson(json.decode(str));
 
-String ticketModelToJson(TicketModel data) => json.encode(data.toJson());
+String ticketModelToJson(IncidenceModel data) => json.encode(data.toJson());
 
-class TicketModel {
+class IncidenceModel {
     int id;
     String descripcion;
     String coordenadas;
@@ -20,7 +20,7 @@ class TicketModel {
     String pictureUrl;
     File pictureFile;
 
-    TicketModel({
+    IncidenceModel({
         this.id,
         this.descripcion        = "",
         this.coordenadas        = "",
@@ -35,7 +35,7 @@ class TicketModel {
         this.pictureFile
     });
 
-    factory TicketModel.fromJson(Map<String, dynamic> json) => TicketModel(
+    factory IncidenceModel.fromJson(Map<String, dynamic> json) => IncidenceModel(
         id                : json["id"],
         descripcion       : json["description"],
         latitud           : json["latitude"],

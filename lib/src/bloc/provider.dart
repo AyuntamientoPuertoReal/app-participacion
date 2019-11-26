@@ -1,19 +1,19 @@
 
-import 'package:appparticipacion/src/bloc/noticias_bloc.dart';
+import 'package:appparticipacion/src/bloc/news_bloc.dart';
 import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
-import 'package:appparticipacion/src/bloc/puntos_interes_bloc.dart';
-import 'package:appparticipacion/src/bloc/seguimiento_ticket_bloc.dart';
-import 'package:appparticipacion/src/bloc/ticket_bloc.dart';
-import 'package:appparticipacion/src/bloc/tipo_incidencia_bloc.dart';
+import 'package:appparticipacion/src/bloc/interest_points_bloc.dart';
+import 'package:appparticipacion/src/bloc/incidence_trackings_bloc.dart';
+import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
+import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
 import 'package:flutter/cupertino.dart';
 
 class Provider extends InheritedWidget{
 
-final _ticketBloc = new TicketBloc();
-final _noticiaBloc = new NoticiaBloc();
-final _puntosInteresBloc = new PuntoInteresBloc();
+final _ticketBloc = new IncidenceBloc();
+final _noticiaBloc = new NewsBloc();
+final _puntosInteresBloc = new InterestPointsBloc();
 final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
-final _seguimientoTicketBloc = new SeguimientoTicketBloc();
+final _seguimientoTicketBloc = new IncidenceTrackingsBloc();
 final _phoneIdentifierBloc = new PhoneIdentifierBloc();
 
 
@@ -39,15 +39,15 @@ final _phoneIdentifierBloc = new PhoneIdentifierBloc();
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
 
-    static TicketBloc ticketbloc ( BuildContext context ) {
+    static IncidenceBloc ticketbloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._ticketBloc;
     }
 
-    static NoticiaBloc noticiaBloc ( BuildContext context ) {
+    static NewsBloc noticiaBloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._noticiaBloc;
     }
 
-    static PuntoInteresBloc puntoInteresBloc ( BuildContext context ) {
+    static InterestPointsBloc puntoInteresBloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._puntosInteresBloc;
     }
 
@@ -55,7 +55,7 @@ final _phoneIdentifierBloc = new PhoneIdentifierBloc();
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._tipoIncidenciaBloc;
     }
 
-    static SeguimientoTicketBloc seguimientoTicketBloc ( BuildContext context ) {
+    static IncidenceTrackingsBloc seguimientoTicketBloc ( BuildContext context ) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider)._seguimientoTicketBloc;
     }
     static PhoneIdentifierBloc phoneIdentifierBloc ( BuildContext context ) {

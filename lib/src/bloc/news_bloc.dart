@@ -1,19 +1,15 @@
-
-
-
-
-import 'package:appparticipacion/src/models/noticias_model.dart';
-import 'package:appparticipacion/src/provider/noticias_provider.dart';
+import 'package:appparticipacion/src/models/news_model.dart';
+import 'package:appparticipacion/src/provider/news_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class NoticiaBloc{
+class NewsBloc{
 
-  final _noticiaController = new BehaviorSubject<List<NoticiaModel>>();
+  final _noticiaController = new BehaviorSubject<List<NewsModel>>();
   final _cargandoController = new BehaviorSubject<bool>();
 
-  final _noticiaProvider = new NoticiaProvider();
+  final _noticiaProvider = new NewsProvider();
 
-  Stream<List<NoticiaModel>> get noticiasStream  => _noticiaController.stream;
+  Stream<List<NewsModel>> get noticiasStream  => _noticiaController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
 

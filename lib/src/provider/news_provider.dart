@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:appparticipacion/src/models/noticias_model.dart';
+import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
-class NoticiaProvider{
+class NewsProvider{
 
   final String _url = utils.url+"news";
  
-  Future<List<NoticiaModel>> cargarNoticias() async {
+  Future<List<NewsModel>> cargarNoticias() async {
 
     final url = _url;
     final authorizationToken = utils.tokenApicasso;
@@ -19,7 +19,7 @@ class NoticiaProvider{
     final response = await http.get(url, headers: headers); 
 
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<NoticiaModel> noticias = new List();
+    final List<NewsModel> noticias = new List();
 
     if(decodeData == null) return [];
 
@@ -27,7 +27,7 @@ class NoticiaProvider{
 
     decodeData['entries'].forEach((i){
 
-      final prodTemp = NoticiaModel.fromJson(i);
+      final prodTemp = NewsModel.fromJson(i);
      
 
       noticias.add(prodTemp);

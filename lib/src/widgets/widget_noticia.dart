@@ -1,4 +1,4 @@
-import 'package:appparticipacion/src/models/noticias_model.dart';
+import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:flutter/material.dart';
    
    
@@ -30,7 +30,7 @@ Widget  cardTipo1() {
           
     }
 
-Widget  noticia2(BuildContext context, NoticiaModel noticia) {
+Widget  noticia2(BuildContext context, NewsModel noticia) {
           
               return InkWell(
                 onTap: (){
@@ -79,7 +79,7 @@ Widget  noticia2(BuildContext context, NoticiaModel noticia) {
           
 }
 
-Widget noticia3(BuildContext context, NoticiaModel noticia){
+Widget noticia3(BuildContext context, NewsModel noticia){
 
 final card = Container(
             

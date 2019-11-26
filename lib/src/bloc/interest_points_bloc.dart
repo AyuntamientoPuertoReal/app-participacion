@@ -1,13 +1,13 @@
-import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
+import 'package:appparticipacion/src/provider/interest_points_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class PuntoInteresBloc {
-  final _puntoInteresController = new BehaviorSubject<List<PuntoInteresModel>>();
+class InterestPointsBloc {
+  final _puntoInteresController = new BehaviorSubject<List<InterestPointsModel>>();
   final _cargandoController = new BehaviorSubject<bool>();
 
-  final _puntoInteresProvider = new PuntoInteresProvider();
+  final _puntoInteresProvider = new InterestPointsProvider();
 
-  Stream<List<PuntoInteresModel>> get puntoInteresStream => _puntoInteresController.stream;
+  Stream<List<InterestPointsModel>> get puntoInteresStream => _puntoInteresController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
   void cargarPuntosInteres() async {

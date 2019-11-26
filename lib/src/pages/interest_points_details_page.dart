@@ -1,12 +1,12 @@
-import 'package:appparticipacion/src/provider/punto_interes_provider.dart';
+import 'package:appparticipacion/src/provider/interest_points_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
-class PuntosInteresDetallePage extends StatelessWidget {
+class InterestPointDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final PuntoInteresModel puntoDeInteres = ModalRoute.of(context).settings.arguments;
+    final InterestPointsModel puntoDeInteres = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       appBar: AppBar(

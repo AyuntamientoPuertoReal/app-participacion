@@ -1,23 +1,23 @@
 import 'dart:convert';
 
-TipoIncidenciaModel tipoIncidenciaModelFromJson(String str) => TipoIncidenciaModel.fromJson(json.decode(str));
+IncidenceTypesModel tipoIncidenciaModelFromJson(String str) => IncidenceTypesModel.fromJson(json.decode(str));
 
-String tipoIncidenciaModelToJson(TipoIncidenciaModel data) => json.encode(data.toJson());
+String tipoIncidenciaModelToJson(IncidenceTypesModel data) => json.encode(data.toJson());
 
-class TipoIncidenciaModel {
+class IncidenceTypesModel {
     int id;
     String name;
     String code;
     int order;
 
-    TipoIncidenciaModel({
+    IncidenceTypesModel({
         this.id,
         this.name='',
         this.code='',
         this.order
     });
 
-    factory TipoIncidenciaModel.fromJson(Map<String, dynamic> json) => TipoIncidenciaModel(
+    factory IncidenceTypesModel.fromJson(Map<String, dynamic> json) => IncidenceTypesModel(
         id: json["id"],
         name: json["name"],
         code: json["code"],

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-NoticiaModel noticiaModelFromJson(String str) => NoticiaModel.fromJson(json.decode(str));
+NewsModel noticiaModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
-String noticiaModelToJson(NoticiaModel data) => json.encode(data.toJson());
+String noticiaModelToJson(NewsModel data) => json.encode(data.toJson());
 
-class NoticiaModel {
+class NewsModel {
     int id;
     String title;
     String description;
@@ -12,7 +12,7 @@ class NoticiaModel {
     String date;
     String imageUrl;
 
-    NoticiaModel({
+    NewsModel({
         this.id,
         this.title = "",
         this.description = "",
@@ -21,7 +21,7 @@ class NoticiaModel {
         this.imageUrl= "",
     });
 
-    factory NoticiaModel.fromJson(Map<String, dynamic> json) => NoticiaModel(
+    factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         id         : json["id"],
         title      : json["title"],
         description: json["description"],

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:appparticipacion/src/models/seguimiento_ticket_model.dart';
+import 'package:appparticipacion/src/models/incidence_trackings_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
-class SeguimientoTicketProvider {
+class IncidenceTrackingsProvider {
 
-  Future<List<SeguimientoTicketModel>> cargarSeguimientoTickets() async {
+  Future<List<IncidenceTrackingsModel>> cargarSeguimientoTickets() async {
     int incidenceId = utils.incidenceId;
     final String _url = utils.url+"incidence_trackings?q[incidence_id_eq]=$incidenceId&sort=created_at";
 
@@ -18,7 +18,7 @@ class SeguimientoTicketProvider {
     final response = await http.get(_url, headers: headers); 
 
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<SeguimientoTicketModel> listaSeguimiento = new List();
+    final List<IncidenceTrackingsModel> listaSeguimiento = new List();
 
     if(decodeData == null) return [];
 
@@ -27,7 +27,7 @@ class SeguimientoTicketProvider {
     if(decodeData['total']>0){
       decodeData['entries'].forEach((i){
 
-        final prodTemp = SeguimientoTicketModel.fromJson(i);
+        final prodTemp = IncidenceTrackingsModel.fromJson(i);
 
         listaSeguimiento.add(prodTemp);
 

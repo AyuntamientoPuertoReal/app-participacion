@@ -1,13 +1,13 @@
-import 'package:appparticipacion/src/provider/tipo_incidencia_provider.dart';
+import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TipoIncidenciaBloc {
-  final _tipoIncidenciaController = new BehaviorSubject<List<TipoIncidenciaModel>>();
+  final _tipoIncidenciaController = new BehaviorSubject<List<IncidenceTypesModel>>();
   final _cargandoController = new BehaviorSubject<bool>();
 
-  final _tipoIncidenciaProvider = new TipoIncidenciaProvider();
+  final _tipoIncidenciaProvider = new IncidenceTypesProvider();
 
-  Stream<List<TipoIncidenciaModel>> get tipoIncidenciaStream => _tipoIncidenciaController.stream;
+  Stream<List<IncidenceTypesModel>> get tipoIncidenciaStream => _tipoIncidenciaController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
   void cargarTipoIncidencia() async {

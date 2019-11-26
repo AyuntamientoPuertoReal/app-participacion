@@ -1,15 +1,15 @@
-import 'package:appparticipacion/src/bloc/tipo_incidencia_bloc.dart';
-import 'package:appparticipacion/src/provider/tipo_incidencia_provider.dart';
+import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
+import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 
 
-class TipoIncidenciaPage extends StatefulWidget {
+class IncidenceTypesPage extends StatefulWidget {
   @override
-  _TipoIncidenciaPageState createState() => _TipoIncidenciaPageState();
+  _IncidenceTypesPageState createState() => _IncidenceTypesPageState();
 }
 
-class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
+class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
   @override
   Widget build(BuildContext context) {
     final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
@@ -38,7 +38,7 @@ class _TipoIncidenciaPageState extends State<TipoIncidenciaPage> {
   Widget _cargarTiposIncidencias(BuildContext context,TipoIncidenciaBloc tipoIncidenciaBloc){
     return StreamBuilder(
       stream: tipoIncidenciaBloc.tipoIncidenciaStream,
-      builder: (BuildContext context, AsyncSnapshot<List<TipoIncidenciaModel>> snapshot ){
+      builder: (BuildContext context, AsyncSnapshot<List<IncidenceTypesModel>> snapshot ){
         if(snapshot.hasData){
           List<Widget> listaTipos= [];
           snapshot.data.forEach((f){
