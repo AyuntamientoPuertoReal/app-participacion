@@ -158,12 +158,10 @@ class _AbrirTicketPageState extends State<AbrirTicketPage> {
   }
 
   void _submit() async {
-   // if(!formkey.currentState.validate()) return;
     print("Estado de guardado = $_guardando");
     if(formkey.currentState.validate()){
       mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
-
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
