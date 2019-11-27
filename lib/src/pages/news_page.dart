@@ -79,10 +79,11 @@ class _NewsPageState extends State<NewsPage> {
   _crearNoticia(BuildContext context ,NewsModel noticiaModel) {
 
     if(noticiaGrande){
-    return noticia3(context,noticiaModel); 
+    return enlargedNews(context,noticiaModel); 
     } else {
-    return noticia2(context,noticiaModel); 
+    return defaultNews(context,noticiaModel); 
     }
+
 
   }
 }

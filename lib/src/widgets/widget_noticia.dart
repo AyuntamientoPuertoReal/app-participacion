@@ -1,5 +1,6 @@
 import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
    
    
 Widget  cardTipo1() {
@@ -30,7 +31,12 @@ Widget  cardTipo1() {
           
     }
 
-Widget  noticia2(BuildContext context, NewsModel noticia) {
+Widget  defaultNews(BuildContext context, NewsModel noticia) {
+
+    var fecha=DateTime.parse(noticia.date);
+    var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+    String fechaFormateada = formatter.format(fecha);
+
           
               return InkWell(
                 onTap: (){
@@ -54,9 +60,9 @@ Widget  noticia2(BuildContext context, NewsModel noticia) {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(noticia.date),
+                              Text(fechaFormateada),
                               SizedBox(height: 15.0),
-                              Text(noticia.description, overflow: TextOverflow.ellipsis),
+                              Expanded(child: Text(noticia.description)),
                             ],
                           ),
                         ),
@@ -79,28 +85,36 @@ Widget  noticia2(BuildContext context, NewsModel noticia) {
           
 }
 
-Widget noticia3(BuildContext context, NewsModel noticia){
+Widget enlargedNews(BuildContext context, NewsModel noticia){
+
+    var fecha=DateTime.parse(noticia.date);
+    var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+    String fechaFormateada = formatter.format(fecha);
+
 
 final card = Container(
             
           child: Column(
             children: <Widget>[
-              
+              SizedBox(height: 10,),
+              Text(noticia.title, style: TextStyle(fontSize: 18)),
+              SizedBox(height: 10,),
               FadeInImage(
-
                  image: NetworkImage(noticia.imageUrl),
                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                  fadeInDuration: Duration(seconds: 4 ),
               ),
               Container(
-                padding: EdgeInsets.all(20),
+                height: 100,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(noticia.title, style: TextStyle(fontSize: 18)),
+                   // Text(noticia.title, style: TextStyle(fontSize: 18)),
                     SizedBox(height: 15.0),
-                    Text(noticia.date),
+                    Text(fechaFormateada),
                     SizedBox(height: 15.0),
-                    Text(noticia.description, overflow: TextOverflow.ellipsis)
+                    Expanded(child: Text(noticia.description))
                   ],
                  ),
                 ),
