@@ -103,14 +103,13 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       ),
       onSaved: (value) => ticketModel.descripcion = value,
       validator: (value){
-        
-        if(value.length <  3){
-          return 'Ingrese la descripcion de la incidencia';
+        final int valorMinimo=10;
+        if(value.length <  valorMinimo){
+          return 'La descripción de la incidencia debe superar los '+valorMinimo.toString()+' caracteres';
         } else if(_fotoSeleccionada!=true){
           return 'Ingrese la foto de la incidencia';
-          //return 'null';
         } else{
-          return 'Ingrese la foto y la descripción de la incidencia';
+          return null;
         }
       },
     );
