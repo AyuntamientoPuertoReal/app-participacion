@@ -8,9 +8,6 @@ class NewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final NewsModel noticia = ModalRoute.of(context).settings.arguments;
-    print(noticia.body.toString());
-
-    print(noticia.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(noticia.title),
@@ -26,7 +23,6 @@ class NewDetails extends StatelessWidget {
                 width: double.infinity,
               ),
               SizedBox(height: 20.0,),
-              _crearTitulo(context, noticia),
               _crearDescripcion(context, noticia)
             ],
           ),
@@ -74,7 +70,7 @@ Widget _mostrarHtml(NewsModel noticia) {
     padding: EdgeInsets.all(8.0),
     useRichText: false,
     //backgroundColor: Colors.white70,
-    defaultTextStyle: TextStyle(fontFamily: 'serif'),
+    defaultTextStyle: TextStyle(fontFamily: 'sans-serif'),
     linkStyle: const TextStyle(
       color: Colors.redAccent,
     ),

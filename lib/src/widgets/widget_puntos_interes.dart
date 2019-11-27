@@ -23,13 +23,13 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                 image: NetworkImage(puntoInteres.imageUrl),
                 fit: BoxFit.fitWidth,
                 ),
-                title: Text(puntoInteres.name),
+                title: Text(""),
                 subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                  // Text("Latitud: "+puntoInteres.latitude+", Longitud: "+puntoInteres.longitude),
-                  SizedBox(height: 15.0),
-                  Text(puntoInteres.description, overflow: TextOverflow.ellipsis),
+                  //SizedBox(height: 9.0),
+                  Text(puntoInteres.name, style: TextStyle(fontSize: 16, color: Colors.black),),
                 ],
                 ),
               ),
