@@ -30,28 +30,28 @@ class NewDetails extends StatelessWidget {
     );
   }
   
- Widget _crearTitulo(BuildContext context, NewsModel noticiaModel) {
+//  Widget _crearTitulo(BuildContext context, NewsModel noticiaModel) {
 
-   return Container(
-     padding: EdgeInsets.symmetric(horizontal: 20.0),
-     child: Row(
-       children: <Widget>[
-         SizedBox(width: 20.0),
-         Flexible(
-           child: Column(
-             children: <Widget>[
-               Text(noticiaModel.title, style: Theme.of(context).textTheme.title),
-               SizedBox(height: 15.0),
-               Text(noticiaModel.description, style: Theme.of(context).textTheme.subhead),
-             ],
-           ),
-         )
-       ],
-     ),
-   );
+//    return Container(
+//      padding: EdgeInsets.symmetric(horizontal: 20.0),
+//      child: Row(
+//        children: <Widget>[
+//          SizedBox(width: 20.0),
+//          Flexible(
+//            child: Column(
+//              children: <Widget>[
+//                Text(noticiaModel.title, style: Theme.of(context).textTheme.title),
+//                SizedBox(height: 15.0),
+//                Text(noticiaModel.description, style: Theme.of(context).textTheme.subhead),
+//              ],
+//            ),
+//          )
+//        ],
+//      ),
+//    );
 
 
-  }
+//   }
 
 Widget _crearDescripcion(BuildContext context, NewsModel noticiaModel) {
 
