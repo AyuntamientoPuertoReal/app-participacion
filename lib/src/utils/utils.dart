@@ -90,13 +90,18 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
   }
 
 
-  void comprobarConexionInternet() async {
+  Future<bool> comprobarConexionInternet() async {
+    bool estado = false;
     try {
-      final result = await InternetAddress.lookup(sc.url);
+      final result = await InternetAddress.lookup(/*sc.url*/"www.google.es");
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected');
+        estado = true;
       }
     } on SocketException catch (_) {
       print('not connected');
+      estado = false;
     }
+
+    return estado;
   }

@@ -2,6 +2,7 @@ import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
+import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 class IncidenceTypesPage extends StatefulWidget {
@@ -10,10 +11,15 @@ class IncidenceTypesPage extends StatefulWidget {
 }
 
 class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
+
+  bool status;
+  
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
     tipoIncidenciaBloc.cargarTipoIncidencia();
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Nueva Incidencia'),
@@ -33,6 +39,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         ],
       ),
     );
+    }
   }
 
   Widget _cargarTiposIncidencias(BuildContext context,TipoIncidenciaBloc tipoIncidenciaBloc){
@@ -75,10 +82,13 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
           return Container(
             child: Center(
               child: CircularProgressIndicator(),
-            ),
-          );
-        }
-      }
-    );
-  }
-}
+                          ),
+                        );
+                      }
+                    }
+                  );
+                } 
+
+
+
+        
