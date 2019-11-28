@@ -105,9 +105,10 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       validator: (value){
         final int valorMinimo=10;
         if(value.length <  valorMinimo){
-          return 'La descripción de la incidencia debe superar los '+valorMinimo.toString()+' caracteres';
+          return 'La descripción de la incidencia es demasiado corta';
         } else if(_fotoSeleccionada!=true){
           return 'Ingrese la foto de la incidencia';
+          //return 'null';
         } else{
           return null;
         }
@@ -129,44 +130,49 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
     );
   }
   void _showDialog(){
-    showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text("Enviar incidencia"),
-          content: Text("Se va a enviar la incidencia."),
-          actions: <Widget>[
-            FlatButton(
-              child: Text("Cancelar"),
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: Text("Aceptar"),
-              onPressed: (){
-                _submit();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      }
-    );
+
+    if(formkey.currentState.validate()){
+      showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Enviar incidencia"),
+            content: Text("Se va a enviar la incidencia."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancelar"),
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text("Aceptar"),
+                onPressed: (){
+                  _submit();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        }
+      );
+    }else{
+      return;
+    }
   }
 
   void _submit() async {
     print("Estado de guardado = $_guardando");
-    if(formkey.currentState.validate()){
+    // if(formkey.currentState.validate()){
       mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
        
-        String fecha = utils.obtenerFechaCreacionTicket();
+        //String fecha = utils.obtenerFechaCreacionTicket();
 
-        ticketModel.fechaCreacion=fecha;
+        //ticketModel.fechaCreacion=fecha;
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
         ticketModel.pictureFile = foto;
@@ -185,9 +191,9 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         mostrarModal(context,'Registro No Guardado');
       }
   
-    } else {
-      return;
-    }
+    // } else {
+    //   return;
+    // }
   
   }
 

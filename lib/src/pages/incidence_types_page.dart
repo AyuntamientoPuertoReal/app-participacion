@@ -1,8 +1,9 @@
 import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
+import 'package:appparticipacion/src/utils/utils.dart';
+import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
-
 
 class IncidenceTypesPage extends StatefulWidget {
   @override
@@ -12,26 +13,19 @@ class IncidenceTypesPage extends StatefulWidget {
 class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
   @override
   Widget build(BuildContext context) {
-    final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
-    tipoIncidenciaBloc.cargarTipoIncidencia();
     return Scaffold(
       appBar: AppBar(
         title: Text('Nueva Incidencia'),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.all(14),
-            child: Text('Elige el tipo de incidencia que quieres enviar al Ayuntamiento: ', style: TextStyle(fontSize: 20),)
-          ),
-          SizedBox(height: 10),
-          Divider(
-            thickness: 0.0,
-          ),
-          _cargarTiposIncidencias(context,tipoIncidenciaBloc),
-        ],
+      
+      body: FutureBuilder(
+        future: serverDataChecker(context),
+        initialData: Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.data;
+        },
       ),
+      
     );
   }
 
@@ -80,5 +74,38 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         }
       }
     );
+  }
+
+  Future<Widget> serverDataChecker(BuildContext context)async {
+    
+    Widget body;
+    // String mensaje="";
+    bool internet = await checkInternetConnection();
+    
+    if (internet){
+      bool servidor = await checkServerConnection();
+      if(servidor){
+        final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
+        tipoIncidenciaBloc.cargarTipoIncidencia();
+        body=Column(
+          children: <Widget>[
+            SizedBox(height: 10),
+            Container(
+              padding: EdgeInsets.all(14),
+              child: Text('Elige el tipo de incidencia que quieres enviar al Ayuntamiento: ', style: TextStyle(fontSize: 20),)
+            ),
+            SizedBox(height: 10),
+            Divider(
+              thickness: 0.0,
+            ),
+            _cargarTiposIncidencias(context,tipoIncidenciaBloc),
+        ]);
+      } else{
+        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+      }
+    } else{
+      body=widgetNoConnection('Sin conexión a Internet.');
+    }
+    return body;
   }
 }
