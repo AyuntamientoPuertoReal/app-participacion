@@ -89,19 +89,34 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     return date.toString();
   }
 
-
-  Future<bool> comprobarConexionInternet() async {
-    bool estado = false;
+  Future<bool> checkServerConnection() async {
+    bool status;
     try {
+      //Conexión a Internet
       final result = await InternetAddress.lookup(/*sc.url*/"www.google.es");
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
-        estado = true;
+        print('connected to server');
+        status=true;
       }
     } on SocketException catch (_) {
       print('not connected');
-      estado = false;
+      status=false;
     }
+    return status;
+  }
 
-    return estado;
+  Future<bool> checkInternetConnection() async {
+    bool status;
+    try {
+      //Conexión a Internet
+      final result = await InternetAddress.lookup("www.google.es");
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected to Internet');
+         status=true;
+      }
+    } on SocketException catch (_) {
+      print('not connected');
+       status=false;
+    }
+    return status;
   }
