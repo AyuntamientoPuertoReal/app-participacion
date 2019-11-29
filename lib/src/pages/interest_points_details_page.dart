@@ -70,10 +70,10 @@ class InterestPointDetailsPage extends StatelessWidget {
           ),
         );
       } else{
-        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+        body=noConnectionToServer();
       }
     } else{
-      body=widgetNoConnection('Sin conexión a Internet.');
+      body=noConnectionToInternet();
     }
     return body;
   }

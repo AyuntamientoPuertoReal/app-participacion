@@ -93,10 +93,10 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
     ),
   );
       } else{
-        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+        body=noConnectionToServer();
       }
     } else{
-      body=widgetNoConnection('Sin conexión a Internet.');
+      body=noConnectionToServer();
     }
     return body;
   }

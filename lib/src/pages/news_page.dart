@@ -126,10 +126,10 @@ class _NewsPageState extends State<NewsPage> {
         noticiaBloc.cargarNoticia();
         body = _crearListadoNoticias(noticiaBloc);
       } else{
-        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+        body=noConnectionToServer();
       }
     } else{
-      body=widgetNoConnection('Sin conexión a Internet.');
+      body=noConnectionToInternet();
     }
     return body;
   }

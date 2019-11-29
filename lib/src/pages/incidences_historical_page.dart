@@ -152,10 +152,10 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
         ticketBloc.cargartickets();
         body = _crearListadoTickets(ticketBloc);
       } else{
-        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+        body=noConnectionToServer();
       }
     } else{
-      body=widgetNoConnection('Sin conexión a Internet.');
+      body=noConnectionToInternet();
     }
     return body;
   }
