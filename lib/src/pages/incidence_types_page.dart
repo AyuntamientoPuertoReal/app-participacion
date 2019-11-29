@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class IncidenceTypesPage extends StatefulWidget {
   @override
@@ -15,6 +17,35 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
 
   bool status;
   
+
+
+  var _connectionStatus = 'Unknown';
+  Connectivity connectivity;
+  StreamSubscription<ConnectivityResult> subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    connectivity = new Connectivity();
+    subscription =
+        connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      _connectionStatus = result.toString();
+      print(_connectionStatus);
+      if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
+        setState(() {});
+      } else {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +135,8 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
               thickness: 0.0,
             ),
             _cargarTiposIncidencias(context,tipoIncidenciaBloc),
-        ]);
+        ]
+       );
       } else{
         body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
       }

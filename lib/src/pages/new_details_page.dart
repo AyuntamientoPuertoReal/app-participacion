@@ -10,7 +10,7 @@ class NewDetails extends StatelessWidget {
     final NewsModel noticia = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text(noticia.title),
+        title: Text("volver a noticias"),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -22,7 +22,9 @@ class NewDetails extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(height: 30.0,),
+              Text(noticia.title, style: Theme.of(context).textTheme.title, textAlign: TextAlign.center,),
+              SizedBox(height: 5.0,),
               _crearDescripcion(context, noticia)
             ],
           ),

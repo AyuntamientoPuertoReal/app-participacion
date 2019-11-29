@@ -1,6 +1,7 @@
 import 'package:appparticipacion/src/provider/interest_points_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:appparticipacion/src/utils/utils.dart';
+import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class InterestPointDetailsPage extends StatelessWidget {
   @override
@@ -12,11 +13,33 @@ class InterestPointDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Más información")
       ),
-      body: SingleChildScrollView(
+      body: FutureBuilder(
+        future: serverDataChecker(context, puntoDeInteres),
+        initialData: Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.data;
+        },
+      ),
+    );
+
+  }
+
+
+
+    Future<Widget> serverDataChecker(BuildContext context, InterestPointsModel interestPoint)async {
+    
+    Widget body;
+    bool internet = await checkInternetConnection();
+    
+    if (internet){
+      bool servidor = await checkServerConnection();
+      if(servidor){
+
+      body =  SingleChildScrollView(
           child: Column(
               children: <Widget>[
                 FadeInImage(
-                  image: NetworkImage(puntoDeInteres.imageUrl),
+                  image: NetworkImage(interestPoint.imageUrl),
                   placeholder: AssetImage('assets/img/jar-loading.gif'),
                 ),
                 SizedBox(height: 10),
@@ -24,9 +47,9 @@ class InterestPointDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.all(20),
                   child: Column(
                   children: <Widget>[
-                  Text(puntoDeInteres.name),
+                  Text(interestPoint.name),
                   SizedBox(height: 20),
-                  Text(puntoDeInteres.description),
+                  Text(interestPoint.description),
                   SizedBox(height: 30),
                   RaisedButton.icon(
                     shape: RoundedRectangleBorder(
@@ -37,7 +60,7 @@ class InterestPointDetailsPage extends StatelessWidget {
                     label: Text("Ver en Google Maps", style: TextStyle(fontSize: 18)),
                     icon: Icon(Icons.compare),
                     onPressed: (){
-                       utils.openMap(puntoDeInteres.latitude, puntoDeInteres.longitude);
+                        openMap(interestPoint.latitude, interestPoint.longitude);
                         },
                       ),
                     ],
@@ -45,8 +68,14 @@ class InterestPointDetailsPage extends StatelessWidget {
                 ),
               ],
           ),
-        ),
-      );
-
+        );
+      } else{
+        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+      }
+    } else{
+      body=widgetNoConnection('Sin conexión a Internet.');
+    }
+    return body;
   }
+
 }

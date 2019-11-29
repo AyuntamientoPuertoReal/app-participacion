@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:appparticipacion/src/utils/utils.dart';
+import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
 class IncidencesHistoricalPage extends StatefulWidget {
@@ -13,19 +18,51 @@ class IncidencesHistoricalPage extends StatefulWidget {
 }
 
 class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
+
+
+
+    var _connectionStatus = 'Unknown';
+  Connectivity connectivity;
+  StreamSubscription<ConnectivityResult> subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    connectivity = new Connectivity();
+    subscription =
+        connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      _connectionStatus = result.toString();
+      print(_connectionStatus);
+      if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
+        setState(() {});
+      } else {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
+
   
   @override
   Widget build(BuildContext context) {
-
-    final ticketBloc = Provider.ticketbloc(context);
-    ticketBloc.cargartickets();
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Mis Incidencias"),
       ),
-      body: _crearListadoTickets(ticketBloc),
+      body: FutureBuilder(
+        future: serverDataChecker(context),
+        initialData: Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.data;
+        },
+      ),
       
     );
   }
@@ -62,7 +99,11 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                     ),
                     ListTile(
                       leading: FadeInImage(
-                        image: NetworkImage(utils.urlImage+data[index].pictureUrl),
+                        image: AdvancedNetworkImage(
+                          urlImage+data[index].pictureUrl,
+                          useDiskCache: true,
+                          cacheRule: CacheRule(maxAge: const Duration(days: 7))
+                        ),
                         placeholder: AssetImage('assets/img/jar-loading.gif'),
                         width: 50.0,
                         fit: BoxFit.contain,
@@ -97,4 +138,29 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
      },
    );
   }
+
+
+  Future<Widget> serverDataChecker(BuildContext context)async {
+    
+    Widget body;
+    bool internet = await checkInternetConnection();
+    
+    if (internet){
+      bool servidor = await checkServerConnection();
+      if(servidor){
+        final ticketBloc = Provider.ticketbloc(context);
+        ticketBloc.cargartickets();
+        body = _crearListadoTickets(ticketBloc);
+      } else{
+        body=widgetNoConnection('Error de conexión con el servidor. Inténtelo más tarde.');
+      }
+    } else{
+      body=widgetNoConnection('Sin conexión a Internet.');
+    }
+    return body;
+  }
+
+  
+
+
 }
