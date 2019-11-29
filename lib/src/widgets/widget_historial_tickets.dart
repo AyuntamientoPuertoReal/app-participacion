@@ -1,5 +1,6 @@
 import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 
 Widget historialTicket(BuildContext context, IncidenceModel ticket){
 
@@ -10,7 +11,11 @@ final card = Container(
               
               FadeInImage(
 
-                 image: NetworkImage(ticket.pictureUrl),
+                 image: AdvancedNetworkImage(
+                  ticket.pictureUrl,
+                  useDiskCache: true,
+                  cacheRule: CacheRule(maxAge: const Duration(days: 7))
+                  ),
                  placeholder: AssetImage('assets/img/jar-loading.gif'),
                  fadeInDuration: Duration(seconds: 4 ),
               ),

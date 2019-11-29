@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
 import 'package:appparticipacion/src/models/phone_identifier_model.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/provider/phone_identifier_provider.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:latlong/latlong.dart';
