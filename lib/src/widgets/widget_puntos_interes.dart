@@ -72,7 +72,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                   ),
                   color: Colors.blue,
                   textColor: Colors.white,
-                  label: Text('Ver Mapa', style: TextStyle(fontSize: 18)),
+                  label: Text('Ver Mapa', style: TextStyle(fontSize: 15)),
                   icon: Icon(FontAwesome.getIconData("globe")),
                   onPressed: (){
                       openMap(interestPoint.latitude, interestPoint.longitude);
@@ -81,7 +81,13 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                 Expanded(child: Container()),
                 //SizedBox(width: 85.0),
                 FlatButton(
-                  child: Text('Más info', style: TextStyle(fontSize: 18)),
+                  child: Row(
+                    children: <Widget>[
+                      Text('Más info', style: TextStyle( color: Colors.blue)),
+                      SizedBox(width: 3,),
+                      Icon(Icons.info_outline, color: Colors.blue,),
+                    ],
+                  ),
                   onPressed: (){
                     Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: interestPoint);
                 },
