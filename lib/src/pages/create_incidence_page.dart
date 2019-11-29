@@ -8,8 +8,9 @@ import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/provider/incidence_provider.dart';
+import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class CreateIncidencePage extends StatefulWidget {
   @override
@@ -62,26 +63,12 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
           ),          
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(15.0),
-          child: Form(
-            key: formkey,
-            child: Column(
-              children: <Widget>[
-                Text("INCIDENCIA: "+tipoIncidencia.name, style: TextStyle(fontSize: 20),),
-                SizedBox(height: 20),
-                _mostrarFoto(),
-                SizedBox(height: 10.0,),
-                Text('AVISO: Al realizar la foto, se tomará tu ubicación para saber donde está la incidencia.',style: TextStyle(fontSize: 16),),
-                SizedBox(height: 10.0,),
-                _crearDescripcionIncidencia(),
-                SizedBox(height: 20.0,),
-                _crearBoton()
-              ],
-            ),
-          ),
-        ),
+      body: FutureBuilder(
+        future: serverDataChecker(context),
+        initialData: Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.data;
+        },
       ),
     );
   }
@@ -176,7 +163,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         ticketModel.latitud=latitud;
         ticketModel.longitud=longitud;
         ticketModel.pictureFile = foto;
-        ticketModel.phoneIdentifierId=utils.prefs.idToken;
+        ticketModel.phoneIdentifierId=prefs.idToken;
         ticketModel.tipoIncidencia = tipoIncidencia.id;
 
         print(ticketModel.toJson());
@@ -247,6 +234,46 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       );
     }
   }
+
+    Future<Widget> serverDataChecker(BuildContext context)async {
+    
+    Widget body;
+    bool internet = await checkInternetConnection();
+    
+    if (internet){
+      bool servidor = await checkServerConnection();
+      if(servidor){
+        body = SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          child: Form(
+            key: formkey,
+            child: Column(
+              children: <Widget>[
+                Text("INCIDENCIA: "+tipoIncidencia.name, style: TextStyle(fontSize: 20),),
+                SizedBox(height: 20),
+                _mostrarFoto(),
+                SizedBox(height: 10.0,),
+                Text('AVISO: Al realizar la foto, se tomará tu ubicación para saber donde está la incidencia.',style: TextStyle(fontSize: 16),),
+                SizedBox(height: 10.0,),
+                _crearDescripcionIncidencia(),
+                SizedBox(height: 20.0,),
+                _crearBoton()
+              ],
+            ),
+          ),
+        ),
+      );
+      } else{
+        body=noConnectionToServer();
+      }
+    } else{
+      body=noConnectionToInternet();
+    }
+    return body;
+  }
+
+
 
   obtenerGeo(int valor) async {
     

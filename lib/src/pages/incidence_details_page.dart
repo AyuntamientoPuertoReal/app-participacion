@@ -5,8 +5,9 @@ import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
-import 'package:appparticipacion/src/utils/utils.dart' as utils;
+import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:intl/intl.dart';
+import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class IncidendeDetailsPage extends StatefulWidget {
   @override
@@ -22,79 +23,19 @@ class _IncidendeDetailsPageState extends State<IncidendeDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final IncidenceModel ticket = ModalRoute.of(context).settings.arguments;
-    utils.incidenceId=ticket.id;
-    final seguimientoTicket = Provider.seguimientoTicketBloc(context);
-    seguimientoTicket.verEstado();
+    final IncidenceModel incidence = ModalRoute.of(context).settings.arguments;
+
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Incidencia enviada'),
+        title: Text('Detalles de su incidencia'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 10,),
-            Text('DESCRIPCIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
-            SizedBox(height: 10,),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                children: <Widget>[
-                  Container(alignment: Alignment.centerLeft , child: Text(ticket.descripcion, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),)),
-                  SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[  
-                      Text('Estado actual: '),
-                      SizedBox(width: 2,),
-                      estado(ticket.estado.toString()),
-                      Expanded(
-                        child: Container(),
-                      ),
-                    ],
-                  ),
-                  
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.only(top: 15, bottom: 15),
-              color: Color.fromRGBO(162, 0, 125, 0.75),
-              child: Column(
-                children: <Widget>[
-               Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white))),
-               SizedBox(height: 10),
-              pintaMensajeAyuntamiento(seguimientoTicket,ticket),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Text("FOTO ENVIADA",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  FadeInImage(
-                    image: NetworkImage(utils.urlImage+ticket.pictureUrl),
-                    placeholder: AssetImage('assets/img/jar-loading.gif'),
-                    height: 300,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 20),
-                ],
-              ),
-            ),
-            Divider(thickness: 3),
-            SizedBox(height: 10),
-            Text('LOCALIZACIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
-            retornarIframe(context, ticket.latitud, ticket.longitud),
-            SizedBox(height: 10),          
-          ],
-        ),
+      body: FutureBuilder(
+        future: serverDataChecker(context, incidence),
+        initialData: Container(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.data;
+        },
       ),
     );
   }
@@ -215,3 +156,90 @@ Widget pintaMensajeAyuntamiento(IncidenceTrackingsBloc seguimientoTicket, Incide
     },
   );
 }
+
+Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)async {
+    
+    Widget body;
+    bool internet = await checkInternetConnection();
+    
+    if (internet){
+      bool servidor = await checkServerConnection();
+      if(servidor){
+        incidenceId=incidence.id;
+        final seguimientoTicket = Provider.seguimientoTicketBloc(context);
+        seguimientoTicket.verEstado();
+        final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
+        tipoIncidenciaBloc.cargarTipoIncidencia();
+        body=SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10,),
+            Text('DESCRIPCIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor),),
+            SizedBox(height: 10,),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: <Widget>[
+                  Container(alignment: Alignment.centerLeft , child: Text(incidence.descripcion, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),)),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[  
+                      Text('Estado actual: '),
+                      SizedBox(width: 2,),
+                      estado(incidence.estado.toString()),
+                      Expanded(
+                        child: Container(),
+                      ),
+                    ],
+                  ),
+                  
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              padding: EdgeInsets.only(top: 15, bottom: 15),
+              color: Color.fromRGBO(162, 0, 125, 0.75),
+              child: Column(
+                children: <Widget>[
+               Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white))),
+               SizedBox(height: 10),
+              pintaMensajeAyuntamiento(seguimientoTicket,incidence),
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Text("FOTO ENVIADA",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FadeInImage(
+                    image: NetworkImage(urlImage+incidence.pictureUrl),
+                    placeholder: AssetImage('assets/img/jar-loading.gif'),
+                    height: 300,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+            Divider(thickness: 3),
+            SizedBox(height: 10),
+            Text('LOCALIZACIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
+            retornarIframe(context, incidence.latitud, incidence.longitud),
+            SizedBox(height: 10),          
+          ],
+        ),
+      );
+      } else{
+        body=noConnectionToServer();
+      }
+    } else{
+      body=noConnectionToInternet();
+    }
+    return body;
+  }
