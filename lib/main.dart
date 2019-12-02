@@ -9,18 +9,34 @@ import 'package:appparticipacion/src/pages/news_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/incidence_types_page.dart';
+import 'package:appparticipacion/src/pages/no_inicio.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
  
+String rutaInicial='home';
+
 void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final prefs = new UserPreferences();
   await prefs.initPrefs();
 
-  if(prefs.idToken == ""){
-    generateToken();
+  
+  Connectivity connectivity;
+  connectivity = new Connectivity();
+  ConnectivityResult result = await connectivity.checkConnectivity();
+
+  if(prefs.idToken == "" && result == ConnectivityResult.wifi || result == ConnectivityResult.mobile){
+    bool status= await checkServerConnection();
+    if(status){
+      generateToken();
+    } else{
+      rutaInicial='noInicio';
+    }
+  }else if(prefs.idToken == ""){
+    rutaInicial='noInicio';
   }
 
   runApp(MyApp());
@@ -33,7 +49,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Participación Ciudadana',
-        initialRoute: 'home',
+        initialRoute: rutaInicial,
         routes: {
           'home'                : (BuildContext context) => HomePage(),
           'abrirticket'         : (BuildContext context) => CreateIncidencePage(),
@@ -45,6 +61,7 @@ class MyApp extends StatelessWidget {
           'tipoincidencia'      : (BuildContext context) => IncidenceTypesPage(),
           'puntoInteres'        : (BuildContext context) => InterestPointsPage(),
           'ayudaPage'           : (BuildContext context) => HelpPage(),
+          'noInicio'            : (BuildContext context) => NoInicioPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)

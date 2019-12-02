@@ -94,7 +94,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
   Future<bool> checkServerConnection() async {
     bool status;
     try {
-      //Conexión a Internet
+      //Conexión a Servidor
       final result = await InternetAddress.lookup(/*sc.url*/"www.google.es");
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected to server');
@@ -105,6 +105,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
       status=false;
     }
     return status;
+    
   }
 
   Future<bool> checkInternetConnection() async {
