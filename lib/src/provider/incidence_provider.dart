@@ -19,14 +19,12 @@ class IncidenceProvider {
     final url = _url+"/send";
 
     final token = utils.tokenApicasso;
-
-    Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $token"};
-
-    Dio dio = new Dio();
-    String nombre = basename(incidence.pictureFile.path);
-
     try{
+      Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $token"};
 
+      Dio dio = new Dio();
+      String nombre = basename(incidence.pictureFile.path);
+      
       FormData formData = new FormData.fromMap({
         "description"         : incidence.descripcion,
         "latitude"            : incidence.latitud,
@@ -35,8 +33,13 @@ class IncidenceProvider {
         "phone_identifier_id" : incidence.phoneIdentifierId,
         "incidence_type_id"   : incidence.tipoIncidencia,
       });
-
-      Response response = await dio.post(url, data: formData, options: Options(headers: headers));
+      bool status= await utils.checkServerConnection();
+      Response response;
+      if(status){
+        response = await dio.post(url, data: formData, options: Options(headers: headers));
+      } else{
+        return false;
+      }
 
       if(response.statusCode == 200){
         return true;
