@@ -50,7 +50,7 @@ Widget  defaultNews(BuildContext context, NewsModel noticia) {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                         FlatButton(
-                          child: Text('Ver Noticia'),
+                          child: Text('Ver Noticia', style: TextStyle(color: Colors.blue),),
                           onPressed: (){
                             Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                           },
@@ -105,7 +105,7 @@ final card = Container(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: <Widget>[
                  FlatButton(
-                   child: Text('Ver Noticia'),
+                   child: Text('Ver Noticia', style: TextStyle(color: Colors.blue)),
                     onPressed: (){
                       Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
                      },
