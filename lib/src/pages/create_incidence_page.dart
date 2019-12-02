@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/models/incidence_types_model.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,7 +48,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
      "\n3- Pulse el botón Guardar y todo el proceso habrá terminado";
     ticketBloc = Provider.ticketbloc(context);
-
 
     return Scaffold(
       key: scaffoldKey,
@@ -103,7 +104,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
     );
   }
 
-  
   Widget _crearBoton() {
     return RaisedButton.icon(
       shape: RoundedRectangleBorder(
@@ -117,7 +117,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
     );
   }
   void _showDialog(){
-
     if(formkey.currentState.validate()){
       showDialog(
         context: context,
@@ -150,34 +149,49 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
 
   void _submit() async {
     print("Estado de guardado = $_guardando");
-    // if(formkey.currentState.validate()){
+    
+    Connectivity connectivity;
+    connectivity = new Connectivity();
+    ConnectivityResult result = await connectivity.checkConnectivity();
+    
+    var _connectionStatus = result.toString();
+    print(_connectionStatus);
+    
+    if (result == ConnectivityResult.wifi || result == ConnectivityResult.mobile) {
       mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
       // cuando el formulario es valido
       setState(() { _guardando = true;});
 
-       
-        //String fecha = utils.obtenerFechaCreacionTicket();
+      ticketModel.latitud=latitud;
+      ticketModel.longitud=longitud;
+      ticketModel.pictureFile = foto;
+      ticketModel.phoneIdentifierId=prefs.idToken;
+      ticketModel.tipoIncidencia = tipoIncidencia.id;
 
-        //ticketModel.fechaCreacion=fecha;
-        ticketModel.latitud=latitud;
-        ticketModel.longitud=longitud;
-        ticketModel.pictureFile = foto;
-        ticketModel.phoneIdentifierId=prefs.idToken;
-        ticketModel.tipoIncidencia = tipoIncidencia.id;
-
-        print(ticketModel.toJson());
-        IncidenceProvider tk = new IncidenceProvider();
-        bool creado= await tk.createIncidence(ticketModel);
-        
+      print(ticketModel.toJson());
+      IncidenceProvider tk = new IncidenceProvider();
+      bool creado= await tk.createIncidence(ticketModel);
+      
       if(creado){
 
-       Navigator.pushReplacementNamed(context, 'home');
+      Navigator.pushReplacementNamed(context, 'home');
 
       } else {
-        mostrarModal(context,'Registro No Guardado');
+        mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
       }
+
+    } else {
+      //setState(() {});
+      
+      mostrarModal(context,'La incidencia no se ha enviado porque no tiene conexión a Internet. Inténtelo de nuevo más tarde.');
+    }
+    
   
+  
+ 
+    // if(formkey.currentState.validate()){
+      
     // } else {
     //   return;
     // }
