@@ -11,6 +11,7 @@ import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
 class NewsPage extends StatefulWidget {
+  static final String routeName = 'news';
 
   @override
   _NewsPageState createState() => _NewsPageState();
@@ -79,7 +80,7 @@ class _NewsPageState extends State<NewsPage> {
       backgroundColor: Color.fromRGBO(231, 242, 252, 1.0),
       body: FutureBuilder(
         future: serverDataChecker(context),
-        initialData: Container(),
+        initialData: cancelConexion(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.data;
         },
@@ -126,7 +127,7 @@ class _NewsPageState extends State<NewsPage> {
         noticiaBloc.cargarNoticia();
         body = _crearListadoNoticias(noticiaBloc);
       } else{
-        body=noConnectionToServer();
+        body=noConnectionToServer(context,NewsPage.routeName);
       }
     } else{
       body=noConnectionToInternet();

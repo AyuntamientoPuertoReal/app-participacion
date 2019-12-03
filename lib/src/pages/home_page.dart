@@ -1,3 +1,7 @@
+import 'package:appparticipacion/src/pages/incidence_types_page.dart';
+import 'package:appparticipacion/src/pages/incidences_historical_page.dart';
+import 'package:appparticipacion/src/pages/interest_points_page.dart';
+import 'package:appparticipacion/src/pages/news_page.dart';
 import 'package:appparticipacion/src/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 
@@ -31,14 +35,14 @@ class HomePage extends StatelessWidget {
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.camera_alt, 'ENVIAR INCIDENCIA',"tipoincidencia", fondoApp, Colors.white),
-                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'MIS INCIDENCIAS',"historial", fondoApp, Colors.grey[300]),
+                      _crearBotonRedondeado(context,Colors.white, Icons.camera_alt, 'ENVIAR INCIDENCIA',IncidenceTypesPage.routeName, fondoApp, Colors.white),
+                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'MIS INCIDENCIAS',IncidencesHistoricalPage.routeName, fondoApp, Colors.grey[300]),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.info_outline, 'NOTICIAS',"noticias", fondoApp, Colors.grey[300]),
-                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',"puntoInteres", fondoApp,Colors.grey[350])
+                      _crearBotonRedondeado(context,Colors.white, Icons.info_outline, 'NOTICIAS',NewsPage.routeName, fondoApp, Colors.grey[300]),
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',InterestPointsPage.routeName, fondoApp,Colors.grey[350])
                     ]
                   )
                 ],
