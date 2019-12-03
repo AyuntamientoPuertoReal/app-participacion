@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/models/incidence_types_model.dart';
+import 'package:appparticipacion/src/pages/home_page.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:connectivity/connectivity.dart';
@@ -15,6 +16,7 @@ import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class CreateIncidencePage extends StatefulWidget {
+  static final String routeName = 'createIncidence';
   @override
   _CreateIncidencePageState createState() => _CreateIncidencePageState();
 }
@@ -175,7 +177,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       
       if(creado){
 
-      Navigator.pushReplacementNamed(context, 'home');
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
 
       } else {
         mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
@@ -279,7 +281,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         ),
       );
       } else{
-        body=noConnectionToServer();
+        body=noConnectionToServer(context, CreateIncidencePage.routeName);
       }
     } else{
       body=noConnectionToInternet();

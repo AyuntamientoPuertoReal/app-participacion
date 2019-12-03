@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 
 class IncidenceTypesPage extends StatefulWidget {
+  static final String routeName = 'incidenceTypes';
   @override
   _IncidenceTypesPageState createState() => _IncidenceTypesPageState();
 }
@@ -56,7 +57,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
       
       body: FutureBuilder(
         future: serverDataChecker(context),
-        initialData: Container(),
+        initialData: cancelConexion(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.data;
         },
@@ -138,7 +139,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         ]
        );
       } else{
-        body=noConnectionToServer();
+        body=noConnectionToServer(context,IncidenceTypesPage.routeName);
       }
     } else{
       body=noConnectionToInternet();
