@@ -99,10 +99,10 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
     ),
   );
       } else{
-        body=noConnectionToServer();
+        body=noConnectionToServer(context,"interestpoints");
       }
     } else{
-      body=noConnectionToServer();
+      body=noConnectionToInternet();
     }
     return body;
   }

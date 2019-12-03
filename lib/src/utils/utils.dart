@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/bloc/phone_identifier_bloc.dart';
 import 'package:appparticipacion/src/models/phone_identifier_model.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/provider/phone_identifier_provider.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:latlong/latlong.dart';
@@ -95,13 +94,15 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     bool status;
     try {
       //Conexión a Servidor
-      final result = await InternetAddress.lookup(/*sc.url*/"www.google.es");
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected to server');
+      // List<InternetAddress> result = await InternetAddress.lookup(/*sc.url*/"decide.puertoreal.es");
+     // final response = await http.get('https://decide.puertoreal.es/');
+      final response = await http.get('https://decide.puertoreal.es/');
+      if (response.statusCode == 200) {
+        print('connected to server decide');
         status=true;
       }
     } on SocketException catch (_) {
-      print('not connected');
+      print('not connected to decide');
       status=false;
     }
     return status;
@@ -112,7 +113,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     bool status;
     try {
       //Conexión a Internet
-      final result = await InternetAddress.lookup("www.google.es");
+      List<InternetAddress> result = await InternetAddress.lookup("www.google.es");
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected to Internet');
          status=true;

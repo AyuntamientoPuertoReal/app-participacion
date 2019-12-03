@@ -13,6 +13,7 @@ import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
 class IncidencesHistoricalPage extends StatefulWidget {
+  static final String routeName = 'incidencesHistorical';
   @override
   _IncidencesHistoricalPageState createState() => _IncidencesHistoricalPageState();
 }
@@ -58,7 +59,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
       ),
       body: FutureBuilder(
         future: serverDataChecker(context),
-        initialData: Container(),
+        initialData: cancelConexion(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.data;
         },
@@ -152,7 +153,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
         ticketBloc.cargartickets();
         body = _crearListadoTickets(ticketBloc);
       } else{
-        body=noConnectionToServer();
+        body=noConnectionToServer(context,IncidencesHistoricalPage.routeName);
       }
     } else{
       body=noConnectionToInternet();

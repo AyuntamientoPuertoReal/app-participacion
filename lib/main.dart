@@ -9,7 +9,7 @@ import 'package:appparticipacion/src/pages/news_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/incidence_types_page.dart';
-import 'package:appparticipacion/src/pages/no_inicio.dart';
+import 'package:appparticipacion/src/pages/no_inicio_page.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:connectivity/connectivity.dart';
@@ -51,17 +51,17 @@ class MyApp extends StatelessWidget {
         title: 'Participación Ciudadana',
         initialRoute: rutaInicial,
         routes: {
-          'home'                : (BuildContext context) => HomePage(),
-          'abrirticket'         : (BuildContext context) => CreateIncidencePage(),
-          'noticias'            : (BuildContext context) => NewsPage(),
-          'noticiasDetalle'     : (BuildContext context) => NewDetails(),
-          'historial'           : (BuildContext context) => IncidencesHistoricalPage(),
-          'puntoInteresDetalle' : (BuildContext context) => InterestPointDetailsPage(),
-          'detalleTicket'       : (BuildContext context) => IncidendeDetailsPage(),
-          'tipoincidencia'      : (BuildContext context) => IncidenceTypesPage(),
-          'puntoInteres'        : (BuildContext context) => InterestPointsPage(),
-          'ayudaPage'           : (BuildContext context) => HelpPage(),
-          'noInicio'            : (BuildContext context) => NoInicioPage(),
+          HomePage.routeName                     : (BuildContext context) => HomePage(),
+          CreateIncidencePage.routeName          : (BuildContext context) => CreateIncidencePage(),
+          NewsPage.routeName                     : (BuildContext context) => NewsPage(),
+          NewDetails.routeName                   : (BuildContext context) => NewDetails(),
+          IncidencesHistoricalPage.routeName     : (BuildContext context) => IncidencesHistoricalPage(),
+          InterestPointDetailsPage.routeName     : (BuildContext context) => InterestPointDetailsPage(),
+          IncidendeDetailsPage.routeName         : (BuildContext context) => IncidendeDetailsPage(),
+          IncidenceTypesPage.routeName           : (BuildContext context) => IncidenceTypesPage(),
+          InterestPointsPage.routeName           : (BuildContext context) => InterestPointsPage(),
+          HelpPage.routeName                     : (BuildContext context) => HelpPage(),
+          NoInicioPage.routeName                 : (BuildContext context) => NoInicioPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)

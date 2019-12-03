@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
 class NoInicioPage extends StatelessWidget {
+
+  static final String routeName = 'noInicio';
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
