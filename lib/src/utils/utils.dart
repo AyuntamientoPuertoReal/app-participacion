@@ -7,7 +7,6 @@ import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/provider/phone_identifier_provider.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_udid/flutter_udid.dart';
-import 'package:latlong/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //Hay que crear archivo secrets.dart en la carpeta utils para configurar los accesos
@@ -62,14 +61,6 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
   }
 
 
-
-  LatLng getCoordenadas(String valor){
-    final coordenadas = valor.split(',');
-    final lat = double.parse(coordenadas[0]);
-    final long = double.parse(coordenadas[1]);
-    
-    return LatLng(lat, long);
-  }
 
   openMap(String latitud, String longitud) async {
     final lat  = latitud;
