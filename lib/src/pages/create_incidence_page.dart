@@ -150,19 +150,16 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
   }
 
   void _submit() async {
-    print("Estado de guardado = $_guardando");
-    
+
     Connectivity connectivity;
     connectivity = new Connectivity();
     ConnectivityResult result = await connectivity.checkConnectivity();
-    
-    var _connectionStatus = result.toString();
-    print(_connectionStatus);
-    
+       
     if (result == ConnectivityResult.wifi || result == ConnectivityResult.mobile) {
       mostrarSnackbar("Tu incidencia está siendo enviada al Ayuntamiento...");
       formkey.currentState.save();
-      // cuando el formulario es valido
+
+      // cuando el formulario es valido se deshabilita el boton
       setState(() { _guardando = true;});
 
       ticketModel.latitud=latitud;
@@ -171,7 +168,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       ticketModel.phoneIdentifierId=prefs.idToken;
       ticketModel.tipoIncidencia = tipoIncidencia.id;
 
-      print(ticketModel.toJson());
       IncidenceProvider tk = new IncidenceProvider();
       bool creado= await tk.createIncidence(ticketModel);
       
@@ -183,20 +179,9 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
       }
 
-    } else {
-      //setState(() {});
-      
+    } else {   
       mostrarModal(context,'La incidencia no se ha enviado porque no tiene conexión a Internet. Inténtelo de nuevo más tarde.');
     }
-    
-  
-  
- 
-    // if(formkey.currentState.validate()){
-      
-    // } else {
-    //   return;
-    // }
   
   }
 
@@ -294,8 +279,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
   obtenerGeo(int valor) async {
     
     Position position = await Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
-    print("latitud = "+position.latitude.toString());
-    print("Longitud = "+position.longitude.toString());
 
     if(valor == 1){
       return position.latitude.toString();

@@ -25,7 +25,6 @@ class IncidenceTypesModel {
     );
 
     Map<String, dynamic> toJson() => {
-        // "id": id,
         "name": name,
         "code": code,
         "order": order

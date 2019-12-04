@@ -27,7 +27,7 @@ class UserPreferences {
     this._prefs = await SharedPreferences.getInstance();
   }
 
-  // GET y SET del nombre
+  // GET y SET del atributo
   get idToken {
     return _prefs.getString('idToken') ?? '';
   }

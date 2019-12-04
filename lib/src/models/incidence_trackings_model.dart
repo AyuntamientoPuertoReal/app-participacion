@@ -34,7 +34,6 @@ class IncidenceTrackingsModel {
     );
 
     Map<String, dynamic> toJson() => {
-       // "id"        : id,
         "Estado"      : status,
         "Mensaje"     : message,
     };

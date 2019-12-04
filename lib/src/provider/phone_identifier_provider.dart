@@ -15,7 +15,6 @@ class PhoneIdentifierProvider {
 
   Future<String> crearPhoneIdentifier(PhoneIdentifierModel phoneIdentifier)async{
 
-
     final token = utils.tokenApicasso;
 
     Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $token"};
@@ -33,10 +32,7 @@ class PhoneIdentifierProvider {
 
   Future<int> cargarPhoneIdentifier() async {
 
-   // $url?q[phone_identifier_eq]=$phone_identifier&select=id
-
     final urlToken = '$url?q[phone_identifier_eq]=$phoneIdentifier&select=id';
-
 
     final authorizationToken = utils.tokenApicasso;
 
@@ -60,7 +56,6 @@ class PhoneIdentifierProvider {
       } else{
         return null;
       }
-
 
   }
 

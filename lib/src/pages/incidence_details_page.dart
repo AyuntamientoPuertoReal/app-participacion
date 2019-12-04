@@ -106,8 +106,6 @@ Widget pintaMensajeAyuntamiento(IncidenceTrackingsBloc seguimientoTicket, Incide
                     ),
                     SizedBox(width: 5,),
                     estado2(f.status.toString())
-                    //Text(f.status.toString(), style: TextStyle(color: Colors.white),),
-                    //Expanded(child: Container(child: Text(f.message, style: TextStyle(color: Colors.white),overflow: TextOverflow.clip,maxLines: 10,))),
                   ] 
                     
                 ),
