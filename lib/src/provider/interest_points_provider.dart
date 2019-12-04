@@ -8,17 +8,11 @@ import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 
 class InterestPointsProvider {
-
-   //http://localhost:3000/api/v1/interest_points
-
   final String _url = utils.url+"interest_points";
 
   Future<List<InterestPointsModel>> cargarPuntoInteres() async {
 
-
     final url = _url;
-
-    print(url);
 
     final authorizationToken = utils.tokenApicasso;
 
@@ -32,16 +26,12 @@ class InterestPointsProvider {
     if(decodeData == null) return [];
 
     if(decodeData['error'] != null) return [];
-
- // print(decodeData['entries']);
     
-  if(decodeData['total']>0){
+    if(decodeData['total']>0){
     
-   // print(decodeData.toString());
     decodeData['entries'].forEach((i){
 
       InterestPointsModel prodTemp = InterestPointsModel.fromJson(i);
-   //   print(prodTemp.toJson());
 
       puntosInteres.add(prodTemp);
     });

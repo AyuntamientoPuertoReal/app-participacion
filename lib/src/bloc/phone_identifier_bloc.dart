@@ -19,13 +19,6 @@ class PhoneIdentifierBloc {
 
  }
 
-  // void cargarPhoneIdentifier() async {
-
-  //   final phoneIdentifier = await _phoneIdentifierProvider.cargarPhoneIdentifier();
-  //   _phoneIdentifierController.sink.add(phoneIdentifier);
-
-  // }
-
   dispose(){
     _phoneIdentifierController?.close();
     _cargandoController?.close();

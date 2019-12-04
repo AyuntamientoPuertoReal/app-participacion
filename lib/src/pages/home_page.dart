@@ -72,39 +72,6 @@ class HomePage extends StatelessWidget {
 
 
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo,  Color fondoIcono){ 
-
-    // return InkWell(    
-    //       onTap: (){
-    //         Navigator.pushNamed(context, page);
-    //       },
-    //       child: Stack(
-    //       alignment: AlignmentDirectional.center,
-    //         children:<Widget>[ Container(
-    //           height: 100.0,
-    //           width: double.infinity,
-    //           margin: EdgeInsets.all(6.0),
-    //           alignment: AlignmentDirectional.topStart,
-    //           decoration: BoxDecoration(
-    //             color: fondo,
-    //             borderRadius: BorderRadius.circular(20.0),
-    //             border: Border.all(width: 1.0, color: Color.fromRGBO(92, 0, 122, 1.0))
-    //           ),
-    //         ),
-            
-    //         Column(
-    //               mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //               children: <Widget>[
-    //                // widget_favorito,
-    //                 SizedBox(height: 5),
-    //                 Icon(icono, color: fondoIcono, size:40.0),
-    //                 Text(texto, style: TextStyle(color: color, fontSize: 16),textAlign: TextAlign.center,),
-    //                 SizedBox(height: 3.0,),
-    //               ],
-    //             ),
-    //         ],
-    //   ),
-    // );
-
     return Container(
       height: 100.0,
       width: double.infinity,

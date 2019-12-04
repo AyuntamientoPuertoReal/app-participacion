@@ -17,8 +17,6 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
       );
 }
 
-
-
   Future<Widget> serverDataChecker(BuildContext context, InterestPointsModel interestPoint)async {
     
     Widget body;
@@ -47,15 +45,13 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                   interestPoint.imageUrl,
                   useDiskCache: true,
                   cacheRule: CacheRule(maxAge: const Duration(days: 7))
-                ), //cargarImagen(interestPoint.imageUrl),
+                ),
                 fit: BoxFit.fitWidth,
                 ),
                 title: Text(""),
                 subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                 // Text("Latitud: "+puntoInteres.latitude+", Longitud: "+puntoInteres.longitude),
-                  //SizedBox(height: 9.0),
                   Text(interestPoint.name, style: TextStyle(fontSize: 16, color: Colors.black),),
                 ],
                 ),
@@ -79,7 +75,6 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                       },
                   ),
                 Expanded(child: Container()),
-                //SizedBox(width: 85.0),
                 FlatButton(
                   child: Row(
                     children: <Widget>[

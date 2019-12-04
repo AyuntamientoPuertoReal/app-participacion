@@ -31,7 +31,6 @@ class NewsModel {
     );
 
     Map<String, dynamic> toJson() => {
-     //   "id"          : id,
         "title"       : title,
         "description" : description,
         "body"        : body,

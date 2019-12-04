@@ -31,7 +31,6 @@ class InterestPointsModel {
     );
 
     Map<String, dynamic> toJson() => {
-        // "id": id,
         "name"          : name,
         "description"   : description,
         "image_url"     : imageUrl,

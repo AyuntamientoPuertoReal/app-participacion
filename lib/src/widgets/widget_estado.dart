@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+/*
+  Código de estados:
+
+    1 : Enviada / sin color
+    2 : En proceso / color naranja
+    3 : Finalizada / color verde
+    4 : Desestimada / color rojo
+
+  Estos estados son así recibidos mediante JSON
+*/
+//Pone el estado con colores
 Widget estado(String estado){
   
   Color color;
@@ -28,6 +39,7 @@ Widget estado(String estado){
   );
 }
 
+//Pone solo el texto del estado
 Widget estado2(String estado){
   
   Color color;
