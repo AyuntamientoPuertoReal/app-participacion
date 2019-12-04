@@ -94,8 +94,6 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     bool status;
     try {
       //Conexión a Servidor
-      // List<InternetAddress> result = await InternetAddress.lookup(/*sc.url*/"decide.puertoreal.es");
-     // final response = await http.get('https://decide.puertoreal.es/');
       final response = await http.get('https://decide.puertoreal.es/');
       if (response.statusCode == 200) {
         print('connected to server decide');

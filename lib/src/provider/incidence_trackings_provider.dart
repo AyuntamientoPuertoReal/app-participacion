@@ -35,33 +35,6 @@ class IncidenceTrackingsProvider {
     }
 
     return listaSeguimiento;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // final url = '$_url/seguimientoTicket.json';
-    // final response = await http.get(url);
-
-    // final Map<String, dynamic> decodeData = json.decode(response.body);
-    // final List<SeguimientoTicketModel> seguimientoTicket = new List();
-    
-    // if(decodeData == null) return [];
-
-    // if(decodeData['error'] != null) return [];
-
-    // decodeData.forEach((id, prod){
-    //   final prodTemp = SeguimientoTicketModel.fromJson(prod);
-    //   prodTemp.id = id;
-
-    //   seguimientoTicket.add(prodTemp);
-    // });
-
-    // return seguimientoTicket;
   }
 
 }
