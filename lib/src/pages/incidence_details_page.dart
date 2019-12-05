@@ -162,8 +162,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
     bool internet = await checkInternetConnection();
     
     if (internet){
-      bool servidor = await checkServerConnection();
-      if(servidor){
+      
         incidenceId=incidence.id;
         final seguimientoTicket = Provider.seguimientoTicketBloc(context);
         seguimientoTicket.verEstado();
@@ -234,9 +233,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
           ],
         ),
       );
-      } else{
-        body=noConnectionToServer(context,"interestpoints");
-      }
+      
     } else{
       body=noConnectionToInternet();
     }

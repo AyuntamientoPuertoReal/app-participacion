@@ -242,8 +242,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
     bool internet = await checkInternetConnection();
     
     if (internet){
-      bool servidor = await checkServerConnection();
-      if(servidor){
+      
         body = SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(15.0),
@@ -265,9 +264,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
           ),
         ),
       );
-      } else{
-        body=noConnectionToServer(context, CreateIncidencePage.routeName);
-      }
     } else{
       body=noConnectionToInternet();
     }
