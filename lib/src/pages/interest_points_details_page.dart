@@ -4,7 +4,6 @@ import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class InterestPointDetailsPage extends StatelessWidget {
-  static final String routeName = 'interestPointDetails';
   @override
   Widget build(BuildContext context) {
 

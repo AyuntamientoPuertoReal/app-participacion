@@ -63,7 +63,7 @@ Widget cancelConexion(BuildContext context){
           child: Text('Cancelar', style: TextStyle(color: Colors.white, fontSize: 18),),
           color: Theme.of(context).primaryColor,
           onPressed: (){
-            Navigator.pushReplacementNamed(context, HomePage.routeName);
+            Navigator.pushReplacementNamed(context, 'home');
           },
         )
       ],

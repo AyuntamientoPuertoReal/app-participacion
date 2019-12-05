@@ -9,7 +9,6 @@ import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
 class InterestPointsPage extends StatefulWidget {
-  static final String routeName = 'interestPoints';
   @override
   _InterestPointsPageState createState() => _InterestPointsPageState();
 }
@@ -100,7 +99,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
             puntoIntereBloc.cargarPuntosInteres();
             body=_crearListadoPuntosInteres(puntoIntereBloc);
           } else{
-            body=noConnectionToServer(context,InterestPointsPage.routeName);
+            body=noConnectionToServer(context,'interestPoints');
           }
         } else{
           body=noConnectionToInternet();

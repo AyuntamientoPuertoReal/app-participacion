@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class HelpPage extends StatelessWidget {
 
-  static final String routeName = 'help';
 
   @override
   Widget build(BuildContext context) {

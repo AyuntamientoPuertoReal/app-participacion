@@ -73,4 +73,3 @@
 ios/Flutter/flutter_export_environment.sh
 
 lib/src/utils/secrets.dart
-lib/src/pages/prueba.dart

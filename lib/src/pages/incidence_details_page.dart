@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class IncidendeDetailsPage extends StatefulWidget {
-  static final String routeName = 'incidenceDetails';
   @override
   _IncidendeDetailsPageState createState() => _IncidendeDetailsPageState();
 }
@@ -235,7 +234,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
         ),
       );
       } else{
-        body=noConnectionToServer(context,"interestpoints");
+        body=noConnectionToServer(context,'incidenceDetails');
       }
     } else{
       body=noConnectionToInternet();

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 
 class IncidenceTypesPage extends StatefulWidget {
-  static final String routeName = 'incidenceTypes';
   @override
   _IncidenceTypesPageState createState() => _IncidenceTypesPageState();
 }
@@ -86,7 +85,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
                   ]
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, 'abrirticket', arguments: f);
+                  Navigator.pushNamed(context, 'createIncidence', arguments: f);
                 },
               )
             );
@@ -139,7 +138,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         ]
        );
       } else{
-        body=noConnectionToServer(context,IncidenceTypesPage.routeName);
+        body=noConnectionToServer(context,'incidenceType');
       }
     } else{
       body=noConnectionToInternet();

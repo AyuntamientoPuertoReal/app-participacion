@@ -16,7 +16,6 @@ import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class CreateIncidencePage extends StatefulWidget {
-  static final String routeName = 'createIncidence';
   @override
   _CreateIncidencePageState createState() => _CreateIncidencePageState();
 }
@@ -173,7 +172,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       
       if(creado){
 
-      Navigator.pushReplacementNamed(context, HomePage.routeName);
+      Navigator.pushReplacementNamed(context, 'home');
 
       } else {
         mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
@@ -266,7 +265,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         ),
       );
       } else{
-        body=noConnectionToServer(context, CreateIncidencePage.routeName);
+        body=noConnectionToServer(context, 'createIncidence');
       }
     } else{
       body=noConnectionToInternet();
