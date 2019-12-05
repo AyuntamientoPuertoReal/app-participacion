@@ -1,4 +1,5 @@
 import 'package:appparticipacion/src/models/news_model.dart';
+import 'package:appparticipacion/src/pages/new_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +14,7 @@ Widget  defaultNews(BuildContext context, NewsModel noticia) {
           
               return InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                  Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
                 },
                 child: Card(
                   elevation: 10.0,
@@ -52,7 +53,7 @@ Widget  defaultNews(BuildContext context, NewsModel noticia) {
                         FlatButton(
                           child: Text('Ver Noticia', style: TextStyle(color: Colors.blue),),
                           onPressed: (){
-                            Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                            Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
                           },
                         ),
                       ],
@@ -107,7 +108,7 @@ final card = Container(
                  FlatButton(
                    child: Text('Ver Noticia', style: TextStyle(color: Colors.blue)),
                     onPressed: (){
-                      Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+                      Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
                      },
                   ),
                 ],
@@ -120,7 +121,7 @@ final card = Container(
 
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, 'noticiasDetalle', arguments: noticia);
+        Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
       },
       child: Container(
         decoration: BoxDecoration(

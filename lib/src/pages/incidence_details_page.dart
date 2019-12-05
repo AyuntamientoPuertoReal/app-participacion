@@ -9,13 +9,13 @@ import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
-class IncidendeDetailsPage extends StatefulWidget {
+class IncidenceDetailsPage extends StatefulWidget {
   static final String routeName = 'incidenceDetails';
   @override
-  _IncidendeDetailsPageState createState() => _IncidendeDetailsPageState();
+  _IncidenceDetailsPageState createState() => _IncidenceDetailsPageState();
 }
 
-class _IncidendeDetailsPageState extends State<IncidendeDetailsPage> {
+class _IncidenceDetailsPageState extends State<IncidenceDetailsPage> {
 
   Color color = Colors.black;
   Color fondoSeguimiento = Color.fromRGBO(231, 242, 252, 1.0);
@@ -42,7 +42,7 @@ class _IncidendeDetailsPageState extends State<IncidendeDetailsPage> {
   }
 }
 
-Widget pintaMensajeAyuntamiento(IncidenceTrackingsBloc seguimientoTicket, IncidenceModel ticket){
+Widget pintaMensajeAyuntamiento(BuildContext context,IncidenceTrackingsBloc seguimientoTicket, IncidenceModel ticket){
 
 
  return StreamBuilder(
@@ -205,7 +205,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
                 children: <Widget>[
                Center(child: Text("SEGUIMIENTO",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white))),
                SizedBox(height: 10),
-              pintaMensajeAyuntamiento(seguimientoTicket,incidence),
+              pintaMensajeAyuntamiento(context,seguimientoTicket,incidence),
                 ],
               ),
             ),

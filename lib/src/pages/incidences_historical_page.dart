@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
+import 'package:appparticipacion/src/pages/incidence_details_page.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
@@ -68,7 +69,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     );
   }
 
- Widget _crearListadoTickets(IncidenceBloc ticketBloc) {
+ Widget _crearListadoTickets(BuildContext context, IncidenceBloc ticketBloc) {
 
    return StreamBuilder(
      stream: ticketBloc.ticketStream,
@@ -117,7 +118,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                       ),
                       onTap: (){
 
-                        Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
+                        Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data[index]);
                       },
                     ),
                     
@@ -128,7 +129,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                   ],
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, 'detalleTicket', arguments: data[index]);
+                  Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data[index]);
                 },
               );
           },
@@ -151,7 +152,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
       if(servidor){
         final ticketBloc = Provider.ticketbloc(context);
         ticketBloc.cargartickets();
-        body = _crearListadoTickets(ticketBloc);
+        body = _crearListadoTickets(context,ticketBloc);
       } else{
         body=noConnectionToServer(context,IncidencesHistoricalPage.routeName);
       }

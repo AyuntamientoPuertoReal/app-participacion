@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           NewDetails.routeName                   : (BuildContext context) => NewDetails(),
           IncidencesHistoricalPage.routeName     : (BuildContext context) => IncidencesHistoricalPage(),
           InterestPointDetailsPage.routeName     : (BuildContext context) => InterestPointDetailsPage(),
-          IncidendeDetailsPage.routeName         : (BuildContext context) => IncidendeDetailsPage(),
+          IncidenceDetailsPage.routeName         : (BuildContext context) => IncidenceDetailsPage(),
           IncidenceTypesPage.routeName           : (BuildContext context) => IncidenceTypesPage(),
           InterestPointsPage.routeName           : (BuildContext context) => InterestPointsPage(),
           HelpPage.routeName                     : (BuildContext context) => HelpPage(),

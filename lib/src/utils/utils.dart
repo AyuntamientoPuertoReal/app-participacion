@@ -24,6 +24,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
   String url = sc.url;
   String tokenApicasso = sc.tokenApicasso;
   String urlImage = sc.urlImage;
+  String urlServer = sc.urlServer;
   int incidenceId;
 
   void generateToken() async {
@@ -85,13 +86,14 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     bool status;
     try {
       //Conexión a Servidor
-      final response = await http.get('https://decide.puertoreal.es/');
+      final response = await http.get(urlServer);
+      // Comprueba si el servidor está up
       if (response.statusCode == 200) {
-        print('connected to server decide');
+        // Devuelve true si está up el servidor y envía el status 200, que en http significa OK
         status=true;
       }
     } on SocketException catch (_) {
-      print('not connected to decide');
+      // Devuelve false porque ha recibido algún error, por lo que no está funcionando el server
       status=false;
     }
     return status;
@@ -104,11 +106,11 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
       //Conexión a Internet
       List<InternetAddress> result = await InternetAddress.lookup("www.google.es");
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected to Internet');
+        //Conecta a Internet
          status=true;
       }
     } on SocketException catch (_) {
-      print('not connected');
+      //No conecta a Internet
        status=false;
     }
     return status;
