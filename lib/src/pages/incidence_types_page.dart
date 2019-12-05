@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
+import 'package:appparticipacion/src/pages/create_incidence_page.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
@@ -86,7 +87,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
                   ]
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, 'abrirticket', arguments: f);
+                  Navigator.pushNamed(context, CreateIncidencePage.routeName, arguments: f);
                 },
               )
             );

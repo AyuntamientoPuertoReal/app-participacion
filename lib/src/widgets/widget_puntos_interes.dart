@@ -1,3 +1,4 @@
+import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/models/interest_points_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
@@ -84,7 +85,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                     ],
                   ),
                   onPressed: (){
-                    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: interestPoint);
+                    Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: interestPoint);
                 },
               ),
             ],

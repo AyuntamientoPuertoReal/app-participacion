@@ -11,7 +11,7 @@ class NewDetails extends StatelessWidget {
     final NewsModel noticia = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text("volver a noticias"),
+        title: Text("Volver a Noticias"),
       ),
       body: SingleChildScrollView(
           child: Column(
