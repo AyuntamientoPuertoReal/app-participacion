@@ -6,7 +6,6 @@ import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/pages/incidence_details_page.dart';
 import 'package:appparticipacion/src/widgets/widget_estado.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
@@ -101,11 +100,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                     ),
                     ListTile(
                       leading: FadeInImage(
-                        image: AdvancedNetworkImage(
-                          urlImage+data[index].pictureUrl,
-                          useDiskCache: true,
-                          cacheRule: CacheRule(maxAge: const Duration(days: 7))
-                        ),
+                        image: NetworkImage(urlImage+data[index].pictureUrl),
                         placeholder: AssetImage('assets/img/jar-loading.gif'),
                         width: 50.0,
                         fit: BoxFit.contain,
