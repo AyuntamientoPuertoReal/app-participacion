@@ -173,7 +173,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       
       if(creado){
 
-      Navigator.pushReplacementNamed(context, 'home');
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
 
       } else {
         mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
