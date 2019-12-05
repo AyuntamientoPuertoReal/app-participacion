@@ -100,7 +100,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
             puntoIntereBloc.cargarPuntosInteres();
             body=_crearListadoPuntosInteres(puntoIntereBloc);
           } else{
-            body=noConnectionToServer(context,'interestPoints');
+            body=noConnectionToServer(context,InterestPointsPage.routeName);
           }
         } else{
           body=noConnectionToInternet();
