@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
+import 'package:appparticipacion/src/pages/create_incidence_page.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 
 class IncidenceTypesPage extends StatefulWidget {
+  static final String routeName = 'incidenceTypes';
   @override
   _IncidenceTypesPageState createState() => _IncidenceTypesPageState();
 }
@@ -85,7 +87,9 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
                   ]
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, 'createIncidence', arguments: f);
+
+                  Navigator.pushNamed(context, CreateIncidencePage.routeName, arguments: f);
+
                 },
               )
             );

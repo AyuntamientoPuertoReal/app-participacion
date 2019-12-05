@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 
 class HomePage extends StatelessWidget {
-  
+  static final String routeName = 'home';
   final colorSecundario = Color.fromRGBO(183, 133, 0, 1);
 
   @override
@@ -34,14 +34,14 @@ class HomePage extends StatelessWidget {
                 children: [
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.camera_alt, 'ENVIAR INCIDENCIA','incidenceType', fondoApp, Colors.white),
-                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'MIS INCIDENCIAS','incidenceHistorical', fondoApp, Colors.grey[300]),
+                      _crearBotonRedondeado(context,Colors.white, Icons.camera_alt, 'ENVIAR INCIDENCIA',IncidenceTypesPage.routeName, fondoApp, Colors.white),
+                      _crearBotonRedondeado(context,Colors.white, Icons.list, 'MIS INCIDENCIAS',IncidencesHistoricalPage.routeName, fondoApp, Colors.grey[300]),
                     ] //rgb(92, 0, 122)
                   ),
                   TableRow(
                     children: [
-                      _crearBotonRedondeado(context,Colors.white, Icons.info_outline, 'NOTICIAS','news', fondoApp, Colors.grey[300]),
-                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS','interestPoints', fondoApp,Colors.grey[350])
+                      _crearBotonRedondeado(context,Colors.white, Icons.info_outline, 'NOTICIAS',NewsPage.routeName, fondoApp, Colors.grey[300]),
+                      _crearBotonRedondeado(context,Colors.white, Icons.map, 'PUNTOS DE INTERÉS',InterestPointsPage.routeName, fondoApp,Colors.grey[350])
                     ]
                   )
                 ],

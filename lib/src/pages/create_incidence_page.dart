@@ -16,6 +16,7 @@ import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 class CreateIncidencePage extends StatefulWidget {
+  static final String routeName = 'createIncidence';
   @override
   _CreateIncidencePageState createState() => _CreateIncidencePageState();
 }
@@ -241,8 +242,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
     bool internet = await checkInternetConnection();
     
     if (internet){
-      bool servidor = await checkServerConnection();
-      if(servidor){
+      
         body = SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(15.0),
@@ -264,9 +264,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
           ),
         ),
       );
-      } else{
-        body=noConnectionToServer(context, 'createIncidence');
-      }
     } else{
       body=noConnectionToInternet();
     }

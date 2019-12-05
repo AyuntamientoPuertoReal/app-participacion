@@ -11,6 +11,7 @@ import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
 class NewsPage extends StatefulWidget {
+  static final String routeName = 'news';
 
   @override
   _NewsPageState createState() => _NewsPageState();

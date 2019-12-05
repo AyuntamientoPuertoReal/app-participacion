@@ -1,9 +1,10 @@
+import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
+import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/models/interest_points_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 
 
 Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres){
@@ -28,7 +29,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
 
     body= InkWell(
       onTap: (){
-        Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: interestPoint);
+        Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: interestPoint);
       },
       child: Card(
       elevation: 10.0,
@@ -41,11 +42,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
               child: ListTile(
                 leading: FadeInImage(
                 placeholder: AssetImage('assets/img/jar-loading.gif'),
-                image: AdvancedNetworkImage(
-                  interestPoint.imageUrl,
-                  useDiskCache: true,
-                  cacheRule: CacheRule(maxAge: const Duration(days: 7))
-                ),
+                image: NetworkImage(interestPoint.imageUrl),
                 fit: BoxFit.fitWidth,
                 ),
                 title: Text(""),
@@ -84,7 +81,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
                     ],
                   ),
                   onPressed: (){
-                    Navigator.pushNamed(context, 'puntoInteresDetalle', arguments: interestPoint);
+                    Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: interestPoint);
                 },
               ),
             ],
@@ -94,7 +91,7 @@ Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres)
     ),
   );
       } else{
-        body=noConnectionToServer(context,"interestpoints");
+        body=noConnectionToServer(context,InterestPointsPage.routeName);
       }
     } else{
       body=noConnectionToInternet();
