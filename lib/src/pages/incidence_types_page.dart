@@ -142,7 +142,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         ]
        );
       } else{
-        body=noConnectionToServer(context,'incidenceType');
+        body=noConnectionToServer(context,IncidenceTypesPage.routeName);
       }
     } else{
       body=noConnectionToInternet();
