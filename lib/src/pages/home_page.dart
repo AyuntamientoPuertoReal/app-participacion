@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 
 class HomePage extends StatelessWidget {
-  
   static final String routeName = 'home';
   final colorSecundario = Color.fromRGBO(183, 133, 0, 1);
 

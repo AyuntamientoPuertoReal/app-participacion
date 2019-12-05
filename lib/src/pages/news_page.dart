@@ -127,7 +127,7 @@ class _NewsPageState extends State<NewsPage> {
         noticiaBloc.cargarNoticia();
         body = _crearListadoNoticias(noticiaBloc);
       } else{
-        body=noConnectionToServer(context,NewsPage.routeName);
+        body=noConnectionToServer(context,'news');
       }
     } else{
       body=noConnectionToInternet();

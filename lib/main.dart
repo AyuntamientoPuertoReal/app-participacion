@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
         title: 'Participación Ciudadana',
         initialRoute: rutaInicial,
         routes: {
+
           HomePage.routeName                     : (BuildContext context) => HomePage(),
           CreateIncidencePage.routeName          : (BuildContext context) => CreateIncidencePage(),
           NewsPage.routeName                     : (BuildContext context) => NewsPage(),

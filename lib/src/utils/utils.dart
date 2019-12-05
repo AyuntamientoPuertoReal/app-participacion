@@ -115,3 +115,21 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     }
     return status;
   }
+
+Future<bool> checkServerConnectionPrueba2() async {
+    bool status;
+    try {
+      //Conexión a Servidor
+      final response = await http.get(urlServer);
+      // Comprueba si el servidor está up
+      if (response.statusCode == 200) {
+        // Devuelve true si está up el servidor y envía el status 200, que en http significa OK
+        status=true;
+      }
+    } on SocketException catch (_) {
+      // Devuelve false porque ha recibido algún error, por lo que no está funcionando el server
+      status=false;
+    }
+    return status;
+    
+  }

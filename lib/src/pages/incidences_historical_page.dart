@@ -113,7 +113,9 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                       ),
                       onTap: (){
 
+
                         Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data[index]);
+
                       },
                     ),
                     
@@ -124,7 +126,9 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
                   ],
                 ),
                 onTap: (){
+
                   Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data[index]);
+
                 },
               );
           },

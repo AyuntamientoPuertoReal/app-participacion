@@ -87,7 +87,9 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
                   ]
                 ),
                 onTap: (){
+
                   Navigator.pushNamed(context, CreateIncidencePage.routeName, arguments: f);
+
                 },
               )
             );
@@ -140,7 +142,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
         ]
        );
       } else{
-        body=noConnectionToServer(context,IncidenceTypesPage.routeName);
+        body=noConnectionToServer(context,'incidenceType');
       }
     } else{
       body=noConnectionToInternet();
