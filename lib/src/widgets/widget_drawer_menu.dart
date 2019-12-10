@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MenuLateralWidget extends StatelessWidget {
+class DrawerMenu extends StatelessWidget {
   //final fondo = Color.fromRGBO(162, 0, 125, 1.0);
   
   @override

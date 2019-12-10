@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
   Estos estados son así recibidos mediante JSON
 */
 //Pone el estado con colores
-Widget estado(String estado){
+Widget incidenceStatus(String estado){
   
   Color color;
   Color colorTexto=Colors.white;
@@ -40,7 +40,7 @@ Widget estado(String estado){
 }
 
 //Pone solo el texto del estado
-Widget estado2(String estado){
+Widget incidenceStatusNoColor(String estado){
   
   Color color;
   Color colorTexto=Colors.white;

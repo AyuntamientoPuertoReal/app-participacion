@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
-class NoInicioPage extends StatelessWidget {
+class NoConnectionPage extends StatelessWidget {
 
 static final String routeName = 'noInicio';
 

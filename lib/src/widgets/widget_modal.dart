@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void mostrarModal(BuildContext context, String mensaje){
+void showModal(BuildContext context, String mensaje){
     showDialog(
       context: context,
       barrierDismissible: true,

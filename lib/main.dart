@@ -9,7 +9,7 @@ import 'package:appparticipacion/src/pages/news_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/incidence_types_page.dart';
-import 'package:appparticipacion/src/pages/no_inicio_page.dart';
+import 'package:appparticipacion/src/pages/no_connection_page.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:connectivity/connectivity.dart';
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           IncidenceTypesPage.routeName           : (BuildContext context) => IncidenceTypesPage(),
           InterestPointsPage.routeName           : (BuildContext context) => InterestPointsPage(),
           HelpPage.routeName                     : (BuildContext context) => HelpPage(),
-          NoInicioPage.routeName                 : (BuildContext context) => NoInicioPage(),
+          NoConnectionPage.routeName                 : (BuildContext context) => NoConnectionPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
