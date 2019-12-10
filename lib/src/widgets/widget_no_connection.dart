@@ -46,18 +46,20 @@ Widget noConnectionToServer(BuildContext context, String page){
   );
 }
 
-Widget cancelConexion(BuildContext context){
+Widget cancelConnection(BuildContext context){
   return Container(
     padding: EdgeInsets.all(20),
     child:Column(
       children: <Widget>[
+        Expanded(child: Container(),),
         Container(
           child: Center(
             child: CircularProgressIndicator(),
           ),
         ),
+        SizedBox(height: 30,),
         Text('Conectando con el servidor...', style: TextStyle(fontSize: 18),),
-        SizedBox(height: 15,),
+        SizedBox(height: 30,),
         RaisedButton(
           padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
           child: Text('Cancelar', style: TextStyle(color: Colors.white, fontSize: 18),),
@@ -65,7 +67,8 @@ Widget cancelConexion(BuildContext context){
           onPressed: (){
             Navigator.pushReplacementNamed(context, HomePage.routeName);
           },
-        )
+        ),
+        Expanded(child: Container(),),
       ],
     )
   );

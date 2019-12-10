@@ -2,7 +2,7 @@ import 'package:appparticipacion/src/pages/incidence_types_page.dart';
 import 'package:appparticipacion/src/pages/incidences_historical_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/news_page.dart';
-import 'package:appparticipacion/src/widgets/menu_lateral.dart';
+import 'package:appparticipacion/src/widgets/widget_drawer_menu.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   final fondoApp = Color.fromRGBO(162, 0, 125, 0.75);
 
     return Scaffold(
-      drawer: MenuLateralWidget(),
+      drawer: DrawerMenu(),
       appBar: AppBar(
         title: Text(''),
       ),

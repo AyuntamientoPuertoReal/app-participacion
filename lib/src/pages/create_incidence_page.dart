@@ -58,7 +58,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.help, size: 25),
-            onPressed: () => mostrarModal(context, mensaje)
+            onPressed: () => showModal(context, mensaje)
           ),
           IconButton(
             icon: Icon(Icons.camera_alt, size: 25),
@@ -176,11 +176,11 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       Navigator.pushReplacementNamed(context, HomePage.routeName);
 
       } else {
-        mostrarModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
+        showModal(context,'La incidencia no se ha guardado. Inténtelo de nuevo más tarde.');
       }
 
     } else {   
-      mostrarModal(context,'La incidencia no se ha enviado porque no tiene conexión a Internet. Inténtelo de nuevo más tarde.');
+      showModal(context,'La incidencia no se ha enviado porque no tiene conexión a Internet. Inténtelo de nuevo más tarde.');
     }
   
   }

@@ -2,7 +2,7 @@ import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_trackings_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_trackings_model.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
-import 'package:appparticipacion/src/widgets/widget_estado.dart';
+import 'package:appparticipacion/src/widgets/widget_incidence_status.dart';
 import 'package:appparticipacion/src/widgets/widget_iframe.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
@@ -68,7 +68,7 @@ Widget pintaMensajeAyuntamiento(BuildContext context,IncidenceTrackingsBloc segu
                       child: Text(fechaFormateada, style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
                     ),
                     SizedBox(width: 5,),
-                    estado2('1')
+                    incidenceStatusNoColor('1')
                   ] 
                     
                 ),
@@ -106,7 +106,7 @@ Widget pintaMensajeAyuntamiento(BuildContext context,IncidenceTrackingsBloc segu
                       child: Text(fechaFormateada, style: TextStyle( fontSize: 16, color: Colors.white, fontWeight: FontWeight.w800),)
                     ),
                     SizedBox(width: 5,),
-                    estado2(f.status.toString())
+                    incidenceStatusNoColor(f.status.toString())
                   ] 
                     
                 ),
@@ -187,7 +187,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
                     children: <Widget>[  
                       Text('Estado actual: '),
                       SizedBox(width: 2,),
-                      estado(incidence.estado.toString()),
+                      incidenceStatus(incidence.estado.toString()),
                       Expanded(
                         child: Container(),
                       ),
@@ -229,7 +229,7 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
             Divider(thickness: 3),
             SizedBox(height: 10),
             Text('LOCALIZACIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
-            retornarIframe(context, incidence.latitud, incidence.longitud),
+            createIframe(context, incidence.latitud, incidence.longitud),
             SizedBox(height: 10),          
           ],
         ),

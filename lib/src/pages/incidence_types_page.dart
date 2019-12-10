@@ -58,7 +58,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
       
       body: FutureBuilder(
         future: serverDataChecker(context),
-        initialData: cancelConexion(context),
+        initialData: cancelConnection(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.data;
         },
@@ -100,18 +100,26 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
             );
           });
 
-          return new Expanded(
-            child: ListView(
-              children: listaTipos.toList(),
-            ),
+          return Column(
+            children: <Widget>[
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(14),
+                child: Text('Elige el tipo de incidencia que quieres enviar al Ayuntamiento: ', style: TextStyle(fontSize: 20),)
+              ),
+              SizedBox(height: 10),
+              Divider(
+                thickness: 0.0,
+              ),
+              new Expanded(
+                child: ListView(
+                  children: listaTipos.toList(),
+                ),
+              )
+            ]
           );
-
         } else{
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return cancelConnection(context);
         }
       }
     );
@@ -127,20 +135,8 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
       if(servidor){
         final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
         tipoIncidenciaBloc.cargarTipoIncidencia();
-        body=Column(
-          children: <Widget>[
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.all(14),
-              child: Text('Elige el tipo de incidencia que quieres enviar al Ayuntamiento: ', style: TextStyle(fontSize: 20),)
-            ),
-            SizedBox(height: 10),
-            Divider(
-              thickness: 0.0,
-            ),
-            _cargarTiposIncidencias(context,tipoIncidenciaBloc),
-        ]
-       );
+        body=_cargarTiposIncidencias(context,tipoIncidenciaBloc);
+       
       } else{
         body=noConnectionToServer(context,IncidenceTypesPage.routeName);
       }
@@ -149,5 +145,3 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
     }
     return body;
   }
-
-
