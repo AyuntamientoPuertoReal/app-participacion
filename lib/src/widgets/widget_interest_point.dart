@@ -7,7 +7,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
 
-Widget crearPuntoInteres(BuildContext context, InterestPointsModel puntoInteres){
+Widget createInterestPoint(BuildContext context, InterestPointsModel puntoInteres){
 
   return FutureBuilder(
         future: serverDataChecker(context, puntoInteres),

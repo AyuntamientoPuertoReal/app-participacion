@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/interest_points_bloc.dart';
-import 'package:appparticipacion/src/widgets/widget_puntos_interes.dart';
+import 'package:appparticipacion/src/widgets/widget_interest_point.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
@@ -48,7 +48,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
           ),
           body: FutureBuilder(
             future: serverDataChecker(context),
-            initialData: cancelConexion(context),
+            initialData: cancelConnection(context),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.data;
             },
@@ -77,9 +77,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
               },
             );
           }else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return cancelConnection(context);
           }
     
         },
@@ -110,7 +108,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
     
       _crearPuntoInteres(BuildContext context, data) {
     
-        return crearPuntoInteres(context, data);
+        return createInterestPoint(context, data);
     
       }
     

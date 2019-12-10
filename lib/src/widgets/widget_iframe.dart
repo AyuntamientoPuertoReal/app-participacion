@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-Widget retornarIframe(BuildContext context, String latitud, String longitud){
+Widget createIframe(BuildContext context, String latitud, String longitud){
   double width=MediaQuery.of(context).size.width * 0.95;
 
  return Container(

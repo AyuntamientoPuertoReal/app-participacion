@@ -5,7 +5,7 @@ import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:appparticipacion/src/widgets/widget_noticia.dart';
+import 'package:appparticipacion/src/widgets/widget_news.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
@@ -80,7 +80,7 @@ class _NewsPageState extends State<NewsPage> {
       backgroundColor: Color.fromRGBO(231, 242, 252, 1.0),
       body: FutureBuilder(
         future: serverDataChecker(context),
-        initialData: cancelConexion(context),
+        initialData: cancelConnection(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.data;
         },
@@ -108,7 +108,7 @@ class _NewsPageState extends State<NewsPage> {
             }
         );
       }else {
-        return Center(child: CircularProgressIndicator());
+        return cancelConnection(context);
       }
       },
     );
