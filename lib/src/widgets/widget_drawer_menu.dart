@@ -1,3 +1,4 @@
+import 'package:appparticipacion/src/pages/help_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -51,7 +52,7 @@ class DrawerMenu extends StatelessWidget {
            leading: Icon(Icons.help, color: fondo),
            title: Text('Ayuda'),
            onTap: (){
-             Navigator.pushNamed(context, 'ayudaPage');
+             Navigator.pushNamed(context, HelpPage.routeName);
            },
          ),
          Divider(
