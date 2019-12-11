@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/bloc/incidence_types_bloc.dart';
 import 'package:appparticipacion/src/pages/create_incidence_page.dart';
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
+import 'package:appparticipacion/src/widgets/widget_modal.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
 
   bool status;
   
-
+  String mensaje='Elige en esta pantalla el tipo de incidencia que quieres enviar al Ayuntamiento.';
 
   var _connectionStatus = 'Unknown';
   Connectivity connectivity;
@@ -54,6 +55,12 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Nueva Incidencia'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help, size: 25),
+            onPressed: () => showModal(context, mensaje)
+          ),  
+        ],
       ),
       
       body: FutureBuilder(
