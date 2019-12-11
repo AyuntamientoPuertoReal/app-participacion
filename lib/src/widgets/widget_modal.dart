@@ -6,13 +6,17 @@ void showModal(BuildContext context, String mensaje){
       barrierDismissible: true,
       builder: (context){
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          contentPadding: EdgeInsets.all(14),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           title:Text('Ayuda'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(mensaje),
-            ],
+          content: Scrollbar(
+            child: SingleChildScrollView(
+              child: Column( 
+                children:<Widget>[
+                  Text(mensaje),
+                ],
+              ),
+            ),
           ),
           actions: <Widget>[
             FlatButton(
