@@ -34,18 +34,17 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
     final iv = IV.fromLength(16);
 
     final encriptedPhoneId = phoneIdentifierEncryption(devideId, key, iv);
-
-    encryptedString = encriptedPhoneId;
-
+   
+    encryptedString = encriptedPhoneId.replaceAll('+','0');
+    encryptedString = encryptedString.replaceAll('/', '1');
     int id = await _comprobarTokenBd(encryptedString);
 
     if(id != null){
       prefs.idToken = id.toString();
     } else{
-    phoneModel.phoneIdentifier=encriptedPhoneId;
-    String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
-  
-    prefs.idToken = identificador;
+      phoneModel.phoneIdentifier=encryptedString;
+      String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
+      prefs.idToken = identificador;
     }
   }
   
