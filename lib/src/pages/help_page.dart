@@ -26,15 +26,19 @@ class HelpPage extends StatelessWidget {
                   ),
                 SizedBox(height: 15),
                 Container(
-                  child: Text("Esta herramienta permite a los ciudadanos y ciudadanas informar al Ayuntamiento de Puerto Real de las distintas incidencias que sean detectadas en el municipio. \n\nEl ayuntamiento informará sobre las actuaciones que se lleven a cabo para la resolucion de dichas incidencias.\n\nAdicionalmente, podrá informarse sobre las noticias actuales sobre Participación Ciudadana, así como sobre los Puntos de interés del municipio.\n", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500))
+                  child: Text("Esta herramienta permite a los ciudadanos y ciudadanas informar al Ayuntamiento de Puerto Real de las distintas incidencias que sean detectadas en el municipio.\n\nEl ayuntamiento informará sobre las actuaciones que se lleven a cabo para la resolucion de dichas incidencias.\n\n También podrá informarse sobre las noticias actuales sobre Participación Ciudadana, así como sobre los Puntos de interés del municipio.\n", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500))
                   ),
-                SizedBox(height: 5),
+                SizedBox(height: 15),
+                Container(
+                  child: Text("Para acceder a cada una de estas funcionalidades tiene disponible los siguientes accesos directos:", style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500))
+                ),
+                SizedBox(height: 15),
                  Image(
                   image: AssetImage("assets/img/botones.png"),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("A continuación le vamos a explicar todo lo que puede hacer con la Aplicación:\n", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500))
+                  child: Text("¿Qué hace cada uno de estos accesos directos?", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500))
                   ),
                 SizedBox(height: 10),
                 Container(
@@ -44,7 +48,7 @@ class HelpPage extends StatelessWidget {
                 SizedBox(height: 5),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("Podrá crear una incidencia que se enviará al ayuntamiento para su posterior arreglo.", style: TextStyle(fontSize: 15))
+                  child: Text("Aquí es donde podrá acceder a la herramienta que le permitirá enviar una incidencia al ayuntamiento.", style: TextStyle(fontSize: 15))
                   ),
                 Container(
                   child: Center(
@@ -82,12 +86,12 @@ class HelpPage extends StatelessWidget {
                 SizedBox(height: 10),
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: Text("MIS INCIDENCIA:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Theme.of(context).primaryColor)),
+                  child: Text("MIS INCIDENCIAS:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Theme.of(context).primaryColor)),
                 ),
                 SizedBox(height: 5),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("Aqui podrá ver todas las incidencias que haya creado hasta el momento junto al estado de las mismas. Además de que si selecciona una incidencia podra ver todo el seguimiento del ayuntamiento sobre la misma.", style: TextStyle(fontSize: 15))
+                  child: Text("Cada una de las incidencias que envíe al ayuntamiento estarán aquí reflejadas.\nEl ayuntamiento le mantendrá informado sobre el estado de las mismas, y le informará sobre las actuaciones que se realicen.", style: TextStyle(fontSize: 15))
                   ),
                 SizedBox(height: 10),
                 Container(
@@ -97,8 +101,9 @@ class HelpPage extends StatelessWidget {
                 SizedBox(height: 5),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("En esta pantalla se mostraran todas las noticias relacionadas con Participación Ciudadana", style: TextStyle(fontSize: 15))
+                  child: Text("En este apartado se van a mostrar noticias relacionadas con Participación Ciudadana en el municipio.", style: TextStyle(fontSize: 15))
                   ),
+                  SizedBox(height: 5),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text("PUNTOS DE INTERÉS:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Theme.of(context).primaryColor)),
@@ -106,17 +111,8 @@ class HelpPage extends StatelessWidget {
                 SizedBox(height: 5),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("Esta pantalla contiene una lista de puntos de interés de Puerto Real, Seleccionando un punto de interés en concreto podra ver información sobre el mismo y podra acceder a un enlace a Google Maps para poder ver su localización", style: TextStyle(fontSize: 15))
+                  child: Text("Se muestra una lista de puntos de interés de Puerto Real.\nPodrá acceder a información relativa a cada Punto de interés y mostrar su localización en Google Maps.", style: TextStyle(fontSize: 15))
                   ),
-                // Container(
-                //   padding: EdgeInsets.all(10),
-                //   child: Center(
-                //     child: Text("\n"
-                //     +"\n- Podrá ver el historial de todas las incidencias que haya hecho hasta el momento\n"
-                //     +"\n- Podrá ver todas las noticias que el Ayuntamiento escriba directamente en su móvil\n"
-                //     +"\n- Tendrá a su disposición una lista de puntos de interés de Puerto real con información y un enlace para como llegar", style: TextStyle(fontSize: 15)),
-                //   ),
-                // ),
               ],
             ),
            ),
