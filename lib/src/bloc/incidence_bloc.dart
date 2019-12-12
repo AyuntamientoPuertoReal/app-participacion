@@ -22,7 +22,7 @@ class IncidenceBloc {
 
   void cargartickets() async {
 
-   final tickets = await _ticketProvider.cargarTicketsCiudadanos();
+   final tickets = await _ticketProvider.loadIncidences();
    _ticketController.sink.add(tickets);
 
   }
