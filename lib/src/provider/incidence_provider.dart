@@ -52,7 +52,7 @@ class IncidenceProvider {
     }
   }
 
-  Future<List<IncidenceModel>> cargarTicketsCiudadanos() async {
+  Future<List<IncidenceModel>> loadIncidences() async {
 
     String prefToken = prefs.idToken; 
     final String _urlHistorical = utils.url+"incidences_historical/$prefToken";
