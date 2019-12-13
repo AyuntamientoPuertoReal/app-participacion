@@ -19,6 +19,7 @@ import 'package:flutter/services.dart';
 String rutaInicial='home';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final prefs = new UserPreferences();
   await prefs.initPrefs();
