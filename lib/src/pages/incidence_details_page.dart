@@ -56,7 +56,7 @@ Widget pintaMensajeAyuntamiento(BuildContext context,IncidenceTrackingsBloc segu
         var fecha=DateTime.parse(ticket.fechaCreacion);
         var formatter = new DateFormat('dd/MM/yyyy');
         String fechaFormateada = formatter.format(fecha);
-        double espacioCelda=90;
+        double espacioCelda=100;
         Widget enviada= Container(
             padding: EdgeInsets.all(10),
             child: Column(
