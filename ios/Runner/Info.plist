@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Needed to access location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Needed to access the camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Needed to access location</string>
 	<key>CFBundleDevelopmentRegion</key>
