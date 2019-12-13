@@ -40,26 +40,26 @@ final _phoneIdentifierBloc = new PhoneIdentifierBloc();
 
 
     static IncidenceBloc ticketbloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._ticketBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._ticketBloc;
     }
 
     static NewsBloc noticiaBloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._noticiaBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._noticiaBloc;
     }
 
     static InterestPointsBloc puntoInteresBloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._puntosInteresBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._puntosInteresBloc;
     }
 
     static TipoIncidenciaBloc tipoIncidenciaBloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._tipoIncidenciaBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._tipoIncidenciaBloc;
     }
 
     static IncidenceTrackingsBloc seguimientoTicketBloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._seguimientoTicketBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._seguimientoTicketBloc;
     }
     static PhoneIdentifierBloc phoneIdentifierBloc ( BuildContext context ) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider)._phoneIdentifierBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._phoneIdentifierBloc;
     }
     
 
