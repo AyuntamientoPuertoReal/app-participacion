@@ -6,57 +6,50 @@ import 'package:intl/intl.dart';
    
 Widget  defaultNews(BuildContext context, NewsModel noticia) {
 
-    var fecha=DateTime.parse(noticia.date);
-    var formatter = new DateFormat('dd/MM/yyyy hh:mm');
-    String fechaFormateada = formatter.format(fecha);
-          
-    return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
-      },
-      child: Card(
-        elevation: 10.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-              height: 115,
-              child: ListTile(
-                leading: FadeInImage(
-                  image: NetworkImage(noticia.imageUrl),
-                  placeholder: AssetImage('assets/img/jar-loading.gif'),
-                  fit: BoxFit.fitWidth,
-                  width: 60,
-                  height: 120,
-                ),
-                title: Text(noticia.title),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(fechaFormateada),
-                    SizedBox(height: 15.0),
-                    Expanded(child: Text(noticia.description, maxLines: 2, overflow: TextOverflow.ellipsis,)),
-                  ],
-                ),
-              ),
+  var fecha=DateTime.parse(noticia.date);
+  var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+  String fechaFormateada = formatter.format(fecha);
+        
+  return InkWell(
+    onTap: (){
+      Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
+    },
+    child: Card(
+      elevation: 10.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          SizedBox(height: 8),
+          ListTile(
+            leading: FadeInImage(
+              image: NetworkImage(noticia.imageUrl),
+              placeholder: AssetImage('assets/img/jar-loading.gif'),
+              fit: BoxFit.fitWidth,
+              width: 60,
+              height: 120,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-              FlatButton(
-                child: Text('Ver Noticia', style: TextStyle(color: Colors.blue),),
-                onPressed: (){
-                  Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
-                },
-              ),
-            ],
+            title: Text(noticia.title, style: TextStyle( fontWeight: FontWeight.w800, fontSize: 16),),
+            subtitle: Text(fechaFormateada),
+          ),
+          SizedBox(height: 5,),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Text(noticia.description, style: TextStyle(fontSize: 15))
+          ),
+          Container(
+            alignment: Alignment.centerRight,
+            child: FlatButton(
+              child: Text('Ver Noticia', style: TextStyle(color: Colors.blue),),
+              onPressed: (){
+                Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
+              },
             ),
-          ],
-        ),
-      ),
-    );
-          
+          ),
+        ],
+      )
+    ),
+  );
 }
 
 Widget enlargedNews(BuildContext context, NewsModel noticia){
@@ -66,45 +59,29 @@ Widget enlargedNews(BuildContext context, NewsModel noticia){
   String fechaFormateada = formatter.format(fecha);
 
   final card = Container(
-    padding: EdgeInsets.all(10),
+    padding: EdgeInsets.all(15),
     child: Column(
       children: <Widget>[
-        SizedBox(height: 10,),
-        Text(noticia.title, style: TextStyle(fontSize: 18), maxLines: 3, textAlign: TextAlign.center,),
+        Text(noticia.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800), textAlign: TextAlign.center,),
         SizedBox(height: 10,),
         FadeInImage(
-            image: NetworkImage(noticia.imageUrl),
-            placeholder: AssetImage('assets/img/jar-loading.gif'),
-            fadeInDuration: Duration(seconds: 4 ),
+          image: NetworkImage(noticia.imageUrl),
+          placeholder: AssetImage('assets/img/jar-loading.gif'),
+          fadeInDuration: Duration(seconds: 4 ),
         ),
-        Container(
-          height: 100,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              // Text(noticia.title, style: TextStyle(fontSize: 18)),
-              SizedBox(height: 15.0),
-              Text(fechaFormateada),
-              SizedBox(height: 15.0),
-              Expanded(child: Text(noticia.description, maxLines: 2, overflow: TextOverflow.ellipsis,))
-            ],
-            ),
+        Text(fechaFormateada),
+        SizedBox(height: 15,),
+        Text(noticia.description, style: TextStyle(fontSize: 15),),
+        Center(
+          child: FlatButton(
+            child: Text('Ver Noticia', style: TextStyle(color: Colors.blue),),
+            onPressed: (){
+              Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
+            },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-            FlatButton(
-              child: Text('Ver Noticia', style: TextStyle(color: Colors.blue)),
-              onPressed: (){
-                Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
-                },
-            ),
-          ],
         ),
       ],
-    ),
-
+    )
   );
 
   return InkWell(
@@ -124,15 +101,8 @@ Widget enlargedNews(BuildContext context, NewsModel noticia){
             )
         ]
       ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-          child: card,
-        ),
+        child: card,
     ),
   );
 
 }
-
-
-
-
