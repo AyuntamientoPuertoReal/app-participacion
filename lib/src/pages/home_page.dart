@@ -2,6 +2,7 @@ import 'package:appparticipacion/src/pages/incidence_types_page.dart';
 import 'package:appparticipacion/src/pages/incidences_historical_page.dart';
 import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/news_page.dart';
+import 'package:appparticipacion/src/utils/sizeConfig.dart';
 import 'package:appparticipacion/src/widgets/widget_drawer_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  SizeConfig().init(context);
   final fondoApp = Color.fromRGBO(162, 0, 125, 0.75);
 
     return Scaffold(
@@ -72,7 +74,7 @@ class HomePage extends StatelessWidget {
 
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo,  Color fondoIcono){ 
     return Container(
-      height: 100.0,
+      height: SizeConfig.blockSizeVertical * 15,
       width: double.infinity,
       margin: EdgeInsets.all(6.0),
       decoration: BoxDecoration(
