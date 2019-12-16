@@ -4,6 +4,7 @@ import 'package:appparticipacion/src/pages/interest_points_page.dart';
 import 'package:appparticipacion/src/pages/news_page.dart';
 import 'package:appparticipacion/src/utils/sizeConfig.dart';
 import 'package:appparticipacion/src/widgets/widget_drawer_menu.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 
@@ -96,7 +97,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 5.0,),
               Icon(icono, color: fondoIcono, size:40.0),
-              Text(texto, style: TextStyle(color: color, fontSize: 16),textAlign: TextAlign.center,),
+              AutoSizeText(texto, style: TextStyle(color: color, fontSize: 16),textAlign: TextAlign.center, minFontSize: 12,),
               SizedBox(height: 3.0,),
             ],
           ),
