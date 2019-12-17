@@ -7,7 +7,8 @@ import 'package:intl/intl.dart';
 
 Widget historicalIncidences(BuildContext context, IncidenceModel data){
   var fecha=DateTime.parse(data.fechaCreacion);
-  var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+  fecha=fecha.toLocal();
+  var formatter = new DateFormat('dd/MM/yyyy HH:mm');
   String fechaFormateada = formatter.format(fecha);
 
   return InkWell(
@@ -38,10 +39,7 @@ Widget historicalIncidences(BuildContext context, IncidenceModel data){
             ],
           ),
           onTap: (){
-
-
             Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data);
-
           },
         ),
         
