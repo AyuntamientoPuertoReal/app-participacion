@@ -34,10 +34,11 @@ dependencies:
   encrypt:
   flutter_udid:
   flutter_icons: ^0.3.1
-  webview_flutter: ^0.1.2
+  webview_flutter:
   intl: ^0.16.0
   dio: ^3.0.6
   connectivity: ^0.4.5+6
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -24,17 +24,17 @@ class DrawerMenu extends StatelessWidget {
             ),
          ),
          ListTile(
-           leading: Icon(MaterialCommunityIcons.getIconData('web'), color: fondo),
-           title: Text('Web Participación Ciudadana'),
+           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
+           title: Text('Web Ayuntamiento'),
            onTap: (){
-             _launchUrl('http://participacion.puertoreal.es/');
+             _launchUrl('http://www.puertoreal.es/');
            },
          ),
          ListTile(
-           leading: Icon(MaterialCommunityIcons.getIconData('web'), color: fondo),
-           title: Text('Web Ayuntamiento'),
+           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
+           title: Text('Web Participación Ciudadana'),
            onTap: (){
-             _launchUrl('http://puertoreal.es/');
+             _launchUrl('http://participacion.puertoreal.es/');
            },
          ),
          ListTile(
