@@ -56,32 +56,35 @@ class HelpPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    _crearCirculo(context,"1"),
-                    SizedBox(width: 70),
-                    _crearCirculo(context,"2"),
-                    SizedBox(width: 70),
-                    _crearCirculo(context,"3"),
-                  ],
-                ),
-                Wrap(
-                  direction: Axis.vertical,
-                  children:<Widget>[ 
-                    Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(width: 10),
-                      _crearTexto("Elija un tipo de incidencia"),
-                      SizedBox(width: 40),
-                      _crearTexto("Tome su foto y ponga una descripción"),
-                      SizedBox(width: 50),
-                      _crearTexto("Envie su incidencia"),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: <Widget>[
+                //     _crearCirculo(context,"1"),
+                //     SizedBox(width: 70),
+                //     _crearCirculo(context,"2"),
+                //     SizedBox(width: 70),
+                //     _crearCirculo(context,"3"),
+                //   ],
+                // ),
+                // Wrap(
+                //   direction: Axis.vertical,
+                //   children:<Widget>[ 
+                //     Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: <Widget>[
+                //       SizedBox(width: 10),
+                //       _crearTexto("Elija un tipo de incidencia"),
+                //       SizedBox(width: 40),
+                //       _crearTexto("Tome su foto y ponga una descripción"),
+                //       SizedBox(width: 50),
+                //       _crearTexto("Envie su incidencia"),
 
-                      ],
-                    ),
-                  ],
+                //       ],
+                //     ),
+                //   ],
+                // ),
+                Image(
+                  image: AssetImage("assets/img/circulos.png"),
                 ),
                 SizedBox(height: 10),
                 Container(
