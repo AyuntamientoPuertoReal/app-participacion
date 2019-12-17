@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
         children:<Widget>[
           _fondoApp(),
           Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(height: 20,),
               Image(
@@ -75,7 +76,7 @@ class HomePage extends StatelessWidget {
 
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo,  Color fondoIcono){ 
     return Container(
-      height: SizeConfig.blockSizeVertical * 15,
+      height: SizeConfig.blockSizeVertical * 12,
       width: double.infinity,
       margin: EdgeInsets.all(6.0),
       decoration: BoxDecoration(
