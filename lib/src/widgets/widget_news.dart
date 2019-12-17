@@ -7,9 +7,10 @@ import 'package:intl/intl.dart';
 Widget  defaultNews(BuildContext context, NewsModel noticia) {
 
   var fecha=DateTime.parse(noticia.date);
-  var formatter = new DateFormat('dd/MM/yyyy hh:mm');
+  fecha=fecha.toLocal();
+  var formatter = new DateFormat('dd/MM/yyyy HH:mm');
   String fechaFormateada = formatter.format(fecha);
-        
+
   return InkWell(
     onTap: (){
       Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);

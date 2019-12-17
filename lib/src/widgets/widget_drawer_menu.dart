@@ -38,7 +38,7 @@ class DrawerMenu extends StatelessWidget {
            },
          ),
          ListTile(
-           leading: Icon(MaterialCommunityIcons.getIconData("web"), color: fondo),
+           leading: Icon(MaterialCommunityIcons.getIconData('web'), color: fondo),
            title: Text('Web Decide Puerto Real'),
            onTap: (){
              _launchUrl('http://decide.puertoreal.es/');

@@ -37,6 +37,7 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
    
     encryptedString = encriptedPhoneId.replaceAll('+','0');
     encryptedString = encryptedString.replaceAll('/', '1');
+
     int id = await _comprobarTokenBd(encryptedString);
 
     if(id != null){
