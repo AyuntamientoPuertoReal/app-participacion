@@ -66,7 +66,7 @@ Widget createInterestPoint(BuildContext context, InterestPointsModel puntoIntere
                   color: Colors.blue,
                   textColor: Colors.white,
                   label: Text('Ver Mapa', style: TextStyle(fontSize: 15)),
-                  icon: Icon(FontAwesome.getIconData('glove')),
+                  icon: Icon(FontAwesome.getIconData('globe')),
                   onPressed: (){
                       openMap(interestPoint.latitude, interestPoint.longitude);
                       },
