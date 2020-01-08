@@ -49,7 +49,7 @@ Widget createInterestPoint(BuildContext context, InterestPointsModel puntoIntere
                 subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(interestPoint.name, style: TextStyle(fontSize: 16, color: Colors.black),),
+                  Text(interestPoint.name, style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16, color: Colors.black),),
                 ],
                 ),
               ),

@@ -49,7 +49,7 @@ class InterestPointDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.all(20),
                   child: Column(
                   children: <Widget>[
-                  Text(interestPoint.name),
+                  Text(interestPoint.name, style: TextStyle( fontWeight: FontWeight.w800, fontSize: 18)),
                   SizedBox(height: 20),
                   Text(interestPoint.description),
                   SizedBox(height: 30),
