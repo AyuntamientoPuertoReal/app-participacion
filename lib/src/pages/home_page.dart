@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
 
   Widget _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String page, Color fondo,  Color fondoIcono){ 
     return Container(
-      height: SizeConfig.blockSizeVertical * 12,
+      height: SizeConfig.blockSizeVertical * 13.2,
       width: double.infinity,
       margin: EdgeInsets.all(6.0),
       decoration: BoxDecoration(
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 5.0,),
               Icon(icono, color: fondoIcono, size:40.0),
-              AutoSizeText(texto, style: TextStyle(color: color, fontSize: 16),textAlign: TextAlign.center, minFontSize: 12,),
+              AutoSizeText(texto, style: TextStyle(color: color, fontSize: 14),textAlign: TextAlign.center, minFontSize: 12,),
               SizedBox(height: 3.0,),
             ],
           ),
