@@ -14,6 +14,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class CreateIncidencePage extends StatefulWidget {
   static final String routeName = 'createIncidence';
@@ -211,9 +212,26 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       latitud = position.latitude.toString();
       longitud = position.longitude.toString();
       ticketModel.coordenadas = coordenada;
+
+      foto = await testCompressAndGetFile(foto, foto.path);
+
+      print(foto.lengthSync());
       _fotoSeleccionada = true;
     }
     setState(() {});
+  }
+
+  Future<Directory> getTemporaryDirectory() async {
+    return Directory.systemTemp;
+  }
+
+  Future<File> testCompressAndGetFile(File file, String targetPath) async {
+    var result = await FlutterImageCompress.compressAndGetFile(
+        file.absolute.path, targetPath,
+        quality: 88,
+        minWidth: 1200,
+      );
+    return result;
   }
 
   Widget _mostrarFoto() {
