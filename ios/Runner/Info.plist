@@ -6,8 +6,12 @@
 	<string>Needed to access location</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Needed to access the camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Needed to accesss location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Needed to access location</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
