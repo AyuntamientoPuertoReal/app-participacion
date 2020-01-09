@@ -230,7 +230,11 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
             Divider(thickness: 3),
             SizedBox(height: 10),
             Text('LOCALIZACIÓN',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
-            createIframe(context, incidence.latitud, incidence.longitud),
+            Container(padding: EdgeInsets.all(5), child: Text("( Pulse dos veces sobre el mapa para ir a su versión de Google Maps )")),
+            InkWell(
+              child: createIframe(context, incidence.latitud, incidence.longitud),
+              onDoubleTap: () => openMap(incidence.latitud, incidence.longitud),
+            ),
             SizedBox(height: 10),          
           ],
         ),
