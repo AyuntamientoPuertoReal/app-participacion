@@ -48,6 +48,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
         child: MaterialApp(
+        builder: (context, child){
+          return MediaQuery(
+            child: child,
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          );
+        },
         debugShowCheckedModeBanner: false,
         title: 'Participación Ciudadana',
         initialRoute: rutaInicial,
