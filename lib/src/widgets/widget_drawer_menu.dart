@@ -59,13 +59,6 @@ class DrawerMenu extends StatelessWidget {
            height: 2.0,
            thickness: 1,
          ),
-         ListTile(
-           leading: Icon(Icons.exit_to_app, color: fondo),
-           title: Text('Salir de la aplicación'),
-           onTap: () { 
-             SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-           },
-         ),
        ],
      ),
    );
