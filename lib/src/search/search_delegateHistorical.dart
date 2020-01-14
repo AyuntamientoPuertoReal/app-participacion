@@ -113,7 +113,7 @@ class DataSearchHistorical extends SearchDelegate{
                      subtitle: Text( incidence.descripcion.toString() , overflow: TextOverflow.ellipsis,),
                      onTap: (){
                        close(context, null);
-                       Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: incidence);
+                       Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: incidence);
                      },
                    );
                  }).toList(),
