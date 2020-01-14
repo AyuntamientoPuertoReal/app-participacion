@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
+import 'package:appparticipacion/src/search/search_delegate.dart';
+import 'package:appparticipacion/src/search/search_delegateHistorical.dart';
 import 'package:appparticipacion/src/widgets/widget_historical_incidences.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,14 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Mis Incidencias"),
+        actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: (){
+                showSearch(context: context, delegate: DataSearchHistorical());
+              }
+            )
+        ],
       ),
       body: FutureBuilder(
         future: serverDataChecker(context),
