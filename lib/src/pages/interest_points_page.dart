@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/interest_points_bloc.dart';
+import 'package:appparticipacion/src/search/search_delegate.dart';
 import 'package:appparticipacion/src/widgets/widget_interest_point.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,14 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
         return Scaffold(
           appBar: AppBar(
             title: Text("Puntos de Interés"),
+            actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: (){
+                showSearch(context: context, delegate: DataSearch());
+              }
+            )
+        ],
           ),
           body: FutureBuilder(
             future: serverDataChecker(context),
