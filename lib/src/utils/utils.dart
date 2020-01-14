@@ -19,13 +19,13 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
   PhoneIdentifierBloc phoneIdentifierBloc;
   PhoneIdentifierModel phoneModel = new PhoneIdentifierModel();
   PhoneIdentifierProvider phoneIdentifierProvider = new PhoneIdentifierProvider();
+  int incidenceId;
 
 
   String url = sc.url;
   String tokenApicasso = sc.tokenApicasso;
   String urlImage = sc.urlImage;
   String urlServer = sc.urlServer;
-  int incidenceId;
 
   void generateToken() async {
 
