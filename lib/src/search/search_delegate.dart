@@ -60,8 +60,7 @@ class DataSearch extends SearchDelegate{
              if(snapshot.hasData){
     
                final interestPoint  = snapshot.data;
-               List<InterestPointsModel> listaPuntosBusqueda = interestPoint.where((i) => i.name.toLowerCase().contains(query.toLowerCase())).toList();
-    
+               
                return ListView(
                  children: interestPoint.map((interestPoint){
                    return ListTile(
@@ -124,9 +123,4 @@ class DataSearch extends SearchDelegate{
         }
        
       }
-    
-      List<InterestPointsModel> retornarInterestPoint() {
-
-      }
-
 }

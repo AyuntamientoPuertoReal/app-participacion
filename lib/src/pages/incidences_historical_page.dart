@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
-import 'package:appparticipacion/src/search/search_delegate.dart';
 import 'package:appparticipacion/src/search/search_delegateHistorical.dart';
 import 'package:appparticipacion/src/widgets/widget_historical_incidences.dart';
 import 'package:connectivity/connectivity.dart';
