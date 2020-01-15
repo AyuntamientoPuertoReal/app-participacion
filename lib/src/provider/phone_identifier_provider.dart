@@ -40,23 +40,18 @@ class PhoneIdentifierProvider {
 
     final response = await http.get(urlToken, headers: headers); 
 
-    print(response);
-
     final Map<String, dynamic> decodeData = json.decode(response.body);
 
     if(decodeData == null) return null;
 
     if(decodeData['error'] != null) return null;
       
-      if(decodeData['total']>0){
-        int phone = PhoneIdentifierModel.fromJson(decodeData['entries'][0]).id;
-        print("ID movil - "+ phone.toString());
-        print(urlToken);
-        return phone;
-      } else{
-        return null;
-      }
-
+    if(decodeData['total']>0){
+      int phone = PhoneIdentifierModel.fromJson(decodeData['entries'][0]).id;
+      return phone;
+      
+    } else{
+      return null;
+    }
   }
-
 }
