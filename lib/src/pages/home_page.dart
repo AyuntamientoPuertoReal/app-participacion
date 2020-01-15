@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
     return Container(
       height: SizeConfig.blockSizeVertical * 13.2,
       width: double.infinity,
-      margin: EdgeInsets.all(6.0),
+      margin: EdgeInsets.all(3.5),
       decoration: BoxDecoration(
         color: fondo,
         // color: Color.fromRGBO(62, 66, 107, 0.7),
