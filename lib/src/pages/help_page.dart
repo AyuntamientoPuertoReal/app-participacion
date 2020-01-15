@@ -126,25 +126,25 @@ class HelpPage extends StatelessWidget {
   }
 }
 
-Widget _crearCirculo(BuildContext context, String texto){
-  return Container(
-        width: 60,
-        height: 60,
-        decoration: new BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          shape: BoxShape.circle
-        ),
-        child: Center(child: Text(texto, style: TextStyle(fontSize: 25, color: Colors.white))),
-    );
-}
+// Widget _crearCirculo(BuildContext context, String texto){
+//   return Container(
+//         width: 60,
+//         height: 60,
+//         decoration: new BoxDecoration(
+//           color: Theme.of(context).primaryColor,
+//           shape: BoxShape.circle
+//         ),
+//         child: Center(child: Text(texto, style: TextStyle(fontSize: 25, color: Colors.white))),
+//     );
+// }
 
-Widget _crearTexto(String texto){
-    return Container(
-        width: 90,
-        height: 70,
-        child: Center(child: Text(texto, style: TextStyle(fontSize: 15, color: Colors.deepPurple),)),
-    );
-}
+// Widget _crearTexto(String texto){
+//     return Container(
+//         width: 90,
+//         height: 70,
+//         child: Center(child: Text(texto, style: TextStyle(fontSize: 15, color: Colors.deepPurple),)),
+//     );
+// }
 
   Widget _fondoApp(){
     return Container(

@@ -1,8 +1,6 @@
 import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/pages/incidence_details_page.dart';
-import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
 import 'package:appparticipacion/src/provider/incidence_provider.dart';
-import 'package:appparticipacion/src/provider/interest_points_provider.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 import 'package:flutter/material.dart';
 
@@ -64,8 +62,7 @@ class DataSearchHistorical extends SearchDelegate{
              if(snapshot.hasData){
     
                final incidences  = snapshot.data;
-               List<IncidenceModel> listaIncidenciasBusqueda = incidences.where((i) => i.nombreIncidencia.toLowerCase().contains(query.toLowerCase())).toList();
-    
+               
                return ListView(
                  children: incidences.map((incidence){
                    return ListTile(
@@ -128,9 +125,4 @@ class DataSearchHistorical extends SearchDelegate{
         }
        
       }
-    
-      List<InterestPointsModel> retornarInterestPoint() {
-
-      }
-
 }

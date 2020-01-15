@@ -94,19 +94,27 @@ class _NewsPageState extends State<NewsPage> {
       stream: noticiabloc.noticiasStream ,
       builder: (BuildContext context, AsyncSnapshot<List<NewsModel>> snapshot){
       if(snapshot.hasData){
-        final data = snapshot.data;
-        return ListView.builder(
-          padding: EdgeInsets.all(12.0),
-          itemCount: snapshot.data.length,
-          itemBuilder: (context, i) { 
-            return Column(
-              children: <Widget>[
-                SizedBox(height: 15.0),
-                  _crearNoticia(context,data[i]),
-              ],
-            );
-            }
-        );
+        if(snapshot.data.length==0){
+          return Container(
+            child: Center(
+              child: Text('No hay noticias para mostrar.', style: TextStyle(fontSize: 16),),
+            ),
+          );
+        }else{
+          final data = snapshot.data;
+          return ListView.builder(
+            padding: EdgeInsets.all(12.0),
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, i) { 
+              return Column(
+                children: <Widget>[
+                  SizedBox(height: 15.0),
+                    _crearNoticia(context,data[i]),
+                ],
+              );
+              }
+          );
+        }
       }else {
         return cancelConnection(context);
       }

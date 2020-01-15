@@ -24,7 +24,6 @@ void main() async {
   final prefs = new UserPreferences();
   await prefs.initPrefs();
 
-  
   Connectivity connectivity;
   connectivity = new Connectivity();
   ConnectivityResult result = await connectivity.checkConnectivity();
@@ -39,7 +38,6 @@ void main() async {
   }else if(prefs.idToken == ""){
     rutaInicial='noInicio';
   }
-
   runApp(MyApp());
 }
  
@@ -58,18 +56,17 @@ class MyApp extends StatelessWidget {
         title: 'Participación Ciudadana',
         initialRoute: rutaInicial,
         routes: {
-
-          HomePage.routeName                     : (BuildContext context) => HomePage(),
-          CreateIncidencePage.routeName          : (BuildContext context) => CreateIncidencePage(),
-          NewsPage.routeName                     : (BuildContext context) => NewsPage(),
-          NewDetails.routeName                   : (BuildContext context) => NewDetails(),
-          IncidencesHistoricalPage.routeName     : (BuildContext context) => IncidencesHistoricalPage(),
-          InterestPointDetailsPage.routeName     : (BuildContext context) => InterestPointDetailsPage(),
-          IncidenceDetailsPage.routeName         : (BuildContext context) => IncidenceDetailsPage(),
-          IncidenceTypesPage.routeName           : (BuildContext context) => IncidenceTypesPage(),
-          InterestPointsPage.routeName           : (BuildContext context) => InterestPointsPage(),
-          HelpPage.routeName                     : (BuildContext context) => HelpPage(),
-          NoConnectionPage.routeName                 : (BuildContext context) => NoConnectionPage(),
+          HomePage.routeName                 : (BuildContext context) => HomePage(),
+          CreateIncidencePage.routeName      : (BuildContext context) => CreateIncidencePage(),
+          NewsPage.routeName                 : (BuildContext context) => NewsPage(),
+          NewDetails.routeName               : (BuildContext context) => NewDetails(),
+          IncidencesHistoricalPage.routeName : (BuildContext context) => IncidencesHistoricalPage(),
+          InterestPointDetailsPage.routeName : (BuildContext context) => InterestPointDetailsPage(),
+          IncidenceDetailsPage.routeName     : (BuildContext context) => IncidenceDetailsPage(),
+          IncidenceTypesPage.routeName       : (BuildContext context) => IncidenceTypesPage(),
+          InterestPointsPage.routeName       : (BuildContext context) => InterestPointsPage(),
+          HelpPage.routeName                 : (BuildContext context) => HelpPage(),
+          NoConnectionPage.routeName         : (BuildContext context) => NoConnectionPage(),
         },
         theme: ThemeData(
           primaryColor: Color.fromRGBO(162, 0, 125, 1.0)
