@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 
 class Provider extends InheritedWidget{
 
-final _ticketBloc = new IncidenceBloc();
+final _incidenciaBloc = new IncidenceBloc();
 final _noticiaBloc = new NewsBloc();
 final _puntosInteresBloc = new InterestPointsBloc();
 final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
@@ -39,8 +39,8 @@ final _phoneIdentifierBloc = new PhoneIdentifierBloc();
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
 
-    static IncidenceBloc ticketbloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._ticketBloc;
+    static IncidenceBloc incidenciaBloc ( BuildContext context ) {
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._incidenciaBloc;
     }
 
     static NewsBloc noticiaBloc ( BuildContext context ) {

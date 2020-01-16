@@ -9,13 +9,13 @@ class IncidenceTrackingsBloc {
 
    final _seguimientoTicketProvider = new IncidenceTrackingsProvider();
 
-     Stream<List<IncidenceTrackingsModel>> get ticketStream  => _seguimientoTicketController.stream;
+     Stream<List<IncidenceTrackingsModel>> get incidenceTrackingsStream  => _seguimientoTicketController.stream;
      Stream<bool> get cargando  => _cargandoController.stream;
 
 
    void verEstado() async {
 
-   final seguimientoTicket = await _seguimientoTicketProvider.cargarSeguimientoTickets();
+   final seguimientoTicket = await _seguimientoTicketProvider.loadIncidenceTrackings();
    _seguimientoTicketController.sink.add(seguimientoTicket);
 
   }

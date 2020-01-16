@@ -77,7 +77,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
 
   Widget _cargarTiposIncidencias(BuildContext context,TipoIncidenciaBloc tipoIncidenciaBloc){
     return StreamBuilder(
-      stream: tipoIncidenciaBloc.tipoIncidenciaStream,
+      stream: tipoIncidenciaBloc.incidenceTypesStream,
       builder: (BuildContext context, AsyncSnapshot<List<IncidenceTypesModel>> snapshot ){
         if(snapshot.hasData){
           List<Widget> listaTipos= [];

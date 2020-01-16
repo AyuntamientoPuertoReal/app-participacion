@@ -50,7 +50,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
      "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
      "\n3- Pulse el botón Guardar y todo el proceso habrá terminado";
-    ticketBloc = Provider.ticketbloc(context);
+    ticketBloc = Provider.incidenciaBloc(context);
 
     return Scaffold(
       key: scaffoldKey,
@@ -151,7 +151,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
   }
 
   void _submit() async {
-
+    FocusScope.of(context).requestFocus(FocusNode());
     Connectivity connectivity;
     connectivity = new Connectivity();
     ConnectivityResult result = await connectivity.checkConnectivity();

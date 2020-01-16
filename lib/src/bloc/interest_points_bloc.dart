@@ -7,11 +7,11 @@ class InterestPointsBloc {
 
   final _puntoInteresProvider = new InterestPointsProvider();
 
-  Stream<List<InterestPointsModel>> get puntoInteresStream => _puntoInteresController.stream;
+  Stream<List<InterestPointsModel>> get interestPointsStream => _puntoInteresController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
   void cargarPuntosInteres() async {
-    final puntosInteres = await _puntoInteresProvider.cargarPuntoInteres();
+    final puntosInteres = await _puntoInteresProvider.loadInterestPoints();
     _puntoInteresController.sink.add(puntosInteres);
   }
 

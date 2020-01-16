@@ -8,7 +8,7 @@ import 'package:appparticipacion/src/utils/utils.dart' as utils;
 class IncidenceTypesProvider {
   final String _url = utils.url+"incidence_types?sort=order";
 
-  Future<List<IncidenceTypesModel>> cargarTipoIncidencia() async {
+  Future<List<IncidenceTypesModel>> loadIncidenceTypes() async {
 
     final url = _url;
     final token = utils.tokenApicasso;

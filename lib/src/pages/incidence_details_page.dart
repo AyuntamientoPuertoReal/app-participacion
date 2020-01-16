@@ -47,7 +47,7 @@ Widget pintaMensajeAyuntamiento(BuildContext context,IncidenceTrackingsBloc segu
 
 
  return StreamBuilder(
-    stream: seguimientoTicket.ticketStream ,
+    stream: seguimientoTicket.incidenceTrackingsStream ,
     builder: (BuildContext context, AsyncSnapshot<List<IncidenceTrackingsModel>> snapshot){
       if(snapshot.hasData){
         final data=snapshot.data;

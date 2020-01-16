@@ -9,13 +9,13 @@ class NewsBloc{
 
   final _noticiaProvider = new NewsProvider();
 
-  Stream<List<NewsModel>> get noticiasStream  => _noticiaController.stream;
+  Stream<List<NewsModel>> get newsStream  => _noticiaController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
 
   void cargarNoticia() async {
 
-   final noticias = await _noticiaProvider.cargarNoticias();
+   final noticias = await _noticiaProvider.loadNews();
    _noticiaController.sink.add(noticias);
 
   }

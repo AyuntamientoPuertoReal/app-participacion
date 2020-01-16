@@ -44,13 +44,13 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
       prefs.idToken = id.toString();
     } else{
       phoneModel.phoneIdentifier=encryptedString;
-      String identificador = await phoneIdentifierProvider.crearPhoneIdentifier(phoneModel);
+      String identificador = await phoneIdentifierProvider.createPhoneIdentifier(phoneModel);
       prefs.idToken = identificador;
     }
   }
   
   Future<int> _comprobarTokenBd(String tokenEncriptado) async {
-    int id = await phoneIdentifierProvider.cargarPhoneIdentifier();
+    int id = await phoneIdentifierProvider.loadPhoneIdentifier();
     return id;
   }
 

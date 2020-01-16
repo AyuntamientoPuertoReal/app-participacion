@@ -9,7 +9,7 @@ class IncidenceBloc {
 
    final _ticketProvider = new IncidenceProvider();
 
-     Stream<List<IncidenceModel>> get ticketStream  => _ticketController.stream;
+     Stream<List<IncidenceModel>> get incidenceStream  => _ticketController.stream;
      Stream<bool> get cargando  => _cargandoController.stream;
 
    void crearTicket(IncidenceModel ticket) async {
