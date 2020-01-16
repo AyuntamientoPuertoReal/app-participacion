@@ -132,7 +132,7 @@ class _NewsPageState extends State<NewsPage> {
       bool servidor = await checkServerConnection();
       if(servidor){
         final noticiaBloc = Provider.noticiaBloc(context);
-        noticiaBloc.cargarNoticia();
+        noticiaBloc.loadNews();
         body = _crearListadoNoticias(noticiaBloc);
       } else{
         body=noConnectionToServer(context,'news');

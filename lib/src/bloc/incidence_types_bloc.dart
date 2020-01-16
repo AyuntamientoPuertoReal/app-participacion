@@ -1,22 +1,22 @@
 import 'package:appparticipacion/src/provider/incidence_types_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class TipoIncidenciaBloc {
-  final _tipoIncidenciaController = new BehaviorSubject<List<IncidenceTypesModel>>();
+class IncidenceTypesBloc {
+  final _incidenceTypeController = new BehaviorSubject<List<IncidenceTypesModel>>();
   final _cargandoController = new BehaviorSubject<bool>();
 
-  final _tipoIncidenciaProvider = new IncidenceTypesProvider();
+  final _incidenceTypesProvider = new IncidenceTypesProvider();
 
-  Stream<List<IncidenceTypesModel>> get incidenceTypesStream => _tipoIncidenciaController.stream;
+  Stream<List<IncidenceTypesModel>> get incidenceTypesStream => _incidenceTypeController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
-  void cargarTipoIncidencia() async {
-    final tipoIncidencia = await _tipoIncidenciaProvider.loadIncidenceTypes();
-    _tipoIncidenciaController.sink.add(tipoIncidencia);
+  void loadIncidenceTypes() async {
+    final incidenceType = await _incidenceTypesProvider.loadIncidenceTypes();
+    _incidenceTypeController.sink.add(incidenceType);
   }
 
   dispose(){
-    _tipoIncidenciaController?.close();
+    _incidenceTypeController?.close();
     _cargandoController?.close();
   }
 }

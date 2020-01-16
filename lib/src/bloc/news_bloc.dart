@@ -1,29 +1,26 @@
-import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:appparticipacion/src/provider/news_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NewsBloc{
 
-  final _noticiaController = new BehaviorSubject<List<NewsModel>>();
+  final _newsController = new BehaviorSubject<List<NewsModel>>();
   final _cargandoController = new BehaviorSubject<bool>();
 
-  final _noticiaProvider = new NewsProvider();
+  final _newsProvider = new NewsProvider();
 
-  Stream<List<NewsModel>> get newsStream  => _noticiaController.stream;
+  Stream<List<NewsModel>> get newsStream  => _newsController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
 
-  void cargarNoticia() async {
+  void loadNews() async {
 
-   final noticias = await _noticiaProvider.loadNews();
-   _noticiaController.sink.add(noticias);
+   final news = await _newsProvider.loadNews();
+   _newsController.sink.add(news);
 
   }
 
   dispose(){
-    _noticiaController?.close();
+    _newsController?.close();
     _cargandoController?.close();
   }
-
-
 }

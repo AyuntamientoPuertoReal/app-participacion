@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:appparticipacion/src/models/incidence_model.dart';
+export 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
