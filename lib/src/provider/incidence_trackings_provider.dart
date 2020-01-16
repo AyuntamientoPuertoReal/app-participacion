@@ -7,7 +7,7 @@ import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class IncidenceTrackingsProvider {
 
-  Future<List<IncidenceTrackingsModel>> cargarSeguimientoTickets() async {
+  Future<List<IncidenceTrackingsModel>> loadIncidenceTrackings() async {
     int incidenceId = utils.incidenceId;
     final String _url = utils.url+"incidence_trackings?q[incidence_id_eq]=$incidenceId&sort=created_at";
 

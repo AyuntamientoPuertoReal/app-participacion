@@ -68,7 +68,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
     Widget _crearListadoPuntosInteres(InterestPointsBloc puntoIntereBloc) {
     
       return StreamBuilder(
-        stream: puntoIntereBloc.puntoInteresStream ,
+        stream: puntoIntereBloc.interestPointsStream ,
         builder: (BuildContext context, AsyncSnapshot snapshot){
           
           if(snapshot.hasData){

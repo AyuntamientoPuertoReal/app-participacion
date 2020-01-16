@@ -8,13 +8,13 @@ class PhoneIdentifierBloc {
 
   final _phoneIdentifierProvider = new PhoneIdentifierProvider();
 
-  Stream<PhoneIdentifierModel> get ticketStream  => _phoneIdentifierController.stream;
+  Stream<PhoneIdentifierModel> get phoneIdentifierStream  => _phoneIdentifierController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
   void crearPhoneIdentifier(PhoneIdentifierModel phoneIdentifier) async {
 
     _cargandoController.sink.add(true);
-    await _phoneIdentifierProvider.crearPhoneIdentifier(phoneIdentifier);
+    await _phoneIdentifierProvider.createPhoneIdentifier(phoneIdentifier);
     _cargandoController.sink.add(false);
 
  }

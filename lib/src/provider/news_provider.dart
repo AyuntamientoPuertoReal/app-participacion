@@ -8,7 +8,7 @@ class NewsProvider{
 
   final String _url = utils.url+"news?q[published_eq]=true&sort=-updated_at";
  
-  Future<List<NewsModel>> cargarNoticias() async {
+  Future<List<NewsModel>> loadNews() async {
 
     final url = _url;
     final authorizationToken = utils.tokenApicasso;

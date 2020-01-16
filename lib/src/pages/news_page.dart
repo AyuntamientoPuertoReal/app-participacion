@@ -91,7 +91,7 @@ class _NewsPageState extends State<NewsPage> {
   Widget _crearListadoNoticias(NewsBloc noticiabloc) {
 
     return StreamBuilder(
-      stream: noticiabloc.noticiasStream ,
+      stream: noticiabloc.newsStream ,
       builder: (BuildContext context, AsyncSnapshot<List<NewsModel>> snapshot){
       if(snapshot.hasData){
         if(snapshot.data.length==0){

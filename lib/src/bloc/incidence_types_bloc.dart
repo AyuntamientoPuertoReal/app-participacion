@@ -7,11 +7,11 @@ class TipoIncidenciaBloc {
 
   final _tipoIncidenciaProvider = new IncidenceTypesProvider();
 
-  Stream<List<IncidenceTypesModel>> get tipoIncidenciaStream => _tipoIncidenciaController.stream;
+  Stream<List<IncidenceTypesModel>> get incidenceTypesStream => _tipoIncidenciaController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
   void cargarTipoIncidencia() async {
-    final tipoIncidencia = await _tipoIncidenciaProvider.cargarTipoIncidencia();
+    final tipoIncidencia = await _tipoIncidenciaProvider.loadIncidenceTypes();
     _tipoIncidenciaController.sink.add(tipoIncidencia);
   }
 

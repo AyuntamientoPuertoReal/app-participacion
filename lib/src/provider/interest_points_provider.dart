@@ -10,7 +10,7 @@ import 'package:appparticipacion/src/utils/utils.dart' as utils;
 class InterestPointsProvider {
   final String _url = utils.url+"interest_points";
 
-  Future<List<InterestPointsModel>> cargarPuntoInteres() async {
+  Future<List<InterestPointsModel>> loadInterestPoints() async {
 
     final url = _url;
 

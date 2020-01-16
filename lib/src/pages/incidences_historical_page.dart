@@ -78,7 +78,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
  Widget _crearListadoTickets(BuildContext context, IncidenceBloc ticketBloc) {
 
    return StreamBuilder(
-     stream: ticketBloc.ticketStream,
+     stream: ticketBloc.incidenceStream,
      builder: (BuildContext context, AsyncSnapshot<List<IncidenceModel>> snapshot ){
       
       if(snapshot.hasData){
@@ -115,7 +115,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     if (internet){
       bool servidor = await checkServerConnection();
       if(servidor){
-        final ticketBloc = Provider.ticketbloc(context);
+        final ticketBloc = Provider.incidenciaBloc(context);
         ticketBloc.cargartickets();
         body = _crearListadoTickets(context,ticketBloc);
       } else{
