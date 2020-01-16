@@ -11,7 +11,7 @@ class PhoneIdentifierBloc {
   Stream<PhoneIdentifierModel> get phoneIdentifierStream  => _phoneIdentifierController.stream;
   Stream<bool> get cargando  => _cargandoController.stream;
 
-  void crearPhoneIdentifier(PhoneIdentifierModel phoneIdentifier) async {
+  void createPhoneIdentifier(PhoneIdentifierModel phoneIdentifier) async {
 
     _cargandoController.sink.add(true);
     await _phoneIdentifierProvider.createPhoneIdentifier(phoneIdentifier);

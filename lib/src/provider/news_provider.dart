@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/models/news_model.dart';
+export 'package:appparticipacion/src/models/news_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class NewsProvider{

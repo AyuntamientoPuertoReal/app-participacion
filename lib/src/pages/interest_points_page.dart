@@ -104,7 +104,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
           bool servidor = await checkServerConnection();
           if(servidor){
             final puntoIntereBloc = Provider.puntoInteresBloc(context);
-            puntoIntereBloc.cargarPuntosInteres();
+            puntoIntereBloc.loadInterestPoint();
             body=_crearListadoPuntosInteres(puntoIntereBloc);
           } else{
             body=noConnectionToServer(context,InterestPointsPage.routeName);

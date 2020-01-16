@@ -1,34 +1,31 @@
-import 'package:appparticipacion/src/models/incidence_model.dart';
 import 'package:appparticipacion/src/provider/incidence_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class IncidenceBloc {
+class IncidencesBloc {
 
-   final _ticketController = new BehaviorSubject<List<IncidenceModel>>();
-   final _cargandoController = new BehaviorSubject<bool>();
+  final _incidencesController = new BehaviorSubject<List<IncidenceModel>>();
+  final _cargandoController = new BehaviorSubject<bool>();
 
-   final _ticketProvider = new IncidenceProvider();
+  final _incidenceProvider = new IncidenceProvider();
 
-     Stream<List<IncidenceModel>> get incidenceStream  => _ticketController.stream;
-     Stream<bool> get cargando  => _cargandoController.stream;
+  Stream<List<IncidenceModel>> get incidenceStream  => _incidencesController.stream;
+  Stream<bool> get cargando  => _cargandoController.stream;
 
-   void crearTicket(IncidenceModel ticket) async {
+  void createIncidence(IncidenceModel incidence) async {
 
-  _cargandoController.sink.add(true);
-  await _ticketProvider.createIncidence(ticket);
-  _cargandoController.sink.add(false);
+    _cargandoController.sink.add(true);
+    await _incidenceProvider.createIncidence(incidence);
+    _cargandoController.sink.add(false);
+  }
 
- }
+  void loadIncidence() async {
 
-  void cargartickets() async {
-
-   final tickets = await _ticketProvider.loadIncidences();
-   _ticketController.sink.add(tickets);
-
+   final incidences = await _incidenceProvider.loadIncidences();
+   _incidencesController.sink.add(incidences);
   }
 
    dispose(){
-    _ticketController?.close();
+    _incidencesController?.close();
     _cargandoController?.close();
   }
 }

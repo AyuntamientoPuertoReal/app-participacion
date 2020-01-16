@@ -167,9 +167,9 @@ Future<Widget> serverDataChecker(BuildContext context, IncidenceModel incidence)
       
         incidenceId=incidence.id;
         final seguimientoTicket = Provider.seguimientoTicketBloc(context);
-        seguimientoTicket.verEstado();
+        seguimientoTicket.getState();
         final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
-        tipoIncidenciaBloc.cargarTipoIncidencia();
+        tipoIncidenciaBloc.loadIncidenceTypes();
         body=SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
