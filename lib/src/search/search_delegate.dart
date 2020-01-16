@@ -55,7 +55,7 @@ class DataSearch extends SearchDelegate{
     // List<InterestPointsModel> listaPI = retornarInterestPoint();
         if(query.isEmpty){
           return FutureBuilder(
-           future: puntoInteresprovider.cargarPuntoInteres()/*.buscarPelicula(query),*/,
+           future: puntoInteresprovider.loadInterestPoints(),
            builder: (BuildContext context, AsyncSnapshot<List<InterestPointsModel>> snapshot) {
              if(snapshot.hasData){
     
@@ -88,7 +88,7 @@ class DataSearch extends SearchDelegate{
          );
         }else {
          return FutureBuilder(
-           future: puntoInteresprovider.cargarPuntoInteres()/*.buscarPelicula(query),*/,
+           future: puntoInteresprovider.loadInterestPoints(),
            builder: (BuildContext context, AsyncSnapshot<List<InterestPointsModel>> snapshot) {
              if(snapshot.hasData){
     

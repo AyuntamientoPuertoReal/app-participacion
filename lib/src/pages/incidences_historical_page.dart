@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
 
-
 class IncidencesHistoricalPage extends StatefulWidget {
   static final String routeName = 'incidencesHistorical';
   @override
@@ -19,9 +17,7 @@ class IncidencesHistoricalPage extends StatefulWidget {
 
 class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
 
-
-
-    var _connectionStatus = 'Unknown';
+  var _connectionStatus = 'Unknown';
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
 
@@ -48,8 +44,6 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     super.dispose();
   }
 
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,10 +69,10 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     );
   }
 
- Widget _crearListadoTickets(BuildContext context, IncidenceBloc ticketBloc) {
+ Widget _crearListadoincidences(BuildContext context, IncidencesBloc incidenceBloc) {
 
    return StreamBuilder(
-     stream: ticketBloc.ticketStream,
+     stream: incidenceBloc.incidenceStream,
      builder: (BuildContext context, AsyncSnapshot<List<IncidenceModel>> snapshot ){
       
       if(snapshot.hasData){
@@ -106,7 +100,6 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
    );
   }
 
-
   Future<Widget> serverDataChecker(BuildContext context)async {
     
     Widget body;
@@ -115,9 +108,9 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     if (internet){
       bool servidor = await checkServerConnection();
       if(servidor){
-        final ticketBloc = Provider.ticketbloc(context);
-        ticketBloc.cargartickets();
-        body = _crearListadoTickets(context,ticketBloc);
+        final incidenceBloc = Provider.incidenciaBloc(context);
+        incidenceBloc.loadIncidence();
+        body = _crearListadoincidences(context,incidenceBloc);
       } else{
         body=noConnectionToServer(context,IncidencesHistoricalPage.routeName);
       }
@@ -126,8 +119,4 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     }
     return body;
   }
-
-  
-
-
 }

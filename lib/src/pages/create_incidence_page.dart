@@ -28,8 +28,8 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
   final scaffoldKey      = GlobalKey<ScaffoldState>();
 
   final prefs = new UserPreferences();
-  IncidenceBloc ticketBloc;
-  IncidenceModel ticketModel = new IncidenceModel();
+  IncidencesBloc incidencesBloc;
+  IncidenceModel incidenceModel = new IncidenceModel();
   IncidenceTypesModel tipoIncidencia;
   bool _guardando = false;
   bool _fotoSeleccionada= false;
@@ -50,7 +50,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
      "\n1- Use el icono de la cámara para poder capturar una foto que verán nuestros técnicos\n"+
      "\n2- Ponga una descripción para que nuestros técnicos tengan una breve explicación sobre la incidencia\n"+
      "\n3- Pulse el botón Guardar y todo el proceso habrá terminado";
-    ticketBloc = Provider.ticketbloc(context);
+    incidencesBloc = Provider.incidenciaBloc(context);
 
     return Scaffold(
       key: scaffoldKey,
@@ -92,7 +92,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       style: TextStyle(
         color: Colors.blue
       ),
-      onSaved: (value) => ticketModel.descripcion = value,
+      onSaved: (value) => incidenceModel.descripcion = value,
       validator: (value){
         final int valorMinimo=10;
         if(value.length <  valorMinimo){
@@ -151,7 +151,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
   }
 
   void _submit() async {
-
+    FocusScope.of(context).requestFocus(FocusNode());
     Connectivity connectivity;
     connectivity = new Connectivity();
     ConnectivityResult result = await connectivity.checkConnectivity();
@@ -163,14 +163,14 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       // cuando el formulario es valido se deshabilita el boton
       setState(() { _guardando = true;});
 
-      ticketModel.latitud=latitud;
-      ticketModel.longitud=longitud;
-      ticketModel.pictureFile = foto;
-      ticketModel.phoneIdentifierId=prefs.idToken;
-      ticketModel.tipoIncidencia = tipoIncidencia.id;
+      incidenceModel.latitud=latitud;
+      incidenceModel.longitud=longitud;
+      incidenceModel.pictureFile = foto;
+      incidenceModel.phoneIdentifierId=prefs.idToken;
+      incidenceModel.tipoIncidencia = tipoIncidencia.id;
 
       IncidenceProvider tk = new IncidenceProvider();
-      bool creado= await tk.createIncidence(ticketModel);
+      bool creado= await tk.createIncidence(incidenceModel);
       
       if(creado){
 
@@ -211,7 +211,7 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
       String coordenada = position.latitude.toString()+","+position.longitude.toString();
       latitud = position.latitude.toString();
       longitud = position.longitude.toString();
-      ticketModel.coordenadas = coordenada;
+      incidenceModel.coordenadas = coordenada;
 
       foto = await testCompressAndGetFile(foto, foto.path);
 

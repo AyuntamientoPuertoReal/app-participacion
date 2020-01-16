@@ -9,58 +9,49 @@ import 'package:flutter/cupertino.dart';
 
 class Provider extends InheritedWidget{
 
-final _ticketBloc = new IncidenceBloc();
-final _noticiaBloc = new NewsBloc();
-final _puntosInteresBloc = new InterestPointsBloc();
-final _tipoIncidenciaBloc = new TipoIncidenciaBloc();
-final _seguimientoTicketBloc = new IncidenceTrackingsBloc();
-final _phoneIdentifierBloc = new PhoneIdentifierBloc();
+  final _incidenceBloc = new IncidencesBloc();
+  final _newsBloc = new NewsBloc();
+  final _interestPointsBloc = new InterestPointsBloc();
+  final _incidenceTypesBloc = new IncidenceTypesBloc();
+  final _incidenceTrackingsBloc = new IncidenceTrackingsBloc();
+  final _phoneIdentifierBloc = new PhoneIdentifierBloc();
 
-
-
-   static Provider _instancia;
+  static Provider _instancia;
 
   factory Provider({Key key, Widget child}){
 
     if (_instancia == null){
       _instancia = new Provider._internal(key: key, child: child);
     }
-
     return _instancia;
-
   }
-
 
   Provider._internal({Key key, Widget child})
      : super(key: key, child: child);
 
-
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
-
-    static IncidenceBloc ticketbloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._ticketBloc;
+    static IncidencesBloc incidenciaBloc ( BuildContext context ) {
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._incidenceBloc;
     }
 
     static NewsBloc noticiaBloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._noticiaBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._newsBloc;
     }
 
     static InterestPointsBloc puntoInteresBloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._puntosInteresBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._interestPointsBloc;
     }
 
-    static TipoIncidenciaBloc tipoIncidenciaBloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._tipoIncidenciaBloc;
+    static IncidenceTypesBloc tipoIncidenciaBloc ( BuildContext context ) {
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._incidenceTypesBloc;
     }
 
     static IncidenceTrackingsBloc seguimientoTicketBloc ( BuildContext context ) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>())._seguimientoTicketBloc;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>())._incidenceTrackingsBloc;
     }
     static PhoneIdentifierBloc phoneIdentifierBloc ( BuildContext context ) {
     return (context.dependOnInheritedWidgetOfExactType<Provider>())._phoneIdentifierBloc;
     }
-    
-
 }

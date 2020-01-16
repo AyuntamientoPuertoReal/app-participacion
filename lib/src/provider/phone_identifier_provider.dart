@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-//import 'package:appparticipacion/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 import 'package:appparticipacion/src/models/phone_identifier_model.dart';
@@ -13,7 +12,7 @@ class PhoneIdentifierProvider {
 
   final url = utils.url+"phone_identifiers";
 
-  Future<String> crearPhoneIdentifier(PhoneIdentifierModel phoneIdentifier)async{
+  Future<String> createPhoneIdentifier(PhoneIdentifierModel phoneIdentifier)async{
 
     final token = utils.tokenApicasso;
 
@@ -30,7 +29,7 @@ class PhoneIdentifierProvider {
   }
 
 
-  Future<int> cargarPhoneIdentifier() async {
+  Future<int> loadPhoneIdentifier() async {
 
     final urlToken = '$url?q[phone_identifier_eq]=$phoneIdentifier&select=id';
 

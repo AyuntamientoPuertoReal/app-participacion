@@ -75,9 +75,9 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
     }
   }
 
-  Widget _cargarTiposIncidencias(BuildContext context,TipoIncidenciaBloc tipoIncidenciaBloc){
+  Widget _cargarTiposIncidencias(BuildContext context,IncidenceTypesBloc tipoIncidenciaBloc){
     return StreamBuilder(
-      stream: tipoIncidenciaBloc.tipoIncidenciaStream,
+      stream: tipoIncidenciaBloc.incidenceTypesStream,
       builder: (BuildContext context, AsyncSnapshot<List<IncidenceTypesModel>> snapshot ){
         if(snapshot.hasData){
           List<Widget> listaTipos= [];
@@ -141,7 +141,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
       bool servidor = await checkServerConnection();
       if(servidor){
         final tipoIncidenciaBloc = Provider.tipoIncidenciaBloc(context);
-        tipoIncidenciaBloc.cargarTipoIncidencia();
+        tipoIncidenciaBloc.loadIncidenceTypes();
         body=_cargarTiposIncidencias(context,tipoIncidenciaBloc);
        
       } else{

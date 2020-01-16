@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:appparticipacion/src/models/news_model.dart';
+export 'package:appparticipacion/src/models/news_model.dart';
 import 'package:appparticipacion/src/utils/utils.dart' as utils;
 
 class NewsProvider{
 
   final String _url = utils.url+"news?q[published_eq]=true&sort=-updated_at";
  
-  Future<List<NewsModel>> cargarNoticias() async {
+  Future<List<NewsModel>> loadNews() async {
 
     final url = _url;
     final authorizationToken = utils.tokenApicasso;
