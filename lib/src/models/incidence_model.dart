@@ -44,6 +44,7 @@ class IncidenceModel {
         pictureUrl        : json["image_url"],
         fechaCreacion     : json["created_at"],
         nombreIncidencia  : json["name"],
+        
     );
 
     Map<String, dynamic> toJson() => {   

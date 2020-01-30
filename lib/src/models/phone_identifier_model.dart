@@ -7,10 +7,12 @@ String phoneIdentifierModelToJson(PhoneIdentifierModel data) => json.encode(data
 class PhoneIdentifierModel {
     int id;
     String phoneIdentifier;
+    String notificationToken;
 
     PhoneIdentifierModel({
         this.id,
         this.phoneIdentifier = '',
+        this.notificationToken = '',
     });
 
     factory PhoneIdentifierModel.fromJson(Map<String, dynamic> json) => PhoneIdentifierModel(
@@ -20,6 +22,7 @@ class PhoneIdentifierModel {
 
     Map<String, dynamic> toJson() =>{ "phone_identifier": {
         "phone_identifier": phoneIdentifier,
+        "fcm_token"       : notificationToken
       }
     };
 }

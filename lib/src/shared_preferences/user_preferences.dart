@@ -35,5 +35,13 @@ class UserPreferences {
   set idToken ( String value ) {
     _prefs.setString('idToken', value);
   }
+
+    get idTokenNotification {
+    return _prefs.getString('idTokenNotification') ?? '';
+  }
+
+  set idTokenNotification ( String value ) {
+    _prefs.setString('idTokenNotification', value);
+  }
   
 }
