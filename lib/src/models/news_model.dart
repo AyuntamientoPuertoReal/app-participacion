@@ -26,7 +26,7 @@ class NewsModel {
         title      : json["title"],
         description: json["description"],
         body       : json["body"],
-        date       : json["date_of_creation"],
+        date       : json["created_at"],
         imageUrl   : json["image_url"],
     );
 
@@ -34,7 +34,7 @@ class NewsModel {
         "title"       : title,
         "description" : description,
         "body"        : body,
-        "date"        : date,
+        "created_at"        : date,
         "imageUrl"    : imageUrl,
     };
 }

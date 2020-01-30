@@ -30,7 +30,7 @@ class IncidenceTrackingsModel {
         processingUnits  : json["processing_units"],
         status           : json["status"],
         message          : json["message"],
-        date             : json["date"],
+        date             : json["created_at"],
     );
 
     Map<String, dynamic> toJson() => {

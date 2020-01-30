@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "265416676979",
+    "firebase_url": "https://app-participacion.firebaseio.com",
+    "project_id": "app-participacion",
+    "storage_bucket": "app-participacion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265416676979:android:378c1530b142426269bc06",
+        "android_client_info": {
+          "package_name": "com.example.appparticipacion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265416676979-am616shk0vugao0jdje065akc4r0j0v0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appparticipacion",
+            "certificate_hash": "857ac2d302a40c62349c4a9848de5a91c5b6d717"
+          }
+        },
+        {
+          "client_id": "265416676979-6v93jno3m51mb9sumpbrm5tktihd7ieq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB14JX_Hf6TQHZytRTa1FXuAND9lNBTKDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265416676979-6v93jno3m51mb9sumpbrm5tktihd7ieq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

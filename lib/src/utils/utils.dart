@@ -42,10 +42,12 @@ import 'package:appparticipacion/src/utils/secrets.dart' as sc;
 
     if(id != null){
       prefs.idToken = id.toString();
+      prefs.idTokenNotification = phoneIdentifierProvider.prefNotification.toString();
     } else{
       phoneModel.phoneIdentifier=encryptedString;
       String identificador = await phoneIdentifierProvider.createPhoneIdentifier(phoneModel);
       prefs.idToken = identificador;
+      prefs.idTokenNotification = phoneIdentifierProvider.prefNotification;
     }
   }
   

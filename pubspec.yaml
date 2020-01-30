@@ -40,6 +40,7 @@ dependencies:
   connectivity: ^0.4.5+6
   auto_size_text: ^2.1.0
   flutter_image_compress: ^0.6.3
+  firebase_messaging: ^6.0.9
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +70,6 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 

@@ -20,6 +20,8 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
   var _connectionStatus = 'Unknown';
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
+  String _dropMenuSelectedOption = "Todas las incidencias";
+  List _incidencesStatus = ['Todas las incidencias','Incidencias en proceso','Incidencias finalizadas'];
 
   @override
   void initState() {
@@ -70,26 +72,55 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
   }
 
  Widget _crearListadoincidences(BuildContext context, IncidencesBloc incidenceBloc) {
+   List<IncidenceModel> dataStatus;
 
    return StreamBuilder(
      stream: incidenceBloc.incidenceStream,
      builder: (BuildContext context, AsyncSnapshot<List<IncidenceModel>> snapshot ){
       
       if(snapshot.hasData){
-
         final data = snapshot.data;
-        if(data.isEmpty){
+        
+
+        if(_dropMenuSelectedOption == "Todas las incidencias"){
+          dataStatus = data;
+        }else if(_dropMenuSelectedOption == "Incidencias en proceso"){
+          dataStatus = data.where((i) => i.estado==2 || i.estado==1).toList();
+        }else if(_dropMenuSelectedOption == "Incidencias finalizadas"){
+          dataStatus = data.where((i) => i.estado==3 || i.estado==4).toList();
+        }
+
+
+        
+        if(dataStatus.isEmpty){
           return Container(
             child: Center(
               child: Text('No has enviado ninguna incidencia.', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),),
             ),
           );
         } else{
-            return ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return historicalIncidences(context, data[index]);
-            },
+          return Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      'Mostrar ', style: TextStyle(fontSize: 16)
+                      )
+                    ),
+                  _incidenceDropDown()
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: dataStatus.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return historicalIncidences(context, dataStatus[index]);
+                  },
+                ),
+              ),
+            ],
           );
         }
         
@@ -119,4 +150,42 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     }
     return body;
   }
+
+   List<DropdownMenuItem<String>> getOpcionesDropDown() {
+    
+   List<DropdownMenuItem<String>> lista =  new List();
+
+   _incidencesStatus.forEach((status){
+     lista.add(DropdownMenuItem(
+       child: Text(status),
+       value: status,
+     ));
+   });
+
+  return lista;
+
+  }
+
+ Widget _incidenceDropDown() {
+
+   return Row(
+      children: <Widget>[
+        SizedBox(width: 4,),
+        DropdownButton(
+        value: _dropMenuSelectedOption,
+        items: getOpcionesDropDown(),
+        onChanged: (opt){
+        setState(() {
+        _dropMenuSelectedOption=opt;
+        });
+      },
+     )
+    ],
+   );
+   
+ }
+
+
+
+
 }
