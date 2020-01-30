@@ -13,6 +13,7 @@ import 'package:appparticipacion/src/pages/no_connection_page.dart';
 import 'package:appparticipacion/src/shared_preferences/user_preferences.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:appparticipacion/src/provider/notification_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
  
@@ -41,11 +42,42 @@ void main() async {
   runApp(MyApp());
 }
  
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+  
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    final pushProvider = new PushNotificationProvider();
+    pushProvider.initNotifications();
+
+    pushProvider.mensajes.listen((info){
+
+
+        navigatorKey.currentState.pushNamed(HomePage.routeName);
+
+    });
+
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Provider(
         child: MaterialApp(
+        navigatorKey: navigatorKey,
         builder: (context, child){
           return MediaQuery(
             child: child,

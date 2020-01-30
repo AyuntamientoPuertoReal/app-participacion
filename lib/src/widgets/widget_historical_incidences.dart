@@ -42,7 +42,6 @@ Widget historicalIncidences(BuildContext context, IncidenceModel data){
             Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: data);
           },
         ),
-        
         Divider(
           thickness: 1.0,
           color: Colors.black,
