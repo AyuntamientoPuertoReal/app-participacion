@@ -44,7 +44,7 @@ Widget historicalIncidences(BuildContext context, IncidenceModel data){
         ),
         Divider(
           thickness: 1.0,
-          color: Colors.black,
+          color: Colors.grey,
         ),
       ],
     ),

@@ -21,7 +21,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
   String _dropMenuSelectedOption = "Todas las incidencias";
-  List _incidencesStatus = ['Todas las incidencias','Incidencias en proceso','Incidencias finalizadas'];
+  List _incidencesStatus = ['Todas las incidencias','Incidencias en proceso','Incidencias finalizadas','Incidencias desestimadas'];
 
   @override
   void initState() {
@@ -80,38 +80,38 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
       
       if(snapshot.hasData){
         final data = snapshot.data;
-        
+        String texto='';
 
         if(_dropMenuSelectedOption == "Todas las incidencias"){
           dataStatus = data;
+          texto='No has enviado ninguna incidencia';
         }else if(_dropMenuSelectedOption == "Incidencias en proceso"){
           dataStatus = data.where((i) => i.estado==2 || i.estado==1).toList();
+          texto='No hay ninguna incidencia en proceso';
         }else if(_dropMenuSelectedOption == "Incidencias finalizadas"){
-          dataStatus = data.where((i) => i.estado==3 || i.estado==4).toList();
+          dataStatus = data.where((i) => i.estado==3).toList();
+          texto='No tienes ninguna incidencia finalizada';
+        } else if(_dropMenuSelectedOption == "Incidencias desestimadas"){
+          dataStatus = data.where((i) => i.estado==4).toList();
+          texto='No tienes ninguna incidencia desestimada';
         }
-
 
         
         if(dataStatus.isEmpty){
-          return Container(
-            child: Center(
-              child: Text('No has enviado ninguna incidencia.', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),),
-            ),
+          return Column(
+            children: <Widget>[ 
+              filterIncidences(), 
+              Expanded(
+                    child: Center(
+                      child: Text(texto, textAlign: TextAlign.center, style: TextStyle(fontSize: 16),),
+                    ),
+                  ),
+            ],
           );
         } else{
           return Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      'Mostrar ', style: TextStyle(fontSize: 16)
-                      )
-                    ),
-                  _incidenceDropDown()
-                ],
-              ),
+              filterIncidences(),
               Expanded(
                 child: ListView.builder(
                   itemCount: dataStatus.length,
@@ -122,13 +122,29 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
               ),
             ],
           );
-        }
-        
+         }       
       }else {
          return cancelConnection(context);
       }
      },
    );
+  }
+
+  Widget filterIncidences(){
+    return Container(
+      color: Color.fromRGBO(162, 0, 125, 0.2),
+      child: Row(          
+        children: <Widget>[
+            Container(
+            padding: EdgeInsets.all(5),
+            child: Text(
+              'MOSTRAR: ', style: TextStyle(fontSize: 16)
+              )
+            ),
+          _incidenceDropDown(),     
+        ],
+      ),
+    );
   }
 
   Future<Widget> serverDataChecker(BuildContext context)async {
