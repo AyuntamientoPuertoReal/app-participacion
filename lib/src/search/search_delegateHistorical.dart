@@ -10,6 +10,10 @@ class DataSearchHistorical extends SearchDelegate{
   String seleccion="";
   String busqueda="";
   final incidence = new IncidenceProvider();
+  int size = 0;
+
+  @override
+  String get searchFieldLabel => 'Buscar Incidencia';
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -41,20 +45,33 @@ class DataSearchHistorical extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
     // Crea los resultados que vamos a mostrar
+    if(size==0){
     return Center(
       child: Container(
-        height: 100.0,
-        width:  100.0,
-        color: Colors.amberAccent,
-        child: Text(query),
+        child: Text("No se ha encontrado ningun resultado"),
       ),
     );
+    } else {
+          return Center(
+      child: Container(
+        child: showSearch(),
+      ),
+    );
+    }
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     // Son las sugerencias que aparecen cuando la persona escriben
     // List<InterestPointsModel> listaPI = retornarInterestPoint();
+
+     return showSearch();
+
+       
+      }
+
+  Widget showSearch(){
+
         if(query.isEmpty){
           return FutureBuilder(
            future: incidence.loadIncidences()/*.buscarPelicula(query),*/,
@@ -95,7 +112,8 @@ class DataSearchHistorical extends SearchDelegate{
              if(snapshot.hasData){
     
                final incidences  = snapshot.data;
-               List<IncidenceModel> listaIncidenciasBusqueda = incidences.where((i) => i.nombreIncidencia.toLowerCase().contains(query.toLowerCase())).toList();
+               List<IncidenceModel> listaIncidenciasBusqueda = incidences.where((i) => i.descripcion.toLowerCase().contains(query.toLowerCase())).toList();
+               size = listaIncidenciasBusqueda.length;
     
                return ListView(
                  children: listaIncidenciasBusqueda.map((incidence){
@@ -123,6 +141,6 @@ class DataSearchHistorical extends SearchDelegate{
            },
          );
         }
-       
+
       }
 }

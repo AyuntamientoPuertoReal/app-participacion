@@ -7,6 +7,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 
 class InterestPointsPage extends StatefulWidget {
@@ -48,7 +49,7 @@ class _InterestPointsPageState extends State<InterestPointsPage> {
             title: Text("Puntos de Interés"),
             actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(MaterialIcons.find_in_page, color: Colors.white, size: 37.0),
               onPressed: (){
                 showSearch(context: context, delegate: DataSearch());
               }

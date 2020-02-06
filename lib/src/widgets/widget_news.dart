@@ -2,6 +2,7 @@ import 'package:appparticipacion/src/models/news_model.dart';
 import 'package:appparticipacion/src/pages/new_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
    
    
 Widget  defaultNews(BuildContext context, NewsModel noticia) {
@@ -10,6 +11,7 @@ Widget  defaultNews(BuildContext context, NewsModel noticia) {
   fecha=fecha.toLocal();
   var formatter = new DateFormat('dd/MM/yyyy HH:mm');
   String fechaFormateada = formatter.format(fecha);
+
 
   return InkWell(
     onTap: (){

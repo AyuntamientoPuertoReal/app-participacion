@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:appparticipacion/src/bloc/news_bloc.dart';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/models/news_model.dart';
+import 'package:appparticipacion/src/search/search_news.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:appparticipacion/src/widgets/widget_news.dart';
 import 'package:appparticipacion/src/utils/utils.dart';
 import 'package:appparticipacion/src/widgets/widget_no_connection.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 
 class NewsPage extends StatefulWidget {
@@ -33,7 +35,6 @@ class _NewsPageState extends State<NewsPage> {
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       _connectionStatus = result.toString();
-      print(_connectionStatus);
       if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         setState(() {});
@@ -57,6 +58,12 @@ class _NewsPageState extends State<NewsPage> {
       appBar: AppBar(
         title: Text("Noticias"),
         actions: <Widget>[
+           IconButton(
+              icon: Icon(MaterialIcons.find_in_page, color: Colors.white, size: 37.0),
+              onPressed: (){
+                showSearch(context: context, delegate: DataSearchNews());
+              }
+          ),
           FlatButton(
             child: Icon(icono, color: Colors.white, size: 37.0),
             onPressed: (){
@@ -74,7 +81,7 @@ class _NewsPageState extends State<NewsPage> {
                 });
               }
             },
-          )
+          ),
         ],
       ),
       backgroundColor: Color.fromRGBO(231, 242, 252, 1.0),

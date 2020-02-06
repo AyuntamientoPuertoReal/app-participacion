@@ -215,7 +215,6 @@ class _CreateIncidencePageState extends State<CreateIncidencePage> {
 
       foto = await testCompressAndGetFile(foto, foto.path);
 
-      print(foto.lengthSync());
       _fotoSeleccionada = true;
     }
     setState(() {});

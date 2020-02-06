@@ -59,7 +59,7 @@ Widget _mostrarHtml(NewsModel noticia) {
       _launchUrl(url);
     },
     onImageTap: (src) {
-      print(src);
+      
     },
   );
 }
