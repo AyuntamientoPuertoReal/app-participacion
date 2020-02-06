@@ -22,7 +22,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
   
   String mensaje='Elige en esta pantalla el tipo de incidencia que quieres enviar al Ayuntamiento.';
 
-  var _connectionStatus = 'Unknown';
+  var connectionStatus = 'Unknown';
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
 
@@ -32,7 +32,7 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
     connectivity = new Connectivity();
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      _connectionStatus = result.toString();
+      connectionStatus = result.toString();
       if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         setState(() {});

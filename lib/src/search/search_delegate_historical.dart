@@ -89,8 +89,8 @@ class DataSearchHistorical extends SearchDelegate{
                        width: 50.0,
                        fit: BoxFit.cover,
                      ),
-                     title: Text(incidence.nombreIncidencia),
-                     subtitle: Text( incidence.descripcion.toString() , overflow: TextOverflow.ellipsis,),
+                     title: Text( incidence.descripcion.toString() , overflow: TextOverflow.ellipsis),
+                     subtitle: Text(incidence.nombreIncidencia),
                      onTap: (){
                        close(context, null);
                        Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: incidence);
@@ -124,8 +124,8 @@ class DataSearchHistorical extends SearchDelegate{
                        width: 50.0,
                        fit: BoxFit.cover,
                      ),
-                     title: Text(incidence.nombreIncidencia),
-                     subtitle: Text( incidence.descripcion.toString() , overflow: TextOverflow.ellipsis,),
+                     title: Text( incidence.descripcion.toString() , overflow: TextOverflow.ellipsis),
+                     subtitle: Text(incidence.nombreIncidencia),
                      onTap: (){
                        close(context, null);
                        Navigator.pushNamed(context, IncidenceDetailsPage.routeName, arguments: incidence);

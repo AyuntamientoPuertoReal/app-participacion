@@ -24,7 +24,7 @@ class _NewsPageState extends State<NewsPage> {
   bool noticiaGrande=false;
 
 
-    var _connectionStatus = 'Unknown';
+  var connectionStatus = 'Unknown';
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
 
@@ -34,7 +34,7 @@ class _NewsPageState extends State<NewsPage> {
     connectivity = new Connectivity();
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      _connectionStatus = result.toString();
+      connectionStatus = result.toString();
       if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         setState(() {});

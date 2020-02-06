@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:appparticipacion/src/bloc/provider.dart';
 import 'package:appparticipacion/src/bloc/incidence_bloc.dart';
 import 'package:appparticipacion/src/models/incidence_model.dart';
-import 'package:appparticipacion/src/search/search_delegateHistorical.dart';
+import 'package:appparticipacion/src/search/search_delegate_historical.dart';
 import 'package:appparticipacion/src/widgets/widget_historical_incidences.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class IncidencesHistoricalPage extends StatefulWidget {
 
 class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
 
-  var _connectionStatus = 'Unknown';
+  var connectionStatus = 'Unknown';
   Connectivity connectivity;
   StreamSubscription<ConnectivityResult> subscription;
   String _dropMenuSelectedOption = "Todas las incidencias";
@@ -30,7 +30,7 @@ class _IncidencesHistoricalPageState extends State<IncidencesHistoricalPage> {
     connectivity = new Connectivity();
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      _connectionStatus = result.toString();
+      connectionStatus = result.toString();
       if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         setState(() {});
