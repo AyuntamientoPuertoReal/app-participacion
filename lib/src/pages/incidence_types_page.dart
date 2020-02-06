@@ -33,7 +33,6 @@ class _IncidenceTypesPageState extends State<IncidenceTypesPage> {
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       _connectionStatus = result.toString();
-      print(_connectionStatus);
       if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         setState(() {});

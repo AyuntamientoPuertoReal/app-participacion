@@ -1,17 +1,17 @@
-import 'package:appparticipacion/src/pages/interest_points_details_page.dart';
-import 'package:appparticipacion/src/provider/interest_points_provider.dart';
+import 'package:appparticipacion/src/pages/new_details_page.dart';
+import 'package:appparticipacion/src/provider/news_provider.dart';
 import 'package:flutter/material.dart';
 
 
-class DataSearch extends SearchDelegate{
+class DataSearchNews extends SearchDelegate{
 
   String seleccion="";
   String busqueda="";
-  final puntoInteresprovider = new InterestPointsProvider();
+  final puntoInteresprovider = new NewsProvider();
   int size = 0;
 
    @override
-  String get searchFieldLabel => 'Buscar punto de interés';
+  String get searchFieldLabel => 'Buscar título de la noticia';
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -62,35 +62,35 @@ class DataSearch extends SearchDelegate{
   Widget buildSuggestions(BuildContext context) {
     // Son las sugerencias que aparecen cuando la persona escriben
     // List<InterestPointsModel> listaPI = retornarInterestPoint();
-
-       return showSearch();
+       
+        return showSearch();
        
       }
 
   Widget showSearch(){
 
-          if(query.isEmpty){
+         if(query.isEmpty){
           return FutureBuilder(
-           future: puntoInteresprovider.loadInterestPoints(),
-           builder: (BuildContext context, AsyncSnapshot<List<InterestPointsModel>> snapshot) {
+           future: puntoInteresprovider.loadNews(),
+           builder: (BuildContext context, AsyncSnapshot<List<NewsModel>> snapshot) {
              if(snapshot.hasData){
     
-               final interestPoint  = snapshot.data;
+               final news  = snapshot.data;
                
                return ListView(
-                 children: interestPoint.map((interestPoint){
+                 children: news.map((noticia){
                    return ListTile(
                      leading: FadeInImage(
-                       image: NetworkImage(interestPoint.imageUrl),
+                       image: NetworkImage(noticia.imageUrl),
                        placeholder: AssetImage('assets/img/no-image.png'),
                        width: 50.0,
                        fit: BoxFit.cover,
                      ),
-                     title: Text(interestPoint.name),
-                     subtitle: Text( interestPoint.description.toString() , overflow: TextOverflow.ellipsis,),
+                     title: Text(noticia.title),
+                     subtitle: Text( noticia.description.toString() , overflow: TextOverflow.ellipsis,),
                      onTap: (){
                        close(context, null);
-                       Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: interestPoint);
+                       Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
                      },
                    );
                  }).toList(),
@@ -104,27 +104,27 @@ class DataSearch extends SearchDelegate{
          );
         }else {
          return FutureBuilder(
-           future: puntoInteresprovider.loadInterestPoints(),
-           builder: (BuildContext context, AsyncSnapshot<List<InterestPointsModel>> snapshot) {
+           future: puntoInteresprovider.loadNews(),
+           builder: (BuildContext context, AsyncSnapshot<List<NewsModel>> snapshot) {
              if(snapshot.hasData){
     
-               final interestPoint  = snapshot.data;
-               List<InterestPointsModel> listaPuntosBusqueda = interestPoint.where((i) => i.name.toLowerCase().contains(query.toLowerCase())).toList();
+               final news  = snapshot.data;
+               List<NewsModel> listaNoticias = news.where((i) => i.title.toLowerCase().contains(query.toLowerCase())).toList();
     
                return ListView(
-                 children: listaPuntosBusqueda.map((interestPoint){
+                 children: listaNoticias.map((noticia){
                    return ListTile(
                      leading: FadeInImage(
-                       image: NetworkImage(interestPoint.imageUrl),
+                       image: NetworkImage(noticia.imageUrl),
                        placeholder: AssetImage('assets/img/no-image.png'),
                        width: 50.0,
                        fit: BoxFit.cover,
                      ),
-                     title: Text(interestPoint.name),
-                     subtitle: Text( interestPoint.description.toString() , overflow: TextOverflow.ellipsis,),
+                     title: Text(noticia.title),
+                     subtitle: Text( noticia.description.toString() , overflow: TextOverflow.ellipsis,),
                      onTap: (){
                        close(context, null);
-                       Navigator.pushNamed(context, InterestPointDetailsPage.routeName, arguments: interestPoint);
+                       Navigator.pushNamed(context, NewDetails.routeName, arguments: noticia);
                      },
                    );
                  }).toList(),
@@ -137,5 +137,7 @@ class DataSearch extends SearchDelegate{
            },
          );
         }
+
       }
+
 }
